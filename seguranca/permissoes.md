@@ -1,139 +1,172 @@
-# Segurança e Permissionamento
+# Permissionamento — Pessoas & Agentes
 
-> Quem pode acessar o agente, o que cada pessoa pode fazer, e como proteger a operação.
-
----
-
-## 1. Repositório Privado
-
-Este repositório é **privado no GitHub**. Somente pessoas com acesso podem:
-- Ver os arquivos de contexto da empresa
-- Modificar skills, rotinas e configurações
-- Alterar dados operacionais
-
-**Quem tem acesso:**
-
-| Pessoa | Papel | Nível GitHub |
-|--------|-------|-------------|
-| Ricardo Mendes | Fundador | Admin |
-| Felipe Santos | CEO | Admin |
-| André Costa | COO | Write |
-| Camila | Social Media | Read |
-| Juliana | Suporte | Read |
-
-> 💡 **Regra:** Quem tem acesso *Read* pode consultar o contexto. Quem tem *Write* pode modificar skills e rotinas. *Admin* pode alterar permissões e configurações de segurança.
+> Quem pode o quê, tanto para pessoas quanto para agentes.
 
 ---
 
-## 2. Lista de IDs Autorizados (allowFrom)
+## Visão Geral
 
-O agente só responde a pessoas autorizadas. Qualquer mensagem de um ID que **não está na lista** é ignorada silenciosamente.
+O sistema tem duas camadas de permissão:
 
-**Configuração:**
+1. **Pessoas** → quais agentes podem acionar + quais dados podem pedir
+2. **Agentes** → quais pastas do cérebro acessam + qual tópico operam
 
-```json
-{
-  "allowFrom": [
-    "5511999990001",
-    "5511999990002",
-    "5511999990003",
-    "5511999990004",
-    "5511999990005"
-  ]
-}
+```
+┌─────────────────────────────────────────────────┐
+│                    PESSOAS                       │
+│  Ricardo (tudo), Felipe (tudo), André (tudo)     │
+│  Camila (marketing), Juliana (vendas+atend.)     │
+├─────────────────────────────────────────────────┤
+│                    AGENTES                       │
+│  Assistente Geral  →  empresa/ + todas as áreas │
+│  Marcos (Vendas)   →  empresa/ + vendas/        │
+│  Beatriz (Mkt)     →  empresa/ + marketing/     │
+│  Clara (Atend.)    →  empresa/ + atendimento/   │
+├─────────────────────────────────────────────────┤
+│                    CÉREBRO                       │
+│  empresa/ │ areas/ │ dados/ │ agentes/           │
+└─────────────────────────────────────────────────┘
 ```
 
-**Mapeamento:**
-
-| ID | Pessoa | Canal |
-|----|--------|-------|
-| 5511999990001 | Ricardo Mendes | WhatsApp |
-| 5511999990002 | Felipe Santos | WhatsApp |
-| 5511999990003 | André Costa | WhatsApp |
-| 5511999990004 | Camila | WhatsApp |
-| 5511999990005 | Juliana | WhatsApp |
-
-> ⚠️ **Para adicionar alguém:** inclua o ID nesta lista E neste documento. Commit no GitHub.
-
 ---
 
-## 3. Modo Ask — Confirmação para Ações de Escrita
+## Permissões de Pessoas
 
-O agente opera em dois modos:
+### Quem aciona qual agente
 
-| Tipo de ação | Modo | O que acontece |
-|-------------|------|----------------|
-| **Leitura** | `auto` | Executa direto — ler planilha, gerar relatório, consultar dados |
-| **Escrita** | `ask` | Pede confirmação antes — enviar email, postar, modificar dados |
+| Pessoa | Papel | Agentes que aciona | Pode ver dados de |
+|--------|-------|-------------------|-------------------|
+| Ricardo Mendes | Fundador | Todos | Tudo |
+| Felipe Santos | CEO | Todos | Tudo |
+| André Costa | COO | Todos | Tudo |
+| Camila | Social media | Assistente Geral, Beatriz (Mkt) | Marketing, métricas gerais |
+| Juliana | Suporte + vendas | Assistente Geral, Marcos (Vendas), Clara (Atend.) | Vendas, atendimento, métricas gerais |
+| Lucas / Patrícia | Tráfego pago | Beatriz (Mkt) | Marketing (ads), métricas gerais |
+| Marcos (designer) | Freelancer | Beatriz (Mkt) | Marketing (briefings), métricas gerais |
 
-### Exemplos práticos:
+### O que cada nível de acesso significa
 
-**Auto (sem confirmação):**
-- "Qual foi o faturamento dessa semana?" → responde direto
-- "Quantos leads estão sem contato?" → consulta e responde
-- "Me dá um resumo das rotinas ativas" → gera e mostra
+**Acesso total (liderança):**
+- Pode pedir qualquer relatório, de qualquer área
+- Pode ver dados financeiros, pipeline de leads, métricas de todas as áreas
+- Pode alterar configurações de agentes e permissões
+- `allowFrom: ["ricardo", "felipe", "andre"]`
 
-**Ask (pede confirmação):**
-- "Envia esse relatório no WhatsApp do time" → ⚠️ "Confirma o envio?"
-- "Atualiza o status desse lead pra 'fechado'" → ⚠️ "Confirma a alteração?"
-- "Manda um email pro cliente X" → ⚠️ "Confirma o conteúdo e o envio?"
+**Acesso à área (equipe):**
+- Pode pedir relatórios e dados da sua área
+- Pode interagir com o agente da sua área
+- Pode pedir métricas gerais da empresa (sem financeiro detalhado)
+- NÃO pode ver pipeline de leads de vendas (se for de marketing)
+- NÃO pode alterar configurações de agentes
 
-**Configuração:**
+### Configuração no OpenClaw
 
 ```json
 {
-  "security": {
-    "execMode": "ask",
-    "autoActions": ["read", "analyze", "report"],
-    "askActions": ["send", "write", "modify", "delete", "publish"]
+  "agents": {
+    "defaults": {
+      "allowFrom": {
+        "users": [
+          { "id": "ricardo_id", "name": "Ricardo", "level": "admin" },
+          { "id": "felipe_id", "name": "Felipe", "level": "admin" },
+          { "id": "andre_id", "name": "André", "level": "admin" },
+          { "id": "camila_id", "name": "Camila", "level": "area", "areas": ["marketing"] },
+          { "id": "juliana_id", "name": "Juliana", "level": "area", "areas": ["vendas", "atendimento"] }
+        ]
+      }
+    }
   }
 }
 ```
 
 ---
 
-## 4. Permissões por Pessoa
+## Permissões de Agentes
 
-Nem todo mundo pode pedir tudo. A tabela abaixo define o que cada pessoa pode solicitar ao agente:
+### Qual agente acessa o quê
 
-| Ação | Ricardo | Felipe | André | Camila | Juliana |
-|------|---------|--------|-------|--------|---------|
-| Consultar dados de vendas | ✅ | ✅ | ✅ | ❌ | ❌ |
-| Gerar relatórios | ✅ | ✅ | ✅ | ✅ (marketing) | ✅ (suporte) |
-| Criar/editar skills | ✅ | ✅ | ✅ | ❌ | ❌ |
-| Configurar rotinas | ✅ | ✅ | ✅ | ❌ | ❌ |
-| Enviar mensagens em nome da empresa | ✅ | ✅ | ❌ | ❌ | ❌ |
-| Acessar dados financeiros | ✅ | ✅ | ✅ | ❌ | ❌ |
-| Modificar permissões | ✅ | ✅ | ❌ | ❌ | ❌ |
-| Criar novos agentes | ✅ | ✅ | ❌ | ❌ | ❌ |
+| Agente | Persona | Acesso ao cérebro | Tópico Telegram | topic_id |
+|--------|---------|-------------------|-----------------|----------|
+| Assistente Geral | Generalista | `empresa/` + todas as `areas/` + `dados/` + `seguranca/` | General + qualquer tópico | 1 |
+| Marcos Viana | Vendas consultivas | `empresa/` + `areas/vendas/` + `dados/vendas.csv` + `dados/leads.csv` | 💰 Vendas | 4 |
+| Beatriz Almeida | Marketing digital | `empresa/` + `areas/marketing/` | 📢 Marketing | 3 |
+| Clara Souza | Customer success | `empresa/` + `areas/atendimento/` | 🎧 Atendimento | 5 |
+
+### Por que o Assistente Geral tem acesso total?
+
+O Assistente Geral é o "gerente" dos outros agentes. Ele:
+- Responde perguntas cross-área (que envolvem mais de uma área)
+- Roda o heartbeat (precisa ver tudo pra checar saúde)
+- Gerencia o repositório (sync, consolidação de memória)
+- Faz o relatório de rotinas (monitora todos os crons)
+- É o fallback quando um agente de área não está configurado
+
+### Escopo limitado na prática
+
+O agente de vendas (Marcos), por exemplo:
+- ✅ Pode ler `empresa/contexto/empresa.md` (precisa saber os produtos)
+- ✅ Pode ler `empresa/contexto/equipe.md` (precisa saber quem é quem)
+- ✅ Pode ler `areas/vendas/` inteiro (é a área dele)
+- ✅ Pode ler e escrever `dados/vendas.csv` e `dados/leads.csv`
+- ❌ NÃO lê `areas/marketing/` (não é da conta dele)
+- ❌ NÃO lê `areas/atendimento/` (mesmo que seja sobre um cliente)
+- ❌ NÃO lê `seguranca/permissoes.md` (não precisa saber as regras globais)
+
+Se um agente de área precisa de informação de outra área, ele pede ao Assistente Geral.
 
 ---
 
-## 5. Regras de Segurança
+## Matriz Completa: Pessoa × Agente × Área
 
-### O agente NUNCA faz (independente de quem pede):
-- Compartilhar dados financeiros fora dos canais autorizados
-- Enviar informações de clientes para terceiros
-- Publicar conteúdo sem aprovação explícita
-- Executar comandos destrutivos sem confirmação dupla
-- Compartilhar credenciais, tokens ou senhas
-
-### Escalação automática:
-- Se alguém não autorizado tentar acessar → ignorar + registrar
-- Se uma ação de alto risco for solicitada → pedir confirmação + notificar admin
-- Se houver dúvida sobre permissão → negar e perguntar ao Ricardo ou Felipe
+| Pessoa | Agente Geral | Marcos (Vendas) | Beatriz (Mkt) | Clara (Atend.) |
+|--------|:---:|:---:|:---:|:---:|
+| Ricardo (Fundador) | ✅ | ✅ | ✅ | ✅ |
+| Felipe (CEO) | ✅ | ✅ | ✅ | ✅ |
+| André (COO) | ✅ | ✅ | ✅ | ✅ |
+| Camila (Social) | ✅ | ❌ | ✅ | ❌ |
+| Juliana (Suporte) | ✅ | ✅ | ❌ | ✅ |
+| Lucas (Tráfego) | ❌ | ❌ | ✅ | ❌ |
+| Marcos (Design) | ❌ | ❌ | ✅ | ❌ |
 
 ---
 
-## 6. Auditoria
+## Modo Ask (Ações Sensíveis)
 
-Toda ação de escrita é registrada com:
-- **Quem** pediu
-- **O que** foi executado
-- **Quando** aconteceu
-- **Resultado** (sucesso/erro)
+Independente do nível de acesso, algumas ações SEMPRE pedem confirmação:
 
-O Relatório de Rotinas semanal (segunda às 8h) inclui um resumo de ações de escrita da semana.
+| Ação | Quem pode aprovar |
+|------|-------------------|
+| Enviar email para cliente | Ricardo, Felipe, André |
+| Publicar em rede social | Ricardo, Camila |
+| Aprovar reembolso > R$ 200 | André |
+| Alterar preço de produto | Ricardo, Felipe |
+| Criar campanha de ads | Ricardo, Lucas/Patrícia |
+| Alterar permissões de agentes | Ricardo, Felipe |
+
+Configuração:
+```
+Modo: ask (pede confirmação antes de executar)
+Ações em modo ask: envio de email, post público, reembolso, alteração de preço
+```
+
+---
+
+## Evolução: Quando Adicionar Mais Agentes
+
+A estrutura de permissionamento é escalável:
+
+1. **Fase 1 (início):** Só o Assistente Geral → acesso total, uma pessoa configura
+2. **Fase 2 (equipe de 5+):** Adicionar 1-2 agentes de área → menos gargalo
+3. **Fase 3 (equipe de 10+):** Agente por área + sub-agentes especializados
+   - Ex: Beatriz (Mkt) pode spawnar sub-agente só pra copywriting
+   - Ex: Marcos (Vendas) pode spawnar sub-agente só pra qualificação de leads
+
+Para adicionar um novo agente:
+1. Criar pasta em `agentes/[nome-do-agente]/`
+2. Criar `SOUL.md` com a persona especialista
+3. Criar `AGENTS.md` com escopo e permissões
+4. Atualizar este arquivo com as novas permissões
+5. Configurar no OpenClaw apontando pro tópico correto
 
 ---
 

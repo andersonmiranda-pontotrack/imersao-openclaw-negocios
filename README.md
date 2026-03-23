@@ -26,14 +26,25 @@ empresa-exemplo-second-brain/
 │
 ├── agentes/                           ← Configuração dos agentes de IA
 │   ├── COMO-CONECTAR.md               ← Como o agente se conecta ao repo
-│   └── assistente/                    ← Agente principal
-│       ├── SOUL.md                    ← Personalidade e tom
-│       ├── USER.md                    ← Quem é a equipe
-│       ├── IDENTITY.md               ← Nome, email, emoji
-│       ├── AGENTS.md                  ← Regras operacionais + memória
-│       ├── MEMORY.md                  ← Índice (aponta pro repo)
-│       ├── HEARTBEAT.md              ← Tarefas periódicas automáticas
-│       └── TOOLS.md                   ← Ferramentas conectadas
+│   ├── assistente/                    ← Agente geral (acesso total)
+│   │   ├── SOUL.md                    ← Personalidade e tom
+│   │   ├── USER.md                    ← Quem é a equipe
+│   │   ├── IDENTITY.md               ← Nome, email, emoji
+│   │   ├── AGENTS.md                  ← Regras operacionais + memória
+│   │   ├── MEMORY.md                  ← Índice (aponta pro repo)
+│   │   ├── HEARTBEAT.md              ← Tarefas periódicas automáticas
+│   │   ├── TOOLS.md                   ← Ferramentas conectadas
+│   │   └── memory/
+│   │       └── channels.md            ← Mapeamento tópicos ↔ áreas
+│   ├── vendas/                        ← Agente especialista em vendas
+│   │   ├── SOUL.md                    ← Persona: Marcos Viana
+│   │   └── AGENTS.md                 ← Escopo: empresa/ + vendas/ + dados/
+│   ├── marketing/                     ← Agente especialista em marketing
+│   │   ├── SOUL.md                    ← Persona: Beatriz Almeida
+│   │   └── AGENTS.md                 ← Escopo: empresa/ + marketing/
+│   └── atendimento/                   ← Agente especialista em atendimento
+│       ├── SOUL.md                    ← Persona: Clara Souza
+│       └── AGENTS.md                 ← Escopo: empresa/ + atendimento/
 │
 ├── empresa/                           ← Contexto geral (cross-area)
 │   ├── contexto/
@@ -133,14 +144,25 @@ Toda **área** sempre tem 3 pastas base:
 
 ---
 
+## Agentes
+
+| Agente | Persona | Área | Tópico Telegram |
+|--------|---------|------|-----------------|
+| Assistente Geral | Generalista | Todas | General + todos |
+| Marcos Viana | Vendas consultivas (12 anos exp.) | Vendas | 💰 Vendas |
+| Beatriz Almeida | Marketing digital / performance | Marketing | 📢 Marketing |
+| Clara Souza | Customer success / suporte | Atendimento | 🎧 Atendimento |
+
+Ver permissionamento completo em `seguranca/permissoes.md`.
+
 ## Áreas Ativas
 
-| Área | Responsável | Skills ativas |
-|------|-------------|---------------|
-| Vendas | André Costa / Juliana | `relatorio-vendas`, `follow-up-leads` |
-| Marketing | Camila, Lucas/Patrícia | (em implementação) |
-| Atendimento | Juliana | (em implementação) |
-| Operações | André Costa | (cross-area em `empresa/skills/`) |
+| Área | Responsável | Agente | Skills ativas |
+|------|-------------|--------|---------------|
+| Vendas | André / Juliana | Marcos Viana | `relatorio-vendas`, `follow-up-leads` |
+| Marketing | Camila, Lucas/Patrícia | Beatriz Almeida | (em implementação) |
+| Atendimento | Juliana | Clara Souza | (em implementação) |
+| Operações | André Costa | Assistente Geral | (cross-area em `empresa/skills/`) |
 
 ---
 
