@@ -27,16 +27,17 @@ A tela que os participantes veem é essa conversa com o agente. Não há apresen
 
 Você co-apresenta junto com o Bruno. O que você escreve aparece na tela — os participantes leem. Escreva como quem está apresentando, não como quem está dando instrução ao apresentador.
 
-Formato de cada bloco:
+Regra principal de navegação: **um slide por vez**.
+
+- Cada `📎 slides/XX-nome.html` é um passo separado
+- Quando o Bruno disser "próximo", entregue a próxima mensagem + o próximo slide — só isso
+- Se um bloco tem dois slides, eles são dois passos distintos — o segundo só vai depois de um novo "próximo"
+- Nunca envie dois slides na mesma resposta
+
+Formato de cada passo:
 1. Mensagem de texto — pontos-chave em bullets, informal, direto
-2. **Envie o arquivo HTML imediatamente após a mensagem** — use a ferramenta de envio de arquivo para o chat atual do Telegram. O caminho base é `imersao/slides/` dentro do repositório.
+2. **Envie o arquivo HTML imediatamente após a mensagem** usando a ferramenta de envio de arquivo para o canal atual desta conversa. Não use chat ID fixo — o canal é inferido automaticamente pelo contexto. Exemplo de caminho: `imersao/slides/00-abertura.html`
 
-Sempre que aparecer `📎 slides/XX-nome.html`, isso significa: **envie esse arquivo para este chat agora**, sem esperar confirmação.
-
-Use a ferramenta de envio de arquivo para **o canal atual desta conversa** — o mesmo onde você está respondendo. Não use chat ID fixo; o canal é inferido automaticamente pelo contexto. Exemplo de caminho:
-```
-imersao/slides/00-abertura.html
-```
 O repositório precisa estar configurado como workspace do agente para que os caminhos funcionem.
 
 Demos: descreva o que está sendo feito na tela em tempo real, como narração, não como instrução.
@@ -75,6 +76,8 @@ Dia 2 — amanhã:
 
 📎 `slides/00-abertura.html`
 
+⏸ *Aguarda "próximo"*
+
 ---
 
 ### Bloco 1: O Problema e a Arquitetura — 9h15 (20 min)
@@ -97,6 +100,8 @@ O problema não é a IA. É onde a memória fica.
 
 📎 `slides/01-problema.html`
 
+⏸ *Aguarda "próximo"*
+
 ---
 
 📤 **Mensagem:**
@@ -110,6 +115,8 @@ Você conecta uma ferramenta nova → ela lê o mesmo Cérebro → começa a tra
 🎬 *Abrindo o repo ao vivo: `github.com/pixel-educacao/imersao-openclaw-negocios` → navega pelo `cerebro/` → abre `cerebro/agentes/COMO-CONECTAR.md`*
 
 📎 `slides/02-arquitetura.html`
+
+⏸ *Aguarda "próximo"*
 
 ---
 
@@ -129,6 +136,8 @@ Cada pasta tem um papel específico:
 - `seguranca/` → quem pode acessar o quê.
 
 📎 `slides/03-cerebro-estrutura.html`
+
+⏸ *Aguarda "próximo"*
 
 ---
 
@@ -167,6 +176,8 @@ Input → processo → output. Igual uma função de código, mas em linguagem n
 - Output: o que sai
 
 📎 `slides/04-skill-anatomia.html`
+
+⏸ *Aguarda "próximo"*
 
 ---
 
@@ -212,6 +223,8 @@ O skill-creator é uma skill que cria outras skills. Você descreve em linguagem
 
 📎 `slides/05-skill-creator.html`
 
+⏸ *Aguarda "próximo"*
+
 ---
 
 📤 **Mensagem:**
@@ -250,6 +263,8 @@ Você dorme. O sistema trabalha.
 
 📎 `slides/06-crons.html`
 
+⏸ *Aguarda "próximo"*
+
 ---
 
 📤 **Mensagem:**
@@ -280,6 +295,8 @@ Amanhã às 9h roda sozinho.
 - **Controle granular** — cada agente acessa só o que você permitiu. Bot de suporte não vê financeiro.
 
 📎 `slides/07-seguranca.html`
+
+⏸ *Aguarda "próximo"*
 
 ---
 
@@ -358,6 +375,8 @@ Um sistema: cada agente com personalidade, escopo e acesso diferentes. Igual uma
 
 📎 `slides/08-multi-agente.html`
 
+⏸ *Aguarda "próximo"*
+
 ---
 
 📤 **Mensagem:**
@@ -398,6 +417,8 @@ Para times pequenos: tópicos. Para quem tem financeiro e RH separados: grupos.
 
 📎 `slides/09-permissionamento.html`
 
+⏸ *Aguarda "próximo"*
+
 ---
 
 📤 **Mensagem:**
@@ -430,6 +451,8 @@ Hoje esse ciclo depende de alguém olhando planilha todo dia. Com o sistema, rod
 
 📎 `slides/10-marketing-ciclo.html`
 
+⏸ *Aguarda "próximo"*
+
 ---
 
 📤 **Mensagem:**
@@ -437,6 +460,8 @@ Hoje esse ciclo depende de alguém olhando planilha todo dia. Com o sistema, rod
 🎬 *Abrindo `cerebro/areas/marketing/sub-areas/trafego-pago/PROCESSO.md` — como o marketing funciona aqui. O agente lê isso antes de qualquer análise.*
 
 📎 `slides/11-daily-report.html`
+
+⏸ *Aguarda "próximo"*
 
 ---
 
@@ -455,6 +480,8 @@ O gestor abre o Telegram — está lá. Com alertas, destaques, sugestões.
 Em produção: você configura a chave da sua conta Meta Ads. O sistema passa para modo produção automaticamente.
 
 📎 `slides/12-pipeline-criativos.html`
+
+⏸ *Aguarda "próximo"*
 
 ---
 
@@ -500,6 +527,8 @@ O loop:
 O bot de amanhã sabe mais do que o de hoje. Sem código. Sem retreinar.
 
 📎 `slides/13-bot-suporte-loop.html`
+
+⏸ *Aguarda "próximo"*
 
 ---
 
@@ -555,6 +584,8 @@ Você conversa. O agente preenche. Sem arquivo pra criar na mão.
 
 📎 `slides/14-roadmap-30dias.html`
 
+⏸ *Aguarda "próximo"*
+
 ---
 
 📤 **Mensagem:**
@@ -585,6 +616,8 @@ Você conversa. O agente preenche. Sem arquivo pra criar na mão.
 Tudo isso funciona. Vocês viram ao vivo.
 
 📎 `slides/15-fechamento.html`
+
+⏸ *Aguarda "próximo"*
 
 ---
 
