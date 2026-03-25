@@ -1,16 +1,16 @@
 ---
 name: relatorio-vendas
 description: >
-  Lê a planilha de vendas (dados/vendas.csv) e gera relatório semanal com
-  faturamento total, ticket médio, produtos mais vendidos, canais de aquisição
-  e comparação com a semana anterior.
+  Lê a planilha de vendas e gera relatório semanal com faturamento total,
+  ticket médio, produtos mais vendidos, canais de aquisição e comparação
+  com a semana anterior.
 ---
 
 # Relatório de Vendas
 
 ## O que faz
 
-Lê os dados de vendas do arquivo `dados/vendas.csv`, filtra pelo período solicitado (padrão: semana atual vs. semana anterior) e gera um relatório estruturado com:
+Lê os dados de vendas (arquivo CSV ou Google Sheets), filtra pelo período solicitado (padrão: semana atual vs. semana anterior) e gera um relatório estruturado com:
 
 - Faturamento total do período
 - Número de vendas e ticket médio
@@ -41,7 +41,7 @@ Lê os dados de vendas do arquivo `dados/vendas.csv`, filtra pelo período solic
 
 ## Passo a passo
 
-1. **Ler o arquivo** `dados/vendas.csv`
+1. **Ler o arquivo de vendas** — usar `imersao/dados-demo/vendas.csv` (demo) ou o arquivo configurado para produção
 2. **Filtrar por período:**
    - Semana atual: últimos 7 dias até hoje
    - Semana anterior: 8 a 14 dias atrás
