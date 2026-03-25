@@ -13,143 +13,268 @@
     --text: #e2e8f0; --text2: #94a3b8;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); overflow: hidden; }
-  body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 28px 24px; }
-  h2 { font-size: clamp(22px, 2.5vw, 36px); font-weight: 800; text-align: center; margin-bottom: 6px; }
-  .tagline { color: var(--accent2); font-size: 17px; font-weight: 600; text-align: center; margin-bottom: 28px; }
-  .diagram {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    height: 380px;
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    overflow: hidden;
   }
-  .agent-node {
-    position: absolute;
-    background: var(--bg2);
-    border-radius: 16px;
-    padding: 16px 20px;
-    text-align: center;
-    min-width: 160px;
-    border: 2px solid var(--border);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .agent-node:hover { transform: scale(1.05); }
-  .agent-icon { font-size: 36px; margin-bottom: 8px; }
-  .agent-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-  .agent-focus { font-size: 12px; color: var(--text2); line-height: 1.4; }
-  .agent-soul { font-size: 11px; color: var(--accent2); font-weight: 600; margin-top: 6px; padding: 3px 8px; background: rgba(254,80,0,0.1); border-radius: 4px; }
-
-  /* Positions */
-  .center-agent { top: 50%; left: 50%; transform: translate(-50%, -50%); border-color: var(--accent); background: rgba(254,80,0,0.08); box-shadow: 0 0 40px rgba(254,80,0,0.2); z-index: 2; }
-  .center-agent:hover { transform: translate(-50%, -50%) scale(1.05); }
-  .top-agent { top: 0; left: 50%; transform: translateX(-50%); border-color: var(--blue); }
-  .left-agent { top: 50%; left: 0; transform: translateY(-50%); border-color: var(--green); }
-  .right-agent { top: 50%; right: 0; transform: translateY(-50%); border-color: var(--yellow); }
-
-  /* SVG connector lines */
-  .connectors { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-
-  .brain-badge {
-    position: absolute;
-    bottom: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 4px 12px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text2);
-    white-space: nowrap;
-  }
-  .bottom-bar {
-    margin-top: 32px;
+  body {
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px 32px;
+    gap: 20px;
+  }
+
+  h2 { font-size: clamp(20px, 2.3vw, 32px); font-weight: 800; text-align: center; }
+  .tagline { color: var(--text2); font-size: clamp(13px, 1.4vw, 16px); text-align: center; margin-top: -12px; }
+
+  /* ── Main layout: 3 columns ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0 16px;
+    width: 100%;
+    max-width: 1060px;
+  }
+
+  /* Side columns */
+  .col-agents {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .col-left { align-items: flex-end; }
+  .col-right { align-items: flex-start; }
+
+  /* Agent card */
+  .agent {
+    background: var(--bg2);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    min-width: 220px;
+    max-width: 260px;
+    transition: border-color 0.2s;
+  }
+  .agent:hover { border-color: rgba(255,255,255,0.2); }
+  .agent-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .agent-icon { font-size: 28px; flex-shrink: 0; }
+  .agent-name { font-size: 14px; font-weight: 700; }
+  .agent-soul {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-bottom: 6px;
+  }
+  .agent-focus { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  .agent.marketing { border-color: rgba(254,80,0,0.4); }
+  .agent.marketing .agent-soul { background: rgba(254,80,0,0.12); color: var(--accent2); }
+
+  .agent.vendas { border-color: rgba(96,165,250,0.4); }
+  .agent.vendas .agent-soul { background: rgba(96,165,250,0.12); color: var(--blue); }
+
+  .agent.atendimento { border-color: rgba(34,197,94,0.4); }
+  .agent.atendimento .agent-soul { background: rgba(34,197,94,0.12); color: var(--green); }
+
+  .agent.operacoes { border-color: rgba(234,179,8,0.4); }
+  .agent.operacoes .agent-soul { background: rgba(234,179,8,0.12); color: var(--yellow); }
+
+  /* Arrows */
+  .arrows-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 4px;
+  }
+  .arrow-pair {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--border);
+    font-size: 14px;
+  }
+  .arr { color: var(--accent); font-size: 18px; font-weight: 300; }
+
+  /* Center: Assistente */
+  .center-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .assistente {
+    background: var(--bg3);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 22px 20px;
+    text-align: center;
+    box-shadow: 0 0 48px rgba(254,80,0,0.2);
+    min-width: 190px;
+  }
+  .assistente-icon { font-size: 44px; margin-bottom: 8px; }
+  .assistente-name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+  .assistente-sub { font-size: 12px; color: var(--text2); margin-bottom: 12px; line-height: 1.4; }
+  .cerebro-badge {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: var(--text2);
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Bottom bar */
+  .bottom {
+    display: flex;
+    gap: 14px;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    max-width: 900px;
+    max-width: 1060px;
   }
-  .info-pill {
+  .bottom-pill {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 10px 18px;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text2);
     text-align: center;
   }
-  .info-pill strong { color: var(--text); }
-  .diff-badge {
-    background: rgba(254,80,0,0.12);
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--accent2);
+  .bottom-pill strong { color: var(--text); display: block; margin-bottom: 2px; }
+  .example-pill {
+    background: rgba(254,80,0,0.08);
+    border: 1px solid rgba(254,80,0,0.25);
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 13px;
+    color: var(--text2);
     text-align: center;
   }
+  .example-pill strong { color: var(--accent2); display: block; margin-bottom: 2px; }
 </style>
 </head>
 <body>
+
   <h2>🤖 Sistema Multi-Agente</h2>
-  <p class="tagline">Mesma pergunta → Respostas diferentes conforme o escopo de cada agente</p>
+  <p class="tagline">Cada agente com personalidade, escopo e acesso próprios — todos lendo do mesmo Cérebro</p>
 
-  <div class="diagram">
-    <!-- SVG connector lines -->
-    <svg class="connectors" viewBox="0 0 900 380" preserveAspectRatio="none">
-      <!-- Center to Top -->
-      <line x1="450" y1="190" x2="450" y2="80" stroke="#2a3260" stroke-width="2" stroke-dasharray="6,4"/>
-      <polygon points="450,75 445,85 455,85" fill="#60a5fa"/>
-      <!-- Center to Left -->
-      <line x1="450" y1="190" x2="200" y2="190" stroke="#2a3260" stroke-width="2" stroke-dasharray="6,4"/>
-      <polygon points="195,190 205,185 205,195" fill="#22c55e"/>
-      <!-- Center to Right -->
-      <line x1="450" y1="190" x2="700" y2="190" stroke="#2a3260" stroke-width="2" stroke-dasharray="6,4"/>
-      <polygon points="705,190 695,185 695,195" fill="#eab308"/>
-    </svg>
+  <div class="layout">
 
-    <!-- Top: Agente Vendas -->
-    <div class="agent-node top-agent">
-      <div class="agent-icon">💼</div>
-      <div class="agent-name">Agente Vendas</div>
-      <div class="agent-focus">Leads, pipeline,<br>follow-up, CRM</div>
-      <div class="agent-soul">SOUL: SDR mode</div>
+    <!-- LEFT: Marketing + Atendimento -->
+    <div class="col-agents col-left">
+
+      <div class="agent marketing">
+        <div class="agent-header">
+          <div class="agent-icon">📣</div>
+          <div class="agent-name">Agente Marketing</div>
+        </div>
+        <div class="agent-soul">Data-driven · ROAS-first</div>
+        <div class="agent-focus">Relatórios, criativos, tráfego pago.<br>Acessa só <code style="font-size:11px;color:var(--accent2)">areas/marketing/</code></div>
+      </div>
+
+      <div class="agent atendimento">
+        <div class="agent-header">
+          <div class="agent-icon">💬</div>
+          <div class="agent-name">Bot Atendimento</div>
+        </div>
+        <div class="agent-soul">Empático · Cliente-first</div>
+        <div class="agent-focus">FAQ, tickets, escala de dúvidas.<br>Acessa só <code style="font-size:11px;color:var(--green)">areas/atendimento/bot/</code></div>
+      </div>
+
     </div>
 
-    <!-- Left: Agente Marketing -->
-    <div class="agent-node left-agent">
-      <div class="agent-icon">🎨</div>
-      <div class="agent-name">Agente Marketing</div>
-      <div class="agent-focus">Criativos, relatórios,<br>tráfego pago</div>
-      <div class="agent-soul">SOUL: Data-driven</div>
+    <!-- ARROWS LEFT -->
+    <div class="arrows-col">
+      <div class="arrow-pair">
+        <div class="arr">⟵</div>
+        <div class="arr">⟶</div>
+      </div>
+      <div class="arrow-pair">
+        <div class="arr">⟵</div>
+        <div class="arr">⟶</div>
+      </div>
     </div>
 
-    <!-- Center: Assistente Central -->
-    <div class="agent-node center-agent">
-      <div class="agent-icon">🧠</div>
-      <div class="agent-name">Assistente Central</div>
-      <div class="agent-focus">Generalista, coordena,<br>acessa tudo</div>
-      <div class="agent-soul">SOUL: Full-stack ops</div>
-      <div class="brain-badge">📦 GitHub — Cérebro Compartilhado</div>
+    <!-- CENTER -->
+    <div class="center-wrap">
+      <div class="assistente">
+        <div class="assistente-icon">🧠</div>
+        <div class="assistente-name">Assistente Central</div>
+        <div class="assistente-sub">Generalista · Acesso amplo<br>Coordena quando necessário</div>
+        <div class="cerebro-badge">📦 cerebro/ compartilhado</div>
+      </div>
     </div>
 
-    <!-- Right: Bot Suporte -->
-    <div class="agent-node right-agent">
-      <div class="agent-icon">💬</div>
-      <div class="agent-name">Bot Suporte</div>
-      <div class="agent-focus">FAQ, atendimento,<br>clientes, tickets</div>
-      <div class="agent-soul">SOUL: Empático</div>
+    <!-- ARROWS RIGHT -->
+    <div class="arrows-col">
+      <div class="arrow-pair">
+        <div class="arr">⟵</div>
+        <div class="arr">⟶</div>
+      </div>
+      <div class="arrow-pair">
+        <div class="arr">⟵</div>
+        <div class="arr">⟶</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Vendas + Operações -->
+    <div class="col-agents col-right">
+
+      <div class="agent vendas">
+        <div class="agent-header">
+          <div class="agent-icon">💼</div>
+          <div class="agent-name">Agente Vendas</div>
+        </div>
+        <div class="agent-soul">SDR mode · Conversão-first</div>
+        <div class="agent-focus">Leads, pipeline, follow-up.<br>Acessa só <code style="font-size:11px;color:var(--blue)">areas/vendas/</code></div>
+      </div>
+
+      <div class="agent operacoes">
+        <div class="agent-header">
+          <div class="agent-icon">⚙️</div>
+          <div class="agent-name">Agente Operações</div>
+        </div>
+        <div class="agent-soul">Sistemático · Processos-first</div>
+        <div class="agent-focus">Heartbeat, sync, monitoramento.<br>Acessa só <code style="font-size:11px;color:var(--yellow)">areas/operacoes/</code></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bottom -->
+  <div class="bottom">
+    <div class="bottom-pill">
+      <strong>SOUL.md único por agente</strong>
+      Personalidade e tom diferentes
+    </div>
+    <div class="example-pill">
+      <strong>💬 "Qual o ROAS de hoje?"</strong>
+      Marketing → analisa e responde · Vendas → fora do escopo
+    </div>
+    <div class="bottom-pill">
+      <strong>Isolamento por área</strong>
+      Bot de suporte não vê financeiro
     </div>
   </div>
 
-  <div class="bottom-bar">
-    <div class="info-pill">Cada agente tem <strong>SOUL.md único</strong><br>com personalidade e escopo próprios</div>
-    <div class="diff-badge">💬 "Qual o ROAS de hoje?"<br><span style="font-size:13px;color:var(--text2);">Marketing → dados de anúncios<br>Vendas → irrelevante fora do escopo</span></div>
-    <div class="info-pill">Todos leem do <strong>mesmo repo</strong><br>Cada um age no <strong>seu domínio</strong></div>
-  </div>
 </body>
 </html>

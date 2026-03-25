@@ -13,138 +13,268 @@
     --text: #e2e8f0; --text2: #94a3b8;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); overflow: hidden; }
-  body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 32px 24px; }
-  h2 { font-size: clamp(24px, 2.8vw, 38px); font-weight: 800; text-align: center; margin-bottom: 8px; }
-  .tagline { color: var(--accent2); font-size: clamp(16px, 1.8vw, 22px); font-weight: 600; text-align: center; margin-bottom: 36px; }
-  .arch {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 16px;
-    align-items: center;
-    justify-items: center;
-    width: 100%;
-    max-width: 960px;
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    overflow: hidden;
   }
-  .tools-left { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; width: 100%; }
-  .tools-right { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; width: 100%; }
-  .tool-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 18px;
-    font-size: 16px;
-    font-weight: 600;
-    min-width: 180px;
-    transition: border-color 0.2s;
-  }
-  .tool-box:hover { border-color: var(--blue); }
-  .tool-box .icon { font-size: 22px; }
-  .center-col {
+  body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 32px 40px;
+    gap: 28px;
   }
-  .arrow-h {
-    font-size: 22px;
-    color: var(--accent);
+
+  h2 {
+    font-size: clamp(22px, 2.5vw, 34px);
+    font-weight: 800;
+    text-align: center;
+  }
+  .tagline {
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: var(--accent2);
+    font-weight: 600;
+    text-align: center;
+    margin-top: -16px;
+  }
+
+  /* ── Main diagram ── */
+  .diagram {
+    display: grid;
+    grid-template-columns: 1fr 56px 1fr 56px 1fr;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    max-width: 1060px;
+  }
+
+  /* Left column */
+  .col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-end;
+  }
+
+  /* Right column */
+  .col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  /* Node boxes */
+  .node {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 12px;
+    background: var(--bg2);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 20px;
+    min-width: 200px;
+    max-width: 240px;
+    transition: border-color 0.2s;
   }
-  .github-box {
-    background: var(--bg3);
-    border: 2px solid var(--accent);
-    border-radius: 20px;
-    padding: 28px 36px;
-    text-align: center;
-    box-shadow: 0 0 40px rgba(254,80,0,0.25);
-    position: relative;
+  .node:hover { border-color: var(--blue); }
+  .node .icon { font-size: 26px; flex-shrink: 0; }
+  .node .node-text {}
+  .node .node-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
   }
-  .github-icon { font-size: 52px; margin-bottom: 8px; }
-  .github-label { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-  .github-sub { font-size: 13px; color: var(--text2); }
-  .repo-structure {
-    margin-top: 16px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-size: 13px;
+  .node .node-sub {
+    font-size: 12px;
     color: var(--text2);
-    text-align: left;
-    font-family: 'Courier New', monospace;
-    line-height: 1.7;
+    margin-top: 2px;
   }
-  .repo-structure .dir { color: var(--blue); font-weight: 600; }
-  .repo-structure .arrow-r { color: var(--accent2); }
-  .arrows-row {
+  .node.highlight-blue { border-color: rgba(96,165,250,0.5); }
+  .node.highlight-green { border-color: rgba(34,197,94,0.5); }
+
+  /* Arrow columns */
+  .arrow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: 100%;
+  }
+  .arrow-line {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
-    color: var(--accent);
-    font-size: 20px;
+    flex: 1;
   }
+  .arrow-svg {
+    width: 48px;
+    height: 32px;
+  }
+
+  /* Center — Cérebro */
+  .cerebro-wrap {
+    display: flex;
+    justify-content: center;
+  }
+  .cerebro {
+    background: var(--bg3);
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 24px 28px;
+    text-align: center;
+    box-shadow: 0 0 48px rgba(254,80,0,0.25);
+    min-width: 200px;
+  }
+  .cerebro-icon { font-size: 52px; margin-bottom: 6px; }
+  .cerebro-label {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .cerebro-sub {
+    font-size: 12px;
+    color: var(--text2);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 14px;
+  }
+  .cerebro-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .cerebro-pill {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent2);
+    background: rgba(254,80,0,0.1);
+    border: 1px solid rgba(254,80,0,0.25);
+    border-radius: 100px;
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+
+  /* Bottom pills */
+  .bottom-pills {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: var(--text2);
+  }
+  .pill .pill-label { font-weight: 700; color: var(--text); }
 </style>
 </head>
 <body>
-  <h2>Arquitetura do Sistema</h2>
-  <p class="tagline">🧠 O repo é o cérebro. As ferramentas são os braços.</p>
 
-  <div class="arch">
-    <!-- Left tools -->
-    <div class="tools-left">
-      <div class="tool-box"><span class="icon">🦞</span> OpenClaw</div>
-      <div class="tool-box"><span class="icon">💻</span> Claude Code</div>
-    </div>
+  <h2>Como o Sistema se Conecta</h2>
+  <p class="tagline">O Cérebro é o hub. As ferramentas são os braços.</p>
 
-    <!-- Arrows left -->
-    <div></div>
-    <div></div>
+  <div class="diagram">
 
-    <!-- Row 2: arrows + center -->
-    <div style="display:flex; justify-content:flex-end; align-items:center; width:100%; gap:8px;">
-      <span style="color:var(--accent); font-size:20px;">⟵⟶</span>
-    </div>
-
-    <div class="github-box">
-      <div class="github-icon">📦</div>
-      <div class="github-label">GitHub Repo</div>
-      <div class="github-sub">cerebro-da-empresa/</div>
-      <div class="repo-structure">
-        <span class="dir">empresa/</span> <span class="arrow-r">→</span> contexto, decisões<br>
-        <span class="dir">areas/</span> <span class="arrow-r">→</span> vendas, marketing<br>
-        <span class="dir">agentes/</span> <span class="arrow-r">→</span> configs, souls<br>
-        <span class="dir">seguranca/</span> <span class="arrow-r">→</span> permissões
+    <!-- LEFT: OpenClaws -->
+    <div class="col-left">
+      <div class="node highlight-green">
+        <div class="icon">🦞</div>
+        <div class="node-text">
+          <div class="node-label">OpenClaw — Empresa</div>
+          <div class="node-sub">Agente central da operação</div>
+        </div>
+      </div>
+      <div class="node highlight-green">
+        <div class="icon">👤</div>
+        <div class="node-text">
+          <div class="node-label">OpenClaw — Pessoal</div>
+          <div class="node-sub">Agente do founder / gestor</div>
+        </div>
       </div>
     </div>
 
-    <div style="display:flex; justify-content:flex-start; align-items:center; width:100%; gap:8px;">
-      <span style="color:var(--accent); font-size:20px;">⟵⟶</span>
+    <!-- Arrow LEFT → CENTER -->
+    <div class="arrow-col">
+      <div class="arrow-line">
+        <svg class="arrow-svg" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="10" x2="44" y2="10" stroke="#FE5000" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <polyline points="38,6 44,10 38,14" stroke="#FE5000" stroke-width="1.5" fill="none"/>
+          <polyline points="10,6 4,10 10,14" stroke="#FE5000" stroke-width="1.5" fill="none"/>
+          <line x1="4" y1="22" x2="44" y2="22" stroke="#FE5000" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <polyline points="38,18 44,22 38,26" stroke="#FE5000" stroke-width="1.5" fill="none"/>
+          <polyline points="10,18 4,22 10,26" stroke="#FE5000" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
     </div>
 
-    <!-- Right tools -->
-    <div class="tools-right">
-      <div class="tool-box"><span class="icon">✏️</span> Cursor</div>
-      <div class="tool-box"><span class="icon">🔧</span> Qualquer IDE</div>
+    <!-- CENTER: Cérebro -->
+    <div class="cerebro-wrap">
+      <div class="cerebro">
+        <div class="cerebro-icon">🧠</div>
+        <div class="cerebro-label">Cérebro</div>
+        <div class="cerebro-sub">GitHub Repo</div>
+        <div class="cerebro-pills">
+          <div class="cerebro-pill">empresa/ · areas/</div>
+          <div class="cerebro-pill">agentes/ · seguranca/</div>
+        </div>
+      </div>
     </div>
+
+    <!-- Arrow CENTER → RIGHT -->
+    <div class="arrow-col">
+      <div class="arrow-line">
+        <svg class="arrow-svg" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="10" x2="44" y2="10" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <polyline points="38,6 44,10 38,14" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+          <polyline points="10,6 4,10 10,14" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+          <line x1="4" y1="22" x2="44" y2="22" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <polyline points="38,18 44,22 38,26" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+          <polyline points="10,18 4,22 10,26" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- RIGHT: Claude Code -->
+    <div class="col-right">
+      <div class="node highlight-blue">
+        <div class="icon">💻</div>
+        <div class="node-text">
+          <div class="node-label">Claude Code — Func. A</div>
+          <div class="node-sub">Dev ou gestor de conteúdo</div>
+        </div>
+      </div>
+      <div class="node highlight-blue">
+        <div class="icon">💻</div>
+        <div class="node-text">
+          <div class="node-label">Claude Code — Func. B</div>
+          <div class="node-sub">Gestor de tráfego ou ops</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div style="margin-top:28px; display:flex; gap:24px; flex-wrap:wrap; justify-content:center;">
-    <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 24px; font-size:15px; color:var(--text2); text-align:center;">
-      <span style="color:var(--green); font-weight:700;">✅ Mudança no repo</span><br>Todos os agentes recebem automaticamente
-    </div>
-    <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 24px; font-size:15px; color:var(--text2); text-align:center;">
-      <span style="color:var(--blue); font-weight:700;">🔄 Git = sistema de versão</span><br>Histórico completo de toda evolução
-    </div>
-    <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 24px; font-size:15px; color:var(--text2); text-align:center;">
-      <span style="color:var(--accent2); font-weight:700;">🤝 Colaboração humana + IA</span><br>Mesmo repositório, mesma fonte de verdade
-    </div>
+  <!-- Bottom -->
+  <div class="bottom-pills">
+    <div class="pill">🔄 <span><span class="pill-label">Sync automático</span> — todos recebem as mudanças do repo</span></div>
+    <div class="pill">📜 <span><span class="pill-label">Controle de versão</span> — histórico completo de toda evolução</span></div>
+    <div class="pill">🤝 <span><span class="pill-label">Colaboração</span> — humanos + IA no mesmo repositório</span></div>
   </div>
+
 </body>
 </html>

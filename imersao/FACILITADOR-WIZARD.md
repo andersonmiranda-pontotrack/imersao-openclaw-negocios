@@ -1,325 +1,326 @@
 # Wizard do Facilitador — Imersão OpenClaw nos Negócios
 
-> Este arquivo guia o facilitador (Bruno) durante a imersão ao vivo.
-> Cole este comando no seu agente para começar:
+> Cole este comando no seu agente antes de começar:
 > **"Leia imersao/FACILITADOR-WIZARD.md e me guie pela imersão"**
 
 ---
 
 ## Como funciona
 
-Eu (agente) vou guiar você bloco a bloco. A cada momento, vou dizer:
+Você (Bruno) compartilha a tela mostrando essa conversa com o agente. O agente co-apresenta junto com você — traz contexto, manda o slide na hora certa, dá os pontos-chave, e guia cada demo com o que já está configurado e o que falta testar.
 
-1. **O que projetar** — qual HTML abrir no browser
-2. **O que falar** — pontos-chave para cobrir
-3. **O que fazer** — comandos/demos ao vivo
-4. **NÃO falar** — armadilhas a evitar (quando relevante)
-5. **Transição** — frase de gancho pro próximo bloco
+Quando quiser avançar: diga **"próximo"** ou **"avança"**.
+Outros comandos disponíveis no final deste arquivo.
 
-Quando estiver pronto para avançar, diga **"próximo"** ou **"avança"**.
+---
+
+## Para o Agente
+
+Você é o co-apresentador desta imersão. Não é um teleprompter e não é um checklist. Você **apresenta junto** com o Bruno — em tempo real, frente às ~300 pessoas que estão assistindo.
+
+Seu estilo:
+- Direto, técnico, com energia
+- Você sabe exatamente o que está configurado no ambiente de demo
+- Você manda os slides no momento certo, sem esperar ser pedido
+- Você traz insights além do óbvio — o que o slide mostra + o que está por baixo
+- Nas demos, você contextualiza antes: o que já está pronto, o que vamos testar agora, o que o participante vai ver
+
+Quando o Bruno disser "próximo" ou "avança", você entrega o bloco seguinte completo — contexto, slide, insights e guia de demo (se houver). Não fragmenta em várias mensagens. Uma entrega coesa.
+
+**Formato de cada bloco:**
+1. 2–3 linhas de contexto (o que vem aí, por que importa)
+2. O slide: `📊 → slides/XX-nome.html`
+3. Insights para trazer enquanto o slide está na tela
+4. Guia de demo (quando houver) — com o que já está configurado e o que fazer
+5. Frase de transição para o próximo bloco
+
+---
 
 ---
 
 ## DIA 1 — 28/03/2026
 
-> **Meta do dia:** Participantes entendem o cérebro, criam a primeira skill e veem crons rodando.
+> **Meta:** Participantes entendem o cérebro, criam a primeira skill e veem crons rodando.
 
 ---
 
-### ▶ Abertura (9:00–9:15)
+### ▶ Abertura — 9h00 (15 min)
 
-**Projetar:** `slides/00-abertura.html`
-
-**Falar:**
-- Boas-vindas. 2 dias, 100% demo, zero PowerPoint
-- "Vocês não vão ver slide. Vão ver funcionando na empresa de vocês"
-- Apresentar Bruno (criador) + Cayo (CEO/facilitador de chat) — 30 segundos cada
-- Ativar participação: **"Mandem no chat: qual área da empresa vocês mais querem automatizar? Vendas, marketing, atendimento ou operações?"**
-- Combinar: responder 3 perguntas do chat a cada pausa
-
-**Fazer:** Nada técnico. Só presença e energia.
-
-**Transição:** "Antes de mostrar a solução, preciso que vocês sintam o problema. Quem já perdeu 10 minutos re-explicando contexto pro ChatGPT levanta a mão..."
+**Quando ativar:** no início. Bruno acabou de entrar ao vivo.
 
 ---
 
-### Bloco 1: O Problema e a Arquitetura (9:15–9:35)
+**O agente diz:**
 
-**⏱ Duração:** 20 minutos
+Bom dia! Vamos começar — tudo certo do meu lado. Vou estar aqui o tempo todo guiando os blocos, mandando os slides na hora certa e ajudando nas demos.
 
-**Projetar:** `slides/01-problema.html`
+📊 → `slides/00-abertura.html`
 
-**Falar — Os 3 níveis de memória:**
-- **Nível 1 — Amnésia total:** "Todo chat começa do zero. O agente não sabe quem você é, o que você vende, quem é seu cliente. Você explica tudo de novo toda vez."
-- **Nível 2 — Memória no agente:** "Aí você configura o system prompt. Melhora. Mas agora você tá preso àquela ferramenta. Muda pro Claude, perde tudo."
-- **Nível 3 — Cérebro compartilhado:** "E se o contexto ficasse num lugar que qualquer ferramenta acessa? Um repo GitHub que é o cérebro da empresa. OpenClaw lê. Claude Code lê. Cursor lê. O cérebro é seu."
+Enquanto esse slide está na tela, alguns pontos para abrir:
 
-**Trocar para:** `slides/02-arquitetura.html`
+- Apresenta você e o Cayo em 30 segundos cada — quem faz o quê nesses 2 dias
+- Deixa claro o formato: **100% demo ao vivo**. Não tem slide teórico. Eles vão ver o sistema funcionando com dados reais
+- Ativa o chat agora: *"Manda no chat qual área da empresa vocês mais querem automatizar: vendas, marketing, atendimento ou operações?"* — isso aquece o grupo e a gente usa as respostas lá no Bloco 4
 
-**Falar:**
-- Mostrar diagrama: GitHub no centro, ferramentas ao redor
-- "O repo é o cérebro. OpenClaw, Claude Code, Cursor — são os braços. Braços mudam. Cérebro fica."
-- "Hoje vocês vão ver esse cérebro funcionando com dados reais"
-
-**Fazer:**
-1. Abrir o repo no browser: `github.com/pixel-educacao/imersao-openclaw-negocios`
-2. Navegar pela estrutura de pastas — mostrar `cerebro/` no root
-3. Abrir `cerebro/agentes/COMO-CONECTAR.md` — "É aqui que qualquer agente aprende a se conectar ao cérebro"
-
-**NÃO falar:**
-- Como criar conta no GitHub
-- Como instalar OpenClaw / Claude Code
-- Detalhes técnicos de git (clone, push, etc.)
-- Preço de qualquer ferramenta
-
-**Transição:** "Agora vamos destrinchar esse cérebro. Cada pasta tem um papel. Vou mostrar."
+**Transição:** *"Antes de mostrar a solução, preciso que vocês sintam o problema. Quem já perdeu 10 minutos re-explicando contexto pro ChatGPT levanta a mão..."*
 
 ---
 
-### Bloco 2: Tour pelo Cérebro (9:35–10:00)
+### Bloco 1: O Problema e a Arquitetura — 9h15 (20 min)
 
-**⏱ Duração:** 25 minutos
-
-**Projetar:** `slides/03-cerebro-estrutura.html`
-
-**Falar — A anatomia do cérebro:**
-- "Esse é o mapa. Cada pasta tem um papel muito específico."
-- `cerebro/empresa/` → quem você é (contexto, missão, equipe, métricas)
-- `cerebro/areas/` → o que você faz (vendas, marketing, atendimento, operações)
-- `cerebro/agentes/` → quem opera (cada agente com sua personalidade e permissões)
-- `cerebro/seguranca/` → quem pode o quê (controle de acesso)
-- `cerebro/dados/` → onde ficam os dados brutos (CSVs, JSONs)
-- `cerebro/guias/` → documentação para humanos e agentes
-
-**Fazer — Demo dupla (o grande efeito visual):**
-
-1. No terminal:
-   ```bash
-   cd cerebro && tree -L 2
-   ```
-   Mostrar a estrutura completa na tela
-
-2. Abrir `cerebro/empresa/contexto/empresa.md`
-   - "Esse arquivo é quem a empresa é. Nome, segmento, produto, posicionamento. O agente lê isso antes de qualquer coisa."
-
-3. Abrir `cerebro/empresa/contexto/equipe.md`
-   - "E aqui está quem trabalha aqui. O agente sabe os nomes, os papéis, os contatos."
-
-4. Abrir `cerebro/empresa/contexto/metricas.md`
-   - "E aqui os números que importam. MRR, leads, conversão."
-
-5. **Demo ao vivo — Parte 1:** Perguntar no OpenClaw (Telegram):
-   - Digitar: _"Qual o MRR atual da empresa?"_
-   - Agente responde com o número do `metricas.md`
-   - "Ele sabia porque leu o arquivo. Não inventou."
-
-6. **Demo ao vivo — Parte 2:** Abrir Claude Code, mesma pergunta:
-   - Digitar: _"Qual o MRR atual da empresa?"_
-   - Mesma resposta
-   - "**Dois agentes. Um cérebro. Mesma resposta.** Isso é o que muda o jogo."
-
-**NÃO falar:**
-- Como editar markdown na mão
-- Sintaxe de YAML ou frontmatter
-- Como configurar o repo pela primeira vez (isso é pós-imersão)
-
-**Transição:** "O cérebro sabe quem você é. Mas agente bom não é só aquele que SABE — é o que FAZ. Pra isso existem as skills..."
+**Quando ativar:** Bruno sinalizar que está pronto para começar o conteúdo.
 
 ---
 
-### Bloco 3: Skills — 🔥 1º AHA MOMENT (10:00–10:30)
+**O agente diz:**
 
-**⏱ Duração:** 30 minutos
+Primeiro bloco — o porquê de tudo isso existir. Sem entender o problema, o cérebro parece complexidade desnecessária. Com ele, vira óbvio.
 
-**Projetar:** `slides/04-skill-anatomia.html`
+📊 → `slides/01-problema.html`
 
-**Falar:**
-- "Skill é uma receita. Você escreve uma vez. O agente executa toda hora."
-- "Input → Processo → Output. Igual uma função de código, mas em linguagem natural."
-- "A skill diz: 'Quando eu pedir relatório de vendas, você vai: pegar esse arquivo, analisar essas colunas, gerar esse formato de saída.'"
+Esse slide mostra os 3 níveis de memória de agente. O insight central aqui não é técnico — é de **propriedade**. Traga assim:
 
-**Fazer:**
+- **Nível 1** (esquece tudo): qualquer pessoa que já usou ChatGPT por mais de uma semana sente isso. Você explica o negócio de novo. Sempre.
+- **Nível 2** (memória no agente): system prompt. Melhora. Mas você está preso àquela ferramenta — muda pro Claude, perde tudo. A memória é da ferramenta, não sua.
+- **Nível 3** (cérebro compartilhado): o contexto vive num repositório GitHub. OpenClaw lê. Claude Code lê. Cursor lê. Qualquer ferramenta futura vai ler. **O cérebro é seu.**
 
-1. Abrir `cerebro/empresa/skills/_templates/SKILL-TEMPLATE.md`
-   - "Esse é o template. Toda skill tem esse esqueleto: objetivo, input, processo, output."
+📊 → `slides/02-arquitetura.html`
 
-2. Abrir `cerebro/areas/vendas/skills/relatorio-vendas/SKILL.md`
-   - Percorrer cada seção em voz alta:
-     - **Input:** planilha de vendas em CSV
-     - **Processo:** análise por vendedor, ticket médio, comparativo com mês anterior
-     - **Output:** relatório formatado com destaques e alertas
+Aqui mostra o diagrama: GitHub no centro, ferramentas ao redor. A frase que ancora:
 
-3. "Agora vamos conectar com dados reais"
+> *"Braços mudam. Cérebro fica."*
 
-4. Mostrar `cerebro/dados/vendas.csv` — abrir no editor
-   - "Começamos simples, com CSV. Dados reais, nomes fictícios."
+🎬 **Demo agora:**
+Abra o browser em `github.com/pixel-educacao/imersao-openclaw-negocios`. Navega pela estrutura de pastas — mostra o `cerebro/` no root. Abre `cerebro/agentes/COMO-CONECTAR.md` rapidamente. Não precisa ler linha a linha — só mostrar que existe um arquivo que diz pra qualquer agente como se conectar ao cérebro.
 
-5. Mostrar `cerebro/dados/README.md`
-   - "Depois que o sistema estiver rodando, você conecta Google Sheets. O CSV é pra começar rápido."
-
-6. **🔥 Demo ao vivo — O 1º AHA MOMENT:**
-   - Digitar pro agente: _"Gera o relatório de vendas baseado no vendas.csv"_
-   - Agente lê `SKILL.md` → lê `vendas.csv` → gera relatório completo com análise
-   - Parar. Silêncio de 3 segundos.
-   - "Isso. O agente LEU a receita, pegou os dados, e gerou análise. Você não escreveu uma linha de código."
-   - "Essa skill roda hoje. Amanhã. Todo dia. Sem você estar presente."
-
-**NÃO falar:**
-- Como configurar OAuth do Google Sheets (bloco específico pós-imersão)
-- Detalhes de como o modelo interpreta o markdown
-- Comparação com n8n ou outras ferramentas de automação
-
-**Transição:** "Vocês viram que eu escrevi essa skill na mão. Levou talvez 20 minutos. Mas... e se o agente pudesse criar skills SOZINHO?"
+**Transição:** *"Vamos destrinchar esse cérebro. Cada pasta tem um papel muito específico."*
 
 ---
 
-### ☕ Pausa (10:30–10:40)
+### Bloco 2: Tour pelo Cérebro — 9h35 (25 min)
 
-**Projetar:** `slides/00-abertura.html` (tela de espera com timer)
-
-**Cayo faz:** Coleta as top 3 perguntas do chat. Anota num papel ou doc.
-
-**Bruno faz:** Água. Respirar. Revisar mentalmente o Bloco 4. Testar no terminal que o skill-creator está funcionando.
-
-**Voltar:** 10:40 em ponto.
+**Quando ativar:** Bruno der o "próximo" após o Bloco 1.
 
 ---
 
-### Bloco 4: Skill Creator — 🔥 2º AHA MOMENT (10:40–11:15)
+**O agente diz:**
 
-**⏱ Duração:** 35 minutos
+Agora o tour. O objetivo aqui é simples: quando o participante sair desse bloco, ele tem que conseguir visualizar mentalmente onde cada coisa da empresa dele vai morar.
 
-**Projetar:** `slides/05-skill-creator.html`
+📊 → `slides/03-cerebro-estrutura.html`
 
-**Falar — Responder perguntas (5 min):**
-- Cayo passa as 3 perguntas. Responder cada uma em 60 segundos.
-- Se a pergunta for técnica demais: "Ótima pergunta. A gente cobre isso no material pós-imersão. Continua."
+Enquanto esse slide está na tela, percorre cada pasta assim — curto e direto:
 
-**Falar — Introdução ao skill-creator:**
-- "O skill-creator é uma skill que cria outras skills."
-- "Você descreve em linguagem natural o que quer automatizar. O agente gera a skill completa."
-- "Não precisa saber a estrutura. Não precisa de template. Só descrever."
+- `empresa/` → quem você é. Missão, produto, equipe, métricas. O agente lê isso antes de qualquer coisa.
+- `areas/` → o que você faz. Cada área tem seu próprio contexto, skills e rotinas.
+- `agentes/` → quem opera. Cada agente com personalidade e permissões próprias.
+- `seguranca/` → quem pode o quê.
+- `dados/` → onde ficam os dados brutos — CSV primeiro, API depois.
+- `guias/` → documentação para humanos e para agentes.
 
-**Fazer:**
+🎬 **Demo dupla — o grande efeito visual:**
 
-1. No terminal ou Telegram, pedir pro agente:
-   - _"Cria uma skill que analise minha planilha de leads e me diga quais estão esfriando — ou seja, leads que entraram há mais de 7 dias e não tiveram follow-up"_
+No terminal:
+```
+cd cerebro && tree -L 2
+```
+Mostra a estrutura completa. Abre na sequência: `empresa/contexto/empresa.md` → `equipe.md` → `metricas.md`. Vai lendo os campos em voz alta — nome da empresa, MRR, conversão. Deixa claro: *"O agente lê isso antes de responder qualquer coisa."*
 
-2. Agente usa o skill-creator → processa → gera `SKILL.md` completo em `cerebro/areas/vendas/skills/leads-esfriando/`
+Agora o momento que vai impactar:
 
-3. Abrir o arquivo gerado ao vivo:
-   - "Olha o que ele criou. Input, processo, output. Pronto pra usar."
+Digita no OpenClaw (Telegram): *"Qual o MRR atual da empresa?"*
+— Agente responde com o número do arquivo. —
 
-4. **Testar a skill imediatamente:**
-   - _"Roda a skill de leads esfriando no arquivo leads.csv"_
-   - Agente executa e retorna resultado
+Abre o Claude Code, mesma pergunta.
+— Mesma resposta. —
 
-5. 🔥 "**2º AHA MOMENT.** Linguagem natural virou automação funcional em 30 segundos. Sem código."
+Pausa. Deixa cair.
+*"Dois agentes. Um cérebro. Mesma resposta. Isso é o que muda o jogo."*
 
-6. **Interação ao vivo com o chat:**
-   - "Mandem no chat: qual skill vocês gostariam de ter na empresa de vocês?"
-   - Cayo filtra. Bruno escolhe 1 ou 2 sugestões viáveis.
-   - Criar ao vivo usando skill-creator para cada uma.
-   - "Isso que vocês acabaram de pedir — agora existe. Na empresa de vocês."
-
-**NÃO falar:**
-- Arquitetura interna do skill-creator (como ele é implementado)
-- Limitações de tamanho de context window
-- Comparação com agentes de outras plataformas
-
-**Transição:** "Skills resolvem o QUÊ fazer. Crons resolvem o QUANDO fazer. E se o agente fizesse isso TODO DIA sem você pedir?"
+**Transição:** *"O cérebro sabe quem você é. Mas agente bom não é só aquele que SABE — é o que FAZ. Pra isso existem as skills."*
 
 ---
 
-### Bloco 5: Rotinas e Crons (11:15–11:35)
+### Bloco 3: Skills — 🔥 1º AHA MOMENT — 10h00 (30 min)
 
-**⏱ Duração:** 20 minutos
-
-**Projetar:** `slides/06-crons.html`
-
-**Falar:**
-- "Cron = agendamento. O agente executa uma skill no horário que você definir. Sem ninguém pedir."
-- "Todo dia às 9h → relatório de vendas no Telegram. Toda segunda às 8h → relatório de leads. A cada 6h → checagem de saúde do sistema."
-- "Você dorme. O agente trabalha."
-
-**Fazer:**
-
-1. Abrir `cerebro/areas/vendas/rotinas/relatorio-vendas-diario.md`
-   - "Esse arquivo diz: todo dia às 9h, roda a skill `relatorio-vendas`, e manda o resultado no Telegram."
-   - Ler os campos em voz alta: `horario`, `skill`, `canal`, `destinatario`
-
-2. "Agora vamos criar isso ao vivo"
-   ```bash
-   openclaw cron create --name "relatorio-vendas-diario" --schedule "0 9 * * *" --skill relatorio-vendas
-   ```
-   - "Criado. Amanhã às 9h vai rodar sozinho."
-
-3. Abrir `cerebro/areas/operacoes/rotinas/heartbeat.md`
-   - "Esse é especial. O agente monitora a SI MESMO a cada 6h."
-   - "Verifica se todos os crons rodaram, se houve erro, se os arquivos estão atualizados."
-   - "Se detectar problema → notifica no Telegram."
-
-4. Mostrar um log de heartbeat anterior (ou simular):
-   - "Às 6h, às 12h, às 18h, à meia-noite — esse agente checou tudo. Você nem soube. Nada quebrou."
-
-**NÃO falar:**
-- Sintaxe cron detalhada (0 9 * * * etc.) — só mostrar o funcionamento
-- Como configurar servidor para rodar crons
-- Diferença entre cron do sistema e cron do OpenClaw
-
-**Transição:** "Mas espera. O agente está lendo arquivos da empresa, rodando automações, mandando mensagens. Quem garante que ele não vai extravasar? Essa é a próxima conversa..."
+**Quando ativar:** Bruno der o "próximo" após o Bloco 2.
 
 ---
 
-### Bloco 6: Segurança (11:35–11:50)
+**O agente diz:**
 
-**⏱ Duração:** 15 minutos
+Esse é o primeiro grande momento da imersão. Skills são o que transformam o cérebro de repositório de contexto em **máquina de trabalho**. Uma skill bem feita roda hoje, amanhã e todo dia — sem ninguém pedir.
 
-**Projetar:** `slides/07-seguranca.html`
+📊 → `slides/04-skill-anatomia.html`
 
-**Falar — As 3 camadas:**
-- **Camada 1 — Dados locais:** "Tudo fica na sua máquina ou no seu repo privado. Não existe nuvem de terceiros com seus dados de vendas."
-- **Camada 2 — Modo ask:** "Para qualquer ação irreversível — deletar arquivo, enviar mensagem externa, fazer commit — o agente PEDE permissão. Você aprova ou nega."
-- **Camada 3 — Controle granular:** "Cada agente só acessa o que você permitiu. O bot de suporte não vê dados financeiros. O agente de marketing não vê dados de RH."
+A metáfora que funciona: skill é uma **receita de cozinha**. Você escreve uma vez. Qualquer agente executa quando você chamar. Input → processo → output. Igual uma função de código, mas em linguagem natural.
 
-**Fazer:**
+🎬 **Demo passo a passo:**
 
-1. Mostrar onde os dados ficam:
-   - "Pasta `cerebro/` — local ou repo privado. O modelo da Anthropic/OpenAI processa os dados mas não armazena."
+1. Abre `cerebro/empresa/skills/_templates/SKILL-TEMPLATE.md` — mostra o esqueleto: objetivo, input, processo, output.
 
-2. Mostrar modo ask funcionando:
-   - Pedir pro agente fazer algo que exige confirmação: _"Deleta o arquivo teste.md"_
-   - Agente pergunta: "Confirma que quer deletar `teste.md`? (sim/não)"
-   - "Ele não age sozinho em coisas que importam."
+2. Abre `cerebro/areas/vendas/skills/relatorio-vendas/SKILL.md` — percorre cada seção em voz alta:
+   - Input: planilha de vendas em CSV
+   - Processo: análise por vendedor, ticket médio, comparativo com mês anterior
+   - Output: relatório formatado com destaques e alertas
 
-3. Abrir `cerebro/agentes/assistente/AGENTS.md`:
-   - Mostrar a seção `allow` e `deny`
-   - "Esse agente pode ler tudo de `empresa/` e `areas/`. Mas não pode tocar em `seguranca/` nem fazer push pro GitHub sem aprovação."
+3. Mostra `cerebro/dados/vendas.csv` no editor — dados reais, nomes fictícios. *"Começamos com CSV. É o suficiente pra o sistema funcionar hoje."*
 
-**NÃO falar:**
-- Criptografia de chaves (AES, RSA, etc.)
-- Detalhes de infraestrutura de servidores
-- Comparação com soluções enterprise de segurança
+4. Agora o AHA:
+
+Digita pro agente: *"Gera o relatório de vendas baseado no vendas.csv"*
+
+— Agente lê a SKILL.md → lê o CSV → gera análise completa. —
+
+Para. 3 segundos de silêncio.
+
+*"O agente leu a receita, pegou os dados, e gerou a análise. Você não escreveu uma linha de código. Essa skill roda hoje. Amanhã. Todo dia. Sem você estar presente."*
+
+**Transição:** *"Vocês viram que eu escrevi essa skill na mão. Levou talvez 20 minutos. Mas... e se o agente criasse skills sozinho?"*
 
 ---
 
-### Fechamento Dia 1 (11:50–12:00)
+### ☕ Pausa — 10h30 (10 min)
 
-**Projetar:** `slides/00-abertura.html`
+**Quando ativar:** Bruno indicar pausa.
 
-**Falar:**
-- "Em 3 horas vocês viram: o cérebro, as skills, o skill-creator, os crons e a segurança."
-- "Isso não é teoria. Vocês viram funcionar com dados reais."
-- Recap em 5 bullets:
-  - ✅ Cérebro compartilhado no GitHub
-  - ✅ Skills = receitas que o agente executa
-  - ✅ Skill-creator cria skills em 30 segundos
-  - ✅ Crons rodam tudo sem você pedir
-  - ✅ Segurança em 3 camadas
+---
 
-- **Tarefa pro amanhã:** "Abram a planilha principal da empresa de vocês — pode ser vendas, leads, ou métricas. Organizem os dados em colunas claras. Amanhã vamos conectar isso ao sistema."
+**O agente diz:**
 
-- "Amanhã: multi-agente, permissionamento, sistema completo de marketing e o bot de suporte que aprende sozinho. 9h BRT, pontual."
+Pausa de 10 minutos — volta às 10h40.
+
+Cayo, aproveita pra coletar as top 3 perguntas do chat agora. Vou usar elas pra abrir o Bloco 4.
+
+Bruno, enquanto isso: testa o skill-creator no terminal antes de voltar. Digita um comando simples só pra confirmar que está respondendo. O Bloco 4 começa com ele ao vivo.
+
+Nos vemos em 10.
+
+---
+
+### Bloco 4: Skill Creator — 🔥 2º AHA MOMENT — 10h40 (35 min)
+
+**Quando ativar:** Bruno voltar da pausa.
+
+---
+
+**O agente diz:**
+
+Bem-vindos de volta. Antes de continuar — Cayo, quais foram as top 3 perguntas do chat?
+
+*(Aguarda Bruno/Cayo passar as perguntas. Responde cada uma em 60 segundos. Se for técnica demais: "Cobre isso no material pós-imersão — continua.")*
+
+Agora o segundo AHA. O skill-creator é uma skill que **cria outras skills**. Você descreve em linguagem natural o que quer automatizar — o agente gera a skill completa, pronta pra usar.
+
+📊 → `slides/05-skill-creator.html`
+
+Esse slide é visual — deixa ele na tela enquanto faz a demo. O que importa não é o slide, é o que vai acontecer no terminal agora.
+
+🎬 **Demo:**
+
+Digita pro agente:
+*"Cria uma skill que analise minha planilha de leads e me diga quais estão esfriando — leads que entraram há mais de 7 dias sem follow-up"*
+
+— Agente processa → gera `SKILL.md` completo em `cerebro/areas/vendas/skills/leads-esfriando/`. —
+
+Abre o arquivo gerado ao vivo. Mostra: Input, Processo, Output — tudo estruturado.
+
+Agora testa imediatamente:
+*"Roda a skill de leads esfriando no arquivo leads.csv"*
+
+— Agente executa. Resultado aparece. —
+
+*"Linguagem natural virou automação funcional em 30 segundos. Sem código."*
+
+🎬 **Interação ao vivo com o chat:**
+
+*"Manda no chat: qual skill vocês gostariam de ter na empresa de vocês?"*
+
+Cayo filtra. Bruno escolhe 1 ou 2 que sejam viáveis. Cria ao vivo usando o skill-creator.
+
+*"Isso que vocês acabaram de pedir — agora existe. Na empresa de vocês."*
+
+**Transição:** *"Skills resolvem o QUÊ fazer. Crons resolvem o QUANDO. E se o agente fizesse isso todo dia sem você pedir?"*
+
+---
+
+### Bloco 5: Rotinas e Crons — 11h15 (20 min)
+
+**Quando ativar:** Bruno der o "próximo" após o Bloco 4.
+
+---
+
+**O agente diz:**
+
+Cron é agendamento. O agente executa uma skill no horário que você definir — sem ninguém pedir. Todo dia às 9h, relatório de vendas no Telegram. Toda segunda, relatório de leads. Você dorme, o agente trabalha.
+
+📊 → `slides/06-crons.html`
+
+Enquanto o slide está na tela, abre `cerebro/areas/vendas/rotinas/relatorio-vendas-diario.md` — mostra os campos: horário, skill, canal, destinatário. *"Esse arquivo diz: todo dia às 9h, roda a skill relatorio-vendas e manda o resultado no Telegram."*
+
+🎬 **Demo:**
+
+Cria o cron ao vivo:
+```
+openclaw cron create --name "relatorio-vendas-diario" --schedule "0 9 * * *" --skill relatorio-vendas
+```
+*"Criado. Amanhã às 9h vai rodar sozinho."*
+
+Abre `cerebro/areas/operacoes/rotinas/heartbeat.md` — esse é especial. *"Esse agente monitora a si mesmo a cada 6h. Verifica se todos os crons rodaram, se houve erro, se os arquivos estão atualizados. Se detectar problema — notifica no Telegram."*
+
+Mostra um log de heartbeat (ou simula): *"Às 6h, 12h, 18h e meia-noite — checou tudo. Você nem soube. Nada quebrou."*
+
+**Transição:** *"O agente está lendo arquivos da empresa, rodando automações, mandando mensagens. Quem garante que ele não vai extravasar? Essa é a próxima conversa."*
+
+---
+
+### Bloco 6: Segurança — 11h35 (15 min)
+
+**Quando ativar:** Bruno der o "próximo" após o Bloco 5.
+
+---
+
+**O agente diz:**
+
+Segurança é onde a maioria das implementações de IA erra — ou não implementa nada, ou fica com medo e não implementa nada. O OpenClaw tem 3 camadas. Vou mostrar as 3.
+
+📊 → `slides/07-seguranca.html`
+
+As 3 camadas enquanto o slide está na tela:
+
+- **Camada 1 — Dados locais:** tudo fica na sua máquina ou no seu repo privado. O modelo processa, mas não armazena. Seus dados de vendas não vivem em nuvem de terceiro.
+- **Camada 2 — Modo ask:** para qualquer ação irreversível, o agente pede permissão. Deletar arquivo, enviar mensagem externa, fazer commit — ele pergunta antes.
+- **Camada 3 — Controle granular:** cada agente acessa só o que você permitiu. Bot de suporte não vê financeiro. Agente de marketing não vê RH.
+
+🎬 **Demo — Modo ask ao vivo:**
+
+Pede pro agente: *"Deleta o arquivo teste.md"*
+— Agente pergunta: "Confirma que quer deletar teste.md? (sim/não)" —
+*"Ele não age sozinho em coisas que importam."*
+
+Abre `cerebro/agentes/assistente/AGENTS.md` — mostra a seção `allow` e `deny`. *"Esse agente pode ler tudo de empresa/ e areas/. Mas não toca em seguranca/ nem faz push pro GitHub sem aprovação."*
+
+---
+
+### Fechamento Dia 1 — 11h50 (10 min)
+
+**Quando ativar:** Bruno sinalizar fechamento.
+
+---
+
+**O agente diz:**
+
+Fechamento do Dia 1. Encerramos com tudo que importa pro sistema funcionar:
+
+✅ Cérebro compartilhado no GitHub — o contexto é seu, não da ferramenta
+✅ Skills — automações em linguagem natural, rodam sozinhas
+✅ Skill-creator — qualquer tarefa vira skill em 30 segundos
+✅ Crons — o sistema roda sem ninguém pedir
+✅ Segurança em 3 camadas — controle sem paranoia
+
+**Tarefa pro amanhã:** *"Abram a planilha principal da empresa de vocês — vendas, leads ou métricas. Organizem os dados em colunas claras. Amanhã vamos conectar isso ao sistema."*
+
+*"Amanhã: multi-agente, permissionamento, sistema completo de marketing e o bot de suporte que aprende sozinho com a operação. 9h BRT, pontual."*
 
 ---
 
@@ -327,391 +328,305 @@ Quando estiver pronto para avançar, diga **"próximo"** ou **"avança"**.
 
 ## DIA 2 — 29/03/2026
 
-> **Meta do dia:** Participantes veem um sistema multi-agente funcionando e saem com roadmap concreto dos próximos 30 dias.
+> **Meta:** Participantes veem um sistema multi-agente funcionando e saem com roadmap concreto dos próximos 30 dias.
 
 ---
 
-### ▶ Abertura + Recap (9:00–9:15)
+### ▶ Abertura + Recap — 9h00 (15 min)
 
-**Projetar:** `slides/00-abertura.html`
-
-**Falar:**
-- Recap Dia 1 em 3 bullets (30 segundos cada):
-  - "Ontem criamos o cérebro. O repo que centraliza tudo."
-  - "Criamos skills — automações em linguagem natural."
-  - "Configuramos crons — o agente trabalha enquanto vocês dormem."
-- "Hoje damos o salto: de 1 agente para um SISTEMA. Múltiplos agentes, cada um no seu papel."
-- **Colher da tarefa:** "Alguém organizou a planilha ontem? Manda no chat como foi. Quero ver."
-- Comentar 2-3 respostas do chat rapidamente.
+**Quando ativar:** início do Dia 2.
 
 ---
 
-### Bloco 7: Multi-agente (9:15–9:45)
+**O agente diz:**
 
-**⏱ Duração:** 30 minutos
+Dia 2. Vamos começar com recap rápido do que fizemos ontem — e depois dar o salto: de 1 agente para um sistema.
 
-**Projetar:** `slides/08-multi-agente.html`
+Recap em 3 bullets pra você trazer em 30 segundos cada:
+- *"Criamos o cérebro — o repo que centraliza tudo da empresa."*
+- *"Criamos skills — o agente executa tarefas complexas com uma frase."*
+- *"Configuramos crons — o sistema trabalha enquanto você dorme."*
 
-**Falar:**
-- "Ontem tinham 1 agente generalista. Ele faz tudo, mas não é especialista em nada."
-- "Hoje vão ter um sistema. Cada agente com personalidade, escopo e acesso diferentes."
-- "Assistente geral. Agente de marketing. Bot de suporte. Agente de vendas. Cada um no seu papel."
-- "É igual uma equipe. Você não pede pro vendedor fazer o suporte. Pede pro especialista."
+Depois colhe do chat: *"Alguém organizou a planilha ontem? Manda no chat como foi."* Comenta 2–3 respostas rapidamente — cria continuidade entre os dias.
 
-**Fazer:**
-
-1. Abrir `cerebro/agentes/assistente/SOUL.md`
-   - "Esse é o assistente geral. Personalidade equilibrada, acesso amplo, responde de tudo um pouco."
-   - Ler em voz alta as primeiras linhas de `Como eu opero`
-
-2. Abrir `cerebro/agentes/marketing/SOUL.md`
-   - "Esse é o agente de marketing. Obcecado com métricas de performance. Fala diferente. Prioriza diferente."
-   - Ler o tom e as prioridades em voz alta
-
-3. **Demo — A mesma pergunta, respostas diferentes:**
-   - Perguntar pro assistente: _"Qual próximo criativo faz sentido produzir?"_
-   - Resposta: genérica, balanceada, pergunta sobre recursos e prioridades
-   - Mesma pergunta pro agente de marketing:
-   - Resposta: específica, menciona ROAS atual, criativos com melhor CTR, formato recomendado
-   - "Mesma pergunta. Respostas completamente diferentes. Cada um no seu papel."
-
-4. Mostrar `cerebro/agentes/` — listar todos os agentes configurados:
-   ```bash
-   ls cerebro/agentes/
-   ```
-   - "Cada pasta é um agente. Cada um com SOUL.md próprio e AGENTS.md próprio."
-
-**NÃO falar:**
-- Como configurar OpenClaw para múltiplos canais Telegram
-- Custo de rodar múltiplos agentes em paralelo
-- Limitações técnicas de context window por agente
-
-**Transição:** "Múltiplos agentes, ótimo. Mas como garantir que cada um fica no seu quadrado? Isso é permissionamento."
+**Transição:** *"Hoje damos o salto: de 1 agente para um sistema. Múltiplos agentes, cada um no seu papel."*
 
 ---
 
-### Bloco 8: Permissionamento (9:45–10:05)
+### Bloco 7: Multi-agente — 9h15 (30 min)
 
-**⏱ Duração:** 20 minutos
-
-**Projetar:** `slides/09-permissionamento.html`
-
-**Falar:**
-- "2 arquiteturas possíveis para times. Vocês escolhem qual faz sentido."
-- **Arquitetura A — Grupos separados:** Um grupo Telegram por área. Agente de marketing no grupo de marketing. Bot de suporte no grupo de suporte. Isolamento total.
-- **Arquitetura B — Tópicos:** Um grupo com tópicos (Telegram). Um agente responde só no tópico dele. Mais simples de gerenciar.
-- "Os dois têm 2 camadas de segurança: permissões no AGENTS.md e isolamento de canal."
-
-**Fazer:**
-
-1. Abrir `cerebro/agentes/marketing/AGENTS.md`
-   - "Esse agente tem acesso somente a `areas/marketing/`. Não vê vendas, não vê financeiro, não vê RH."
-   - Mostrar a seção `scope` com os paths permitidos
-
-2. Abrir `cerebro/agentes/bot-suporte/AGENTS.md`
-   - "Bot de suporte: acesso mínimo. Só `areas/atendimento/bot/`. Nada mais."
-
-3. **Demo — Tentativa de acesso negado:**
-   - Pedir pro agente de marketing: _"Qual foi o MRR do mês passado?"_
-   - Agente responde: "Não tenho acesso a dados financeiros. Posso ajudar com métricas de marketing."
-   - "Não é que ele não sabe. É que ele não PODE. E avisa."
-
-4. Abrir `cerebro/seguranca/permissoes.md`
-   - Mostrar a tabela completa: agente × recurso × nível de acesso (leitura/escrita/negado)
-
-5. Comparar Arquitetura A vs B:
-   - A: mais isolamento, mais grupos para gerenciar
-   - B: mais simples, menos isolamento entre tópicos
-   - "Para times pequenos: B. Para times com dados sensíveis separados: A."
-
-**Transição:** "Agora que entendemos o sistema, vamos ver ele funcionando num caso real e completo: marketing de performance."
+**Quando ativar:** Bruno der o sinal de início após a abertura.
 
 ---
 
-### Bloco 9: Deep Dive Marketing (10:05–10:40)
+**O agente diz:**
 
-**⏱ Duração:** 35 minutos
+Ontem trabalhamos com 1 agente generalista. Ele faz tudo — mas não é especialista em nada. Hoje vamos montar um sistema: cada agente com personalidade, escopo e acesso diferentes. É igual uma equipe real. Você não pede pro vendedor fazer o suporte.
 
-**Projetar:** `slides/10-marketing-ciclo.html`
+📊 → `slides/08-multi-agente.html`
 
-**Falar — O ciclo completo:**
-- "Marketing de performance tem um ciclo: hipótese → criativo → teste → dado → conclusão → nova hipótese."
-- "Esse ciclo hoje depende de uma pessoa olhando planilha todo dia. Com o sistema, roda sozinho."
-- "3 skills + 3 crons = ciclo automatizado."
+Enquanto o slide está na tela, abre `cerebro/agentes/assistente/SOUL.md` — lê as primeiras linhas de "Como eu opero". Esse é o assistente geral: equilibrado, acesso amplo, responde de tudo um pouco.
 
-**Trocar para:** `slides/11-daily-report.html`
+Agora abre `cerebro/agentes/marketing/SOUL.md` — tom completamente diferente. Obcecado com métricas de performance. Fala de ROAS, CTR, criativos. Prioridades diferentes.
 
-**Falar:**
-- "Todo dia às 8h, antes de qualquer pessoa da equipe acordar, o agente já gerou esse relatório."
-- "Gestor de tráfego abre o Telegram às 8h → relatório já está lá. Com alertas, destaques, sugestões."
-- Mostrar exemplo do daily report gerado
+🎬 **Demo lado a lado:**
 
-**Fazer:**
+Mesma pergunta para os dois agentes: *"Qual próximo criativo faz sentido produzir?"*
 
-1. Abrir `cerebro/areas/marketing/sub-areas/trafego-pago/PROCESSO.md`
-   - "Esse arquivo documenta como o marketing funciona. O agente lê isso antes de qualquer análise."
+Assistente geral → genérico, balanceado, pergunta sobre recursos e prioridades.
+Agente de marketing → específico, menciona ROAS atual, criativos com melhor CTR, formato recomendado.
 
-2. Mostrar as 3 skills:
-   - `cerebro/areas/marketing/sub-areas/trafego-pago/skills/relatorio-ads/SKILL.md`
-     → "Coleta dados do Meta Ads e gera relatório diário"
-   - `cerebro/areas/marketing/sub-areas/trafego-pago/skills/analise-criativos/SKILL.md`
-     → "Analisa performance de cada criativo e identifica padrões"
-   - `cerebro/areas/marketing/sub-areas/trafego-pago/skills/criacao-criativos/SKILL.md`
-     → "Sugere próximos criativos baseado em learnings anteriores"
+*"Mesma pergunta. Respostas completamente diferentes. Cada um no seu papel."*
 
-3. Mostrar as 3 rotinas:
-   - `cerebro/areas/marketing/sub-areas/trafego-pago/rotinas/daily-report.md` → toda manhã
-   - `cerebro/areas/marketing/sub-areas/trafego-pago/rotinas/pipeline-semanal.md` → toda segunda
-   - `cerebro/areas/marketing/sub-areas/trafego-pago/rotinas/analise-funnel.md` → toda sexta
+No terminal:
+```
+ls cerebro/agentes/
+```
+*"Cada pasta é um agente. Cada um com SOUL.md próprio."*
 
-**Trocar para:** `slides/12-pipeline-criativos.html`
-
-4. Explicar o pipeline visual:
-   - Backlog → Em teste → Aprendizado → Escalando → Morto
-   - "Cada criativo passa por essas fases. O agente move e documenta automaticamente."
-
-5. Abrir `cerebro/areas/marketing/sub-areas/trafego-pago/formatos/`
-   - "Aqui ficam os formatos que funcionam. Carrossel, vídeo curto, estático. Com benchmarks de CTR."
-
-6. Abrir `cerebro/areas/marketing/sub-areas/trafego-pago/criativos/`
-   - "E aqui ficam os criativos documentados. O que foi testado, resultado, o que aprendemos."
-
-7. **Demo final do bloco:**
-   - Perguntar pro agente de marketing: _"Qual próximo criativo faz sentido produzir essa semana?"_
-   - Agente analisa learnings, formatos com melhor performance → sugere criativo específico com justificativa
-   - "Ele não chutou. Leu os dados, leu os learnings, e sugeriu com base em evidência."
-
-**NÃO falar:**
-- Como conectar Meta Ads API (tem guia separado)
-- Quanto custa o tráfego pago
-- Detalhes de configuração de pixels
+**Transição:** *"Múltiplos agentes, ótimo. Como garantir que cada um fica no seu quadrado? Isso é permissionamento."*
 
 ---
 
-### ☕ Pausa (10:40–10:50)
+### Bloco 8: Permissionamento — 9h45 (20 min)
 
-**Projetar:** `slides/00-abertura.html` (tela de espera com timer)
-
-**Cayo faz:** Testar o bot de suporte antes de voltar — mandar 2-3 mensagens para garantir que está funcionando. Coletar perguntas do chat.
-
-**Bruno faz:** Verificar que o ambiente do bot de suporte está OK. Ter uma "dúvida nova" preparada para a demo do loop de aprendizado.
+**Quando ativar:** Bruno der o "próximo" após o Bloco 7.
 
 ---
 
-### Bloco 10: Bot de Suporte — 🔥 3º AHA MOMENT (10:50–11:25)
+**O agente diz:**
 
-**⏱ Duração:** 35 minutos
+Duas arquiteturas possíveis para times. Você escolhe qual faz sentido para a sua empresa.
 
-**Projetar:** `slides/13-bot-suporte-loop.html`
+📊 → `slides/09-permissionamento.html`
 
-**Falar:**
-- "Bot de suporte comum: você treina uma vez, fica desatualizado, vira problema."
-- "Esse bot aprende sozinho com a operação. Cada dúvida respondida vira conhecimento permanente."
-- O loop: FAQ → cliente pergunta → se está no FAQ, responde → se não está, marca como pendente → humano responde → cron consolida no FAQ → FAQ evolui
-- "O bot de amanhã sabe mais do que o de hoje. Sem código. Sem retreinar."
+Enquanto o slide está na tela:
 
-**Fazer:**
+- **Arquitetura A — Grupos separados:** um grupo Telegram por área. Agente de marketing no grupo de marketing. Bot de suporte no grupo de suporte. Isolamento total.
+- **Arquitetura B — Tópicos:** um grupo com tópicos. Um agente responde só no tópico dele. Mais simples de gerenciar.
 
-1. Abrir `cerebro/agentes/bot-suporte/SOUL.md`
-   - "É assim que ele fala com cliente. Tom específico, empático, dentro dos limites da empresa."
-   - Ler 3-4 linhas do tom em voz alta
+Para times pequenos: B. Para times com dados sensíveis separados (ex: financeiro e RH isolados): A.
 
-2. Abrir `cerebro/agentes/bot-suporte/AGENTS.md`
-   - "Escopo mínimo de segurança: só acessa `areas/atendimento/bot/`. Nada mais da empresa."
+🎬 **Demo — acesso negado:**
 
-3. Abrir `cerebro/areas/atendimento/bot/faq.md`
-   - "Isso é tudo que o bot sabe hoje. Cada item com pergunta, resposta e categoria."
-   - Mostrar 2-3 exemplos de perguntas e respostas no arquivo
+Abre `cerebro/agentes/marketing/AGENTS.md` — mostra o `scope` com os paths permitidos. Esse agente acessa só `areas/marketing/`. Nada mais.
 
-4. **Demo — Cliente perguntando algo que está no FAQ:**
-   - Enviar mensagem pro bot: _"Qual o prazo de entrega do curso?"_
-   - Bot responde imediatamente com base no faq.md
-   - "Ele achou no FAQ. Respondeu em segundos."
+Agora pede pro agente de marketing: *"Qual foi o MRR do mês passado?"*
+— Agente responde: "Não tenho acesso a dados financeiros. Posso ajudar com métricas de marketing." —
 
-5. **Demo — A dúvida nova (o loop de aprendizado):**
-   - Enviar mensagem pro bot: _"Vocês têm desconto para grupos de empresa?"_
-   - Bot não encontra no FAQ → responde que vai verificar → registra em `cerebro/areas/atendimento/bot/duvidas.md` → notifica equipe no Telegram
+*"Não é que ele não sabe. É que ele não PODE. E avisa."*
 
-6. Abrir `cerebro/areas/atendimento/bot/duvidas.md` ao vivo:
-   - "Apareceu aqui. Status: pendente. Pergunta original preservada."
+Mostra `cerebro/seguranca/permissoes.md` — tabela completa: agente × recurso × nível de acesso.
 
-7. Responder a dúvida diretamente no arquivo:
-   - Editar a linha: trocar `status: pendente` para `status: respondido`
-   - Adicionar a resposta no campo `resposta`
-   - "Fiz isso em 20 segundos no arquivo."
-
-8. Mostrar `cerebro/areas/atendimento/rotinas/consolidar-faq.md`:
-   - "Todo dia às 18h, esse cron roda. Pega todas as dúvidas com status `respondido`, formata, e adiciona ao faq.md."
-   - "Amanhã, quando o próximo cliente perguntar sobre desconto para grupos — o bot já vai saber."
-
-9. 🔥 Pausar. Deixar cair.
-   - "Cada dúvida respondida pelo humano vira conhecimento permanente do bot. Sem código. Sem retreinar. Sem abrir ticket de TI."
-   - "Em 30 dias, o bot vai saber responder 80% das dúvidas sozinho. Em 90 dias, 95%."
-
-**NÃO falar:**
-- Como integrar com WhatsApp Business API
-- Como conectar Crisp ou Intercom
-- Detalhes de como o consolidador de FAQ funciona internamente
-
-**Transição:** "Vocês viram o sistema inteiro funcionando. Agora a pergunta é: como começo? Qual é o primeiro passo?"
+**Transição:** *"Agora que entendemos o sistema, vamos ver ele funcionando num caso real e completo: marketing de performance."*
 
 ---
 
-### Bloco 11: Próximos 30 Dias (11:25–11:50)
+### Bloco 9: Deep Dive Marketing — 10h05 (35 min)
 
-**⏱ Duração:** 25 minutos
-
-**Projetar:** `slides/14-roadmap-30dias.html`
-
-**Falar:**
-- "O maior erro que as pessoas cometem: tentam implementar tudo na semana 1."
-- "Querem cérebro, skills, multi-agente, bot de suporte e crons ao mesmo tempo. Aí nada fica pronto direito."
-- "O roadmap correto é sequencial. Cada semana constrói sobre a anterior."
-
-**O Roadmap das 4 semanas:**
-
-- **Semana 1 — Fundação:**
-  - Criar o repo cerebro
-  - Preencher `empresa/contexto/empresa.md`, `equipe.md`, `metricas.md`
-  - Conectar 1 agente (assistente geral)
-  - Testar: "O agente me conhece?"
-
-- **Semana 2 — Primeira área:**
-  - Escolher 1 área (recomendado: vendas ou marketing)
-  - Criar 2-3 skills para ela
-  - Trazer dados reais (CSV primeiro, depois API)
-  - Testar: "O agente gera relatório sem eu pedir detalhes?"
-
-- **Semana 3 — Automação:**
-  - Configurar crons para as skills da Semana 2
-  - Criar skill-creator para gerar novas skills com a equipe
-  - Adicionar segundo agente (área prioritária)
-  - Testar: "O sistema roda sem minha intervenção?"
-
-- **Semana 4 — Bot e refinamento:**
-  - Configurar bot de suporte com FAQ inicial (30-50 perguntas)
-  - Ajustar permissionamentos
-  - Revisar o que não está funcionando
-  - Testar: "A equipe está usando sem me chamar?"
-
-**Fazer:**
-
-1. Abrir `cerebro/guias/roadmap-90-dias.md`
-   - "Esse arquivo é o mapa completo. As semanas 1-4 são o mínimo viável. As semanas 5-12 são expansão."
-   - Mostrar a estrutura das primeiras 4 semanas
-
-2. Mostrar que o wizard existe:
-   - "E vocês não precisam fazer isso sozinhos. O wizard faz com vocês."
-   - Abrir `wizard/README.md`
-   - "Cole isso no agente: 'Leia wizard/README.md e me guie pra configurar meu cérebro.'"
-   - "Ele vai perguntar sobre a empresa, criar os arquivos, preencher o contexto, configurar o primeiro agente."
-   - "O wizard é o onboarding automatizado."
-
-3. **Pergunta pro chat:**
-   - "Qual área vocês vão atacar na Semana 2? Manda no chat."
-   - Ler 3-4 respostas. Comentar brevemente cada uma.
-
-**NÃO falar:**
-- Quanto tempo demora para ter ROI (varia muito por empresa)
-- Garantias de resultado
-- Comparação com contratar desenvolvedor
+**Quando ativar:** Bruno der o "próximo" após o Bloco 8.
 
 ---
 
-### Fechamento + Pitch (11:50–12:00)
+**O agente diz:**
 
-**⏱ Duração:** 10 minutos
+Marketing de performance tem um ciclo: hipótese → criativo → teste → dado → conclusão → nova hipótese. Esse ciclo hoje depende de uma pessoa olhando planilha todo dia. Com o sistema, roda sozinho. 3 skills + 3 crons = ciclo automatizado.
 
-**Projetar:** `slides/15-fechamento.html`
+📊 → `slides/10-marketing-ciclo.html`
 
-**Falar — Recap final:**
-- "Em 2 dias vocês viram o sistema inteiro funcionando, com dados reais, sem PowerPoint."
-- Recap completo em bullets:
-  - ✅ **Cérebro** — repo GitHub que centraliza tudo
-  - ✅ **Skills** — automações em linguagem natural
-  - ✅ **Skill-creator** — skills geradas em 30 segundos
-  - ✅ **Crons** — o sistema roda sozinho
-  - ✅ **Multi-agente** — cada um no seu papel
-  - ✅ **Permissionamento** — cada agente só acessa o que pode
-  - ✅ **Marketing** — ciclo completo automatizado
-  - ✅ **Bot de suporte** — aprende sozinho com a operação
-- "Tudo isso FUNCIONA. Vocês viram ao vivo. Não é promessa — é demo."
+Enquanto o slide está na tela, abre `cerebro/areas/marketing/sub-areas/trafego-pago/PROCESSO.md` — *"Esse arquivo documenta como o marketing funciona aqui. O agente lê isso antes de qualquer análise."*
 
-**[PITCH — produto/preço a definir com Bruno e Cayo antes da imersão]**
+📊 → `slides/11-daily-report.html`
 
-- Apresentar a oferta de acompanhamento / implementação guiada
-- Urgência e condições especiais para quem está ao vivo
-- CTA claro: "Para quem quer implementar com suporte, o link está no chat agora"
+*"Todo dia às 8h, antes de qualquer pessoa da equipe acordar, o agente já gerou esse relatório. O gestor de tráfego abre o Telegram — relatório já está lá. Com alertas, destaques, sugestões."*
 
-**Encerramento:**
-- "Obrigado. Agora é hora de construir. O wizard está esperando."
-- Abrir para perguntas finais (se houver tempo)
+🎬 **Demo — as 3 skills e 3 rotinas:**
+
+Mostra as skills uma a uma — abre o arquivo e descreve em uma frase:
+- `relatorio-ads/SKILL.md` → coleta dados do Meta Ads e gera relatório diário
+- `analise-criativos/SKILL.md` → identifica padrões de performance entre criativos
+- `criacao-criativos/SKILL.md` → sugere próximos criativos baseado em learnings
+
+📊 → `slides/12-pipeline-criativos.html`
+
+*"Cada criativo passa por essas fases. O agente move e documenta automaticamente: Backlog → Em teste → Aprendizado → Escalando → Morto."*
+
+Pergunta pro agente de marketing: *"Qual próximo criativo faz sentido produzir essa semana?"*
+— Agente analisa learnings e formatos → sugere criativo específico com justificativa. —
+
+*"Ele não chutou. Leu os dados, leu os learnings, sugeriu com base em evidência."*
+
+---
+
+### ☕ Pausa — 10h40 (10 min)
+
+**Quando ativar:** Bruno indicar pausa.
+
+---
+
+**O agente diz:**
+
+Última pausa. Volta às 10h50 com o maior AHA moment da imersão.
+
+Cayo: testa o bot de suporte agora — manda 2–3 mensagens pra garantir que está respondendo. O Bloco 10 começa com ele ao vivo.
+
+Bruno: verifica que o ambiente do bot está OK. Confirma que `duvidas.md` está vazio — a demo do loop de aprendizado precisa começar do zero.
+
+---
+
+### Bloco 10: Bot de Suporte — 🔥 3º AHA MOMENT — 10h50 (35 min)
+
+**Quando ativar:** Bruno voltar da pausa.
+
+---
+
+**O agente diz:**
+
+Bot de suporte comum: você treina uma vez, fica desatualizado, vira problema. Esse bot aprende sozinho com a operação. Cada dúvida respondida vira conhecimento permanente.
+
+O loop: FAQ → cliente pergunta → se está no FAQ, responde → se não está, marca como pendente → humano responde → cron consolida no FAQ → FAQ evolui.
+
+O bot de amanhã sabe mais do que o de hoje. Sem código. Sem retreinar.
+
+📊 → `slides/13-bot-suporte-loop.html`
+
+Enquanto o slide está na tela — mostra o diagrama do loop. Não precisa explicar tudo: o visual já fala.
+
+🎬 **Demo completa do loop:**
+
+Abre `cerebro/agentes/bot-suporte/SOUL.md` — lê 3–4 linhas do tom. *"É assim que ele fala com o cliente."*
+
+Abre `cerebro/areas/atendimento/bot/faq.md` — *"Isso é tudo que o bot sabe hoje."* Mostra 2–3 exemplos.
+
+**Parte 1 — Dúvida no FAQ:**
+Manda pro bot: *"Qual o prazo de entrega do curso?"*
+— Bot responde imediatamente com base no faq.md. —
+
+**Parte 2 — A dúvida nova (o loop ao vivo):**
+Manda pro bot: *"Vocês têm desconto para grupos de empresa?"*
+— Bot não encontra → responde que vai verificar → registra em `duvidas.md` → notifica equipe no Telegram. —
+
+Abre `cerebro/areas/atendimento/bot/duvidas.md` ao vivo — *"Apareceu aqui. Status: pendente. Pergunta original preservada."*
+
+Responde a dúvida direto no arquivo — edita o status pra `respondido`, adiciona a resposta. *"20 segundos."*
+
+Mostra `cerebro/areas/atendimento/rotinas/consolidar-faq.md` — *"Todo dia às 18h esse cron roda. Pega todas as dúvidas respondidas e adiciona ao faq.md. Amanhã, quando o próximo cliente perguntar sobre desconto — o bot já vai saber."*
+
+Pausa longa. Deixa cair.
+
+*"Cada dúvida respondida pelo humano vira conhecimento permanente do bot. Sem código. Sem retreinar. Sem abrir ticket de TI. Em 30 dias, 80% das dúvidas respondidas sozinho. Em 90 dias, 95%."*
+
+**Transição:** *"Vocês viram o sistema inteiro. Agora: como começar?"*
+
+---
+
+### Bloco 11: Por Onde Começar — 11h25 (25 min)
+
+**Quando ativar:** Bruno der o "próximo" após o Bloco 10.
+
+---
+
+**O agente diz:**
+
+Vocês viram o sistema inteiro. Agora a pergunta prática: por onde eu começo?
+
+A resposta é simples — use o Wizard. Você não precisa montar nada manualmente.
+
+📊 → `slides/14-roadmap-30dias.html`
+
+Enquanto o slide está na tela, mostra o comando e explica o que acontece em cada etapa:
+
+- **Contexto da empresa** — agente faz as perguntas, preenche empresa.md, equipe.md, metricas.md
+- **Contexto das áreas** — você diz quais áreas existem, ele cria a estrutura
+- **Skills por área** — você descreve o que quer automatizar, ele usa o skill-creator
+- **Primeiros crons** — agenda as skills que devem rodar sozinhas
+- **Segundo agente** (se necessário) — SOUL e escopo configurados para a área mais crítica
+- **Validar e publicar** — primeiro commit, sistema no ar
+
+🎬 **Demo ao vivo:**
+
+Cole o comando no agente: *"Leia wizard/README.md e me guie pra configurar meu cérebro"*
+
+Mostra o Step 1 iniciando automaticamente — agente já começa a fazer as perguntas sobre a empresa.
+
+*"O wizard é o onboarding. Você conversa, o agente preenche. Não tem arquivo pra criar na mão."*
+
+Pergunta pro chat: *"Qual área vocês vão configurar primeiro?"* — comenta 3–4 respostas.
+
+---
+
+### Fechamento + Pitch — 11h50 (10 min)
+
+**Quando ativar:** Bruno sinalizar fechamento.
+
+---
+
+**O agente diz:**
+
+Em 2 dias, vocês viram o sistema inteiro funcionando — com dados reais, sem PowerPoint.
+
+📊 → `slides/15-fechamento.html`
+
+Recap da imersão inteira enquanto o slide está na tela:
+
+✅ **Cérebro** — repo GitHub que centraliza tudo
+✅ **Skills** — automações em linguagem natural
+✅ **Skill-creator** — skills em 30 segundos
+✅ **Crons** — o sistema roda sozinho
+✅ **Multi-agente** — cada um no seu papel
+✅ **Permissionamento** — cada agente só acessa o que pode
+✅ **Marketing** — ciclo completo automatizado
+✅ **Bot de suporte** — aprende sozinho com a operação
+
+*"Tudo isso funciona. Vocês viram ao vivo. Não é promessa — é demo."*
+
+**PITCH — Pixel IA**
+
+Cayo posta o link no chat nesse momento. Você apresenta:
+
+*"Para quem quer continuar evoluindo e manter a empresa sempre atualizada em IA — apresento o Pixel IA."*
+
+4 pontos do produto enquanto o slide mostra os benefícios:
+- Mentorias em grupo semanais — *"você não fica parado esperando o próximo lançamento"*
+- Acesso às formações — *"todo o conteúdo disponível, no seu ritmo"*
+- Comunidade com trocas — *"aprenda com outros empresários implementando IA"*
+- Newsletter semanal — *"o que importa no mundo de IA, filtrado e resumido"*
+
+**[Preço a definir com Bruno e Cayo antes da imersão]**
+
+Encerramento: *"Agora é hora de construir. O wizard está esperando."*
 
 ---
 
 ---
 
-## Comandos do Facilitador
-
-> Use durante a imersão ao vivo para navegar com o agente.
+## Comandos Disponíveis
 
 | Comando | O que o agente faz |
 |---------|-------------------|
-| `"próximo"` ou `"avança"` | Passa pro próximo bloco com instruções completas |
-| `"recap"` | Resume o que já foi coberto até agora |
-| `"quanto tempo?"` | Diz quanto tempo resta no bloco atual (baseado no horário informado) |
-| `"perguntas"` | Sugere como responder as top perguntas do chat de forma eficiente |
-| `"plano B"` | Fornece alternativa se algo falhar na demo ao vivo |
-| `"pausa"` | Marca pausa, diz o que fazer nos 10 min e o que checar antes de voltar |
-| `"status"` | Resume onde estamos: bloco atual, horário, o que já foi feito, o que falta |
-| `"resumo para o chat"` | Gera uma mensagem de recap para o Cayo colar no chat dos participantes |
+| `"próximo"` / `"avança"` | Entrega o próximo bloco completo |
+| `"recap"` | Resume o que já foi coberto |
+| `"quanto tempo?"` | Diz quanto tempo resta no bloco (informe o horário atual) |
+| `"pergunta do chat: [pergunta]"` | Responde a pergunta em 60 segundos para Bruno usar no chat |
+| `"plano B"` | Alternativa para se a demo do bloco atual falhar |
+| `"pausa"` | Marca pausa e orienta o que checar antes de voltar |
+| `"status"` | Bloco atual, horário, o que já foi feito, o que falta |
+| `"resumo pro chat"` | Gera mensagem de recap para o Cayo postar no chat dos participantes |
 
 ---
 
-## Planos B — Se Algo Falhar
+## Planos B
 
-> Tenha esses na cabeça. Use o comando `"plano B"` para o agente detalhar.
-
-| Situação | Alternativa |
+| Situação | O que fazer |
 |----------|-------------|
-| Internet caiu | Mostrar screenshots pré-preparados de cada demo. Ter pasta `demos/screenshots/` pronta. |
-| Agente não responde | Mostrar saída pré-gerada salva em `demos/outputs/`. "Isso é o que ele gera. Já rodei antes." |
-| Terminal travou | Terminal secundário já aberto em background. Alt+Tab. |
-| GitHub fora do ar | Repo clonado localmente. Mostrar estrutura de pastas no próprio terminal. |
-| Skill-creator falhou | Mostrar skill já criada e salva em `demos/skills-exemplo/`. "Esse foi criado ontem." |
-| Bot de suporte não responde | Ter conversa de demonstração gravada. Mostrar o vídeo. |
+| Agente não responde | Abrir Claude Code apontando pro mesmo `cerebro/` — mesmo resultado |
+| GitHub fora do ar | Mostrar repo clonado localmente no terminal — `tree cerebro/ -L 2` |
+| Skill-creator falhou | Abrir skill já criada em `cerebro/areas/vendas/skills/relatorio-vendas/SKILL.md` — *"Isso é o que ele gera"* |
+| Bot de suporte não responde | Mostrar `faq.md` e `duvidas.md` no terminal — explicar o loop verbalmente |
+| Internet caiu | Hotspot celular. Cayo avisa o chat com horário de retorno. |
+| API Meta Ads falhar | Abrir relatório pré-gerado salvo em `cerebro/areas/marketing/sub-areas/trafego-pago/` |
 
 ---
 
-## Checklist Pré-Imersão
-
-> Executar na noite anterior (27/03 e 28/03). Testa tudo antes.
-
-### Dia 1 (27/03 noite)
-- [ ] Repo `pixel-educacao/imersao-openclaw-negocios` acessível e público
-- [ ] Todos os slides em `slides/` abrindo corretamente no browser
-- [ ] `cerebro/empresa/contexto/metricas.md` com dados atuais
-- [ ] `cerebro/dados/vendas.csv` com dados de exemplo limpos
-- [ ] Agente no OpenClaw lendo `cerebro/` corretamente (testar "Qual o MRR?")
-- [ ] Claude Code com mesmo repo configurado (testar mesma pergunta)
-- [ ] skill-creator funcionando: testar criar 1 skill ao vivo
-- [ ] Cron de exemplo configurado e visível no dashboard
-- [ ] Terminal com `tree` instalado (`apt install tree` se necessário)
-
-### Dia 2 (28/03 noite)
-- [ ] Agentes de marketing e assistente com SOUL.md diferentes — testar mesma pergunta
-- [ ] AGENTS.md com permissões configuradas — testar acesso negado
-- [ ] `cerebro/areas/marketing/` com todas as skills e rotinas
-- [ ] Bot de suporte respondendo no canal de teste
-- [ ] `cerebro/areas/atendimento/bot/faq.md` com pelo menos 20 perguntas
-- [ ] `cerebro/areas/atendimento/bot/duvidas.md` vazio (ou com 1 exemplo)
-- [ ] Cron consolidador de FAQ configurado
-- [ ] `cerebro/guias/roadmap-90-dias.md` atualizado
-- [ ] `wizard/README.md` testado e funcionando
-- [ ] Screenshots de backup em `demos/screenshots/` para todos os blocos
-
----
-
-*Criado em: 2026-03-25*
-*Versão: 1.0*
+*Versão: 2.0 | Atualizado: 2026-03-28*
 *Uso: Imersão OpenClaw nos Negócios — 28-29/03/2026*
