@@ -34,7 +34,8 @@
 
 ### Em grupos com tópicos
 - O OpenClaw roteia por `topic_id` → cada tópico tem um `agentId` fixo
-- Se `agentId: none`, o bot está presente mas não processa mensagens
+- Para silenciar completamente um bot num tópico (inclusive menções): usar `groupPolicy: "disabled"`
+- ⚠️ `agentId: "none"` **não é suficiente** — o bot ainda pode responder a menções. Sempre usar `groupPolicy: "disabled"` junto
 - Se o tópico não está mapeado, o comportamento padrão do grupo se aplica
 
 ### Em grupos sem tópicos
@@ -51,8 +52,8 @@
 ## 4. Estado atual do config (openclaw.json)
 
 ```
-account: assistente → topics: 1=assistente, 8=none, 29=assistente
-account: marketing  → topics: 1=none, 8=marketing, 29=none
+account: assistente → topics: 1=assistente, 8=disabled, 29=assistente
+account: marketing  → topics: 1=disabled, 8=marketing, 29=disabled
 ```
 
 ---
