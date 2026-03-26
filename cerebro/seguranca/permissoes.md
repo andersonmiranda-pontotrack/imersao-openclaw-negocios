@@ -159,22 +159,37 @@ Existem dois cenários para mapear agentes no Telegram. Escolha o que faz sentid
 Ideal para equipes pequenas (3-10 pessoas). Um único grupo, cada área é um tópico.
 
 ```
-Grupo: Empresa Exemplo HQ
-├── General              → Agente Geral
+Grupo: Imersão OpenClaw nos Negócios
+├── General              → Assistente Operacional (Agente Geral)
+├── 📢 Marketing         → Assistente de Marketing
 ├── 💰 Vendas            → Agente de Vendas
-├── 📢 Marketing         → Agente de Marketing
 ├── 🎧 Atendimento       → Agente de Atendimento
-├── ⚙️ Operações         → Agente Geral
-└── 🤖 Debug             → (testes e comandos)
+├── ⚙️ Operações         → Assistente Operacional (Agente Geral)
+├── 🤖 Debug             → (testes e comandos)
+└── [topic 8]            → Assistente de Marketing
 ```
 
 | Agente | Tópico | topic_id | Quem fala ali |
 |--------|--------|----------|---------------|
-| Agente Geral | General | 1 | Liderança, qualquer um |
+| Assistente Operacional (Agente Geral) | General | 1 | Liderança, qualquer um |
 | Agente de Vendas | 💰 Vendas | 4 | Juliana, André, liderança |
-| Agente de Marketing | 📢 Marketing | 3 | Camila, Lucas, liderança |
+| Assistente de Marketing | 📢 Marketing | 3 | Camila, Lucas, liderança |
 | Agente de Atendimento | 🎧 Atendimento | 5 | Juliana, André, liderança |
-| Agente Geral | ⚙️ Operações | 6 | André, liderança |
+| Assistente Operacional (Agente Geral) | ⚙️ Operações | 6 | André, liderança |
+| Assistente de Marketing | topic_id 8 | 8 | Camila, Lucas, liderança |
+
+### ⚠️ Policy de Responsabilidade por Tópico
+
+**Regra inviolável:** cada agente responde SOMENTE no(s) tópico(s) que são seus. Nunca cruzar tópicos.
+
+| Agente | Responde em | NÃO responde em |
+|--------|-------------|-----------------|
+| Assistente Operacional | General (1), Operações (6) | Marketing (3, 8), Vendas (4), Atendimento (5) |
+| Assistente de Marketing | Marketing (3), topic 8 | General (1) e qualquer outro |
+| Agente de Vendas | Vendas (4) | Qualquer outro |
+| Agente de Atendimento | Atendimento (5) | Qualquer outro |
+
+> **Decisão registrada (2026-03-26, Cayo Syllos):** O tópico 8 deste grupo é de responsabilidade exclusiva do Assistente de Marketing. O Assistente Operacional responde somente no General. Cada agente não deve responder fora do seu tópico.
 
 **Vantagem:** tudo num lugar só, fácil de gerenciar.
 **Desvantagem:** qualquer pessoa do grupo pode ver todos os tópicos (permissão é por agente, não por visualização).
