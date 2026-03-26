@@ -54,45 +54,83 @@ Instruções visuais: [cor, posição de rosto, estilo]
 
 ## Output
 
-Documento de criativo pronto para produção:
+### Para criativos estáticos (formato obrigatório: Stack Ad Creator Pixel)
+
+**Regra:** Todo criativo estático sugerido DEVE usar o formato Stack Ad Creator Pixel.
+
+**Fluxo obrigatório ao sugerir um estático:**
+1. Apresentar o brief com hook, subtítulo e 3 cards de benefício (só texto — sem sugestão de foto de fundador, avatar ou imagem de pessoa)
+2. Perguntar ao usuário: *"Quer que eu já gere no formato Stack Ad Creator Pixel?"*
+3. Se confirmado, montar o `config.json` e rodar o script:
+
+```bash
+python3 cerebro/empresa/skills/stack-ad-creator-pixel/scripts/generate.py config.json
+```
+
+**Estrutura do config.json para estático:**
+```json
+{
+  "product_badge": "Nome do Produto",
+  "h1": ["Linha 1 do headline", "<em>Linha 2 em italic+gradient.</em>"],
+  "pricing": {
+    "was": "R$297",
+    "value": "R$97",
+    "label": "Acesso vitalício",
+    "condition": "Condição de lançamento"
+  },
+  "output_dir": "./banners",
+  "formats": ["post", "story"],
+  "copies": [
+    {
+      "key": "a-nome",
+      "label": "Copy A — Ângulo",
+      "subtitle": "Texto do subtítulo com <strong>destaques em branco.</strong>",
+      "cards": [
+        ["Título do benefício 1", "Descrição em 1 frase."],
+        ["Título do benefício 2", "Descrição em 1 frase."],
+        ["Título do benefício 3", "Descrição em 1 frase."]
+      ]
+    }
+  ]
+}
+```
+
+**Regras de copy para o Stack:**
+- `h1`: máx 3 linhas. Parte emocional/CTA em `<em>` (fica em italic + gradient laranja)
+- `subtitle`: números e termos-chave em `<strong>` (ficam em branco)
+- `cards`: exatamente 3 por copy — benefício direto, sem enrolação
+- **Sem menção a imagem de fundador, avatar ou foto de pessoa** — o formato é 100% tipográfico
+
+### Para vídeo: copy e roteiro
+
+Documento cena a cena:
 
 ```
 # Criativo: [NOME-DO-CRIATIVO]
 
 **Formato:** Vídeo 15s Reels
-**Ângulo:** Dor financeira
-**Público:** Cold — PMEs
+**Ângulo:** [ângulo]
+**Público:** Cold / Warm / Remarketing
 
 ## Roteiro
 
-[00-03s]
-Visual: Empresária olhando planilha confusa
-Texto overlay: "47% das PMEs perdem R$3k/mês"
-Fala: "Você sabia que quase metade das empresas perde três mil reais todo mês com processos manuais?"
-
-[03-10s]
-Visual: Tela de processo repetitivo, expressão de cansaço
-Fala: "E o pior: os donos nem percebem, porque viraram rotina."
-
-[10-13s]
-Visual: Logo TechFlow + dashboard organizado
-Fala: "A TechFlow automatiza isso em menos de 30 dias."
-
-[13-15s]
-Visual: WhatsApp aparecendo na tela
-Fala: "Fale com um especialista — link na bio."
-CTA overlay: "Diagnóstico gratuito →"
+[00-03s] HOOK — frase de abertura + overlay
+[03-10s] PROBLEMA — agravamento da dor
+[10-13s] SOLUÇÃO — apresentação do produto
+[13-15s] CTA — ação clara
 
 ## Instruções para Editor
 - Corte rápido, sem transição lenta
 - Música: lo-fi corporativo, baixo volume
 - Legendas em branco, fonte bold
-- Overlay numérico em amarelo (#FFD700)
+- Overlay numérico em amarelo
 ```
 
 ---
 
 ## Referências
+- Stack Ad Creator Pixel: `empresa/skills/stack-ad-creator-pixel/`
+- Brand guide do Stack: `empresa/skills/stack-ad-creator-pixel/references/brand.md`
 - Formatos disponíveis: `areas/marketing/sub-areas/trafego-pago/formatos/`
 - Ângulos aprovados: `areas/marketing/sub-areas/trafego-pago/angulos/`
 - Learnings: `areas/marketing/sub-areas/trafego-pago/learnings/resumo.md`
