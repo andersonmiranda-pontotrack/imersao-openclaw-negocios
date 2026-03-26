@@ -11,6 +11,7 @@ Cada agente responde **somente** no(s) grupo(s) listados. Mensagem fora do mapea
 | Grupo | group_id | Agente que responde | Bot |
 |-------|----------|---------------------|-----|
 | Ops - Imersão OpenClaw nos Negócios | `-1003617656481` | Assistente Geral | @agente_geral_imersao_bot |
+| Mkt - Imersão OpenClaw nos Negócios | `-5124164895` | Assistente de Marketing | @agente_marketing_imersao_bot |
 
 > Novos grupos serão adicionados aqui conforme forem criados.
 
