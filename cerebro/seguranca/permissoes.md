@@ -172,12 +172,10 @@ Grupo: Imersão OpenClaw nos Negócios
 | Agente | Tópico | topic_id | Quem fala ali |
 |--------|--------|----------|---------------|
 | Assistente Operacional (Agente Geral) | General | 1 | Liderança, qualquer um |
-| Assistente de Marketing | 📢 Marketing (topic 8) | 8 | Camila, Lucas, liderança |
+| Assistente de Marketing | 📢 Marketing | 8 | Camila, Lucas, liderança |
+| Assistente Operacional (Agente Geral) | ⚙️ Operações | 29 | André, liderança |
 | Agente de Vendas | 💰 Vendas | a criar | Juliana, André, liderança |
 | Agente de Atendimento | 🎧 Atendimento | a criar | Juliana, André, liderança |
-| Assistente Operacional (Agente Geral) | ⚙️ Operações | a criar* | André, liderança |
-
-> *Tópico ⚙️ Operações ainda não criado — bot precisa de permissão "Gerenciar tópicos" no grupo.
 
 ### ⚠️ Policy de Responsabilidade por Tópico
 
@@ -185,12 +183,12 @@ Grupo: Imersão OpenClaw nos Negócios
 
 | Agente | Responde em | NÃO responde em |
 |--------|-------------|-----------------|
-| Assistente Operacional | General (1), ⚙️ Operações (a criar) | Marketing (8), Vendas, Atendimento |
-| Assistente de Marketing | 📢 Marketing (topic 8) | General e qualquer outro |
+| Assistente Operacional | General (1), ⚙️ Operações (29) | Marketing (8), Vendas, Atendimento |
+| Assistente de Marketing | 📢 Marketing (8) | General e qualquer outro |
 | Agente de Vendas | 💰 Vendas | Qualquer outro |
 | Agente de Atendimento | 🎧 Atendimento | Qualquer outro |
 
-> **Decisão registrada (2026-03-26, Cayo Syllos):** O tópico 8 (Marketing) é de responsabilidade exclusiva do Assistente de Marketing. O Assistente Operacional responde somente no General e no tópico Operações (quando criado). Cada agente não deve responder fora do seu tópico.
+> **Decisão registrada (2026-03-26, Cayo Syllos):** O tópico 8 (Marketing) é de responsabilidade exclusiva do Assistente de Marketing. O Assistente Operacional responde somente no General (1) e em Operações (29). Cada agente não deve responder fora do seu tópico.
 
 **Vantagem:** tudo num lugar só, fácil de gerenciar.
 **Desvantagem:** qualquer pessoa do grupo pode ver todos os tópicos (permissão é por agente, não por visualização).

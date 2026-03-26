@@ -6,7 +6,7 @@
 |--------|----|------|--------------------|
 | General | 1 | Geral — conversas livres, alinhamentos rápidos | Assistente Operacional |
 | 📢 Marketing | 8 | Marketing — campanhas, tráfego, redes sociais | Assistente de Marketing |
-| ⚙️ Operações | a criar | Operações — processos, ferramentas, automações | Assistente Operacional |
+| ⚙️ Operações | 29 | Operações — processos, ferramentas, automações | Assistente Operacional |
 
 ## Como usar
 
