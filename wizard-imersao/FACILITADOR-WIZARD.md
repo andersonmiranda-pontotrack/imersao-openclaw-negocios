@@ -191,10 +191,12 @@ E a cada alteração, o agente faz push pro repo — o cérebro no GitHub é sem
 
 Cada pasta tem um papel específico:
 
-- `empresa/` → quem você é. Produto, equipe, métricas. O agente lê isso antes de responder qualquer coisa.
-- `areas/` → o que você faz. Cada área tem contexto, skills e rotinas próprias.
+- `empresa/` → quem você é. Missão, produto, equipe, métricas, decisões e lições aprendidas.
+- `areas/` → o que você faz. Cada área segue a mesma estrutura: contexto (geral, pessoas, decisões, lições), skills, rotinas e projetos.
 - `agentes/` → quem opera. Cada agente com personalidade e permissões diferentes.
 - `seguranca/` → quem pode acessar o quê.
+
+A estrutura se repete — empresa, área, sub-área. Sempre os mesmos 4 pilares: **contexto · skills · rotinas · projetos**.
 
 📎 `slides/03-cerebro-estrutura.html`
 
@@ -208,7 +210,13 @@ Cada pasta tem um papel específico:
 
 O agente não adivinha onde as coisas estão. Ele lê o `MAPA.md`.
 
-O `MAPA.md` da empresa é o ponto de entrada — mostra a estrutura completa do Cérebro: todas as pastas, o que cada uma contém, quais áreas existem, quais skills estão ativas, quem é responsável por cada área.
+O `MAPA.md` da empresa é o ponto de entrada — mostra a estrutura completa do Cérebro: todas as pastas, o que cada uma contém, quais áreas existem, quais skills estão ativas.
+
+Dentro de `contexto/` você encontra sempre os mesmos arquivos:
+- `geral.md` — o que é, objetivo, KPIs
+- `people.md` — quem trabalha aqui, responsabilidades, estrutura de decisão
+- `decisions.md` — decisões tomadas, com contexto e status
+- `lessons.md` — lições aprendidas com erros e acertos
 
 🎬 Abrindo ao vivo:
 
@@ -218,7 +226,9 @@ Cada área também tem o seu próprio `MAPA.md`:
 
 📎 `cerebro/areas/vendas/MAPA.md`
 
-O agente chega → lê o MAPA da empresa → entende a estrutura → vai pro MAPA da área → encontra as skills e rotinas. É assim que ele navega sem se perder, mesmo quando o Cérebro tem dezenas de arquivos.
+O agente chega → lê o MAPA da empresa → entende a estrutura → vai pro MAPA da área → encontra contexto, skills, rotinas e projetos. É assim que ele navega sem se perder, mesmo quando o Cérebro tem dezenas de arquivos.
+
+E a melhor parte: toda área e sub-área segue a mesma estrutura. Marketing tem `contexto/`, `skills/`, `rotinas/`, `projetos/`. Vendas tem. Operações tem. A sub-área de tráfego pago dentro de marketing — também. O agente aprende o padrão uma vez e navega qualquer área.
 
 ⏸ *Aguarda "próximo"*
 
@@ -554,7 +564,7 @@ Ele não age sozinho em coisas que importam. Isso é o modo ask — funciona no 
 
 🎬 *Ainda no Telegram — abrindo `cerebro/agentes/assistente/AGENTS.md` → seção "O Que Pode vs O Que Precisa Pedir".*
 
-Esse agente pode ler tudo de `empresa/` e `areas/`. Mas não toca em `seguranca/` nem faz push pro GitHub sem aprovação. Tudo que sai da máquina, ele para e confirma.
+Esse agente pode ler tudo de `empresa/contexto/` e `areas/`. Mas não toca em `seguranca/` nem faz push pro GitHub sem aprovação. Tudo que sai da máquina, ele para e confirma.
 
 ---
 
