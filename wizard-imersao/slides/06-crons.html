@@ -3,145 +3,197 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crons e Rotinas</title>
+<title>Crons vs Heartbeats</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
   :root {
     --bg: #0A0E2A; --bg2: #111630; --bg3: #181e3a;
     --border: #2a3260; --accent: #FE5000; --accent2: #ff7a35;
     --green: #22c55e; --blue: #60a5fa; --yellow: #eab308;
+    --red: #ef4444; --purple: #a78bfa; --teal: #14b8a6;
     --text: #e2e8f0; --text2: #94a3b8;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; height: 100%; background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); overflow: hidden; }
-  body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 28px 24px; }
-  h2 { font-size: clamp(24px, 2.8vw, 38px); font-weight: 800; text-align: center; margin-bottom: 8px; }
-  .tagline { font-size: 20px; color: var(--accent2); font-weight: 700; text-align: center; margin-bottom: 32px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; max-width: 960px; }
-  .cron-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px 24px;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s;
+  body { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 36px 60px; gap: 36px; }
+
+  h1 {
+    font-size: clamp(32px, 4vw, 52px); font-weight: 900; text-align: center;
+    background: linear-gradient(135deg, #fff 30%, var(--accent2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1.1;
   }
-  .cron-card:hover { transform: translateY(-3px); border-color: var(--accent); }
-  .cron-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 4px;
+  .subtitle { color: var(--text2); font-size: 17px; font-weight: 500; text-align: center; margin-top: 4px; }
+
+  /* ─── VS LAYOUT ─── */
+  .vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 32px; width: 100%; max-width: 1000px; align-items: start; }
+  .vs-divider { display: flex; align-items: center; justify-content: center; padding-top: 60px; font-size: 28px; color: var(--border); font-weight: 800; }
+
+  /* ─── COLUMN ─── */
+  .col { display: flex; flex-direction: column; gap: 14px; }
+  .col-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 4px;
   }
-  .cron-card.daily::before { background: var(--green); }
-  .cron-card.weekly::before { background: var(--blue); }
-  .cron-card.heartbeat::before { background: var(--yellow); }
-  .cron-icon { font-size: 36px; flex-shrink: 0; }
-  .cron-info { flex: 1; }
-  .cron-time {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
+  .col-icon { font-size: 32px; }
+  .col-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .label-green { color: var(--green); }
+  .label-yellow { color: var(--yellow); }
+  .col-title { font-size: 22px; font-weight: 800; }
+  .col-desc { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+  /* ─── CARDS ─── */
+  .card {
+    border-radius: 14px; padding: 16px 20px;
+    display: flex; gap: 14px; align-items: flex-start;
+    position: relative; overflow: hidden;
   }
-  .cron-card.daily .cron-time { color: var(--green); }
-  .cron-card.weekly .cron-time { color: var(--blue); }
-  .cron-card.heartbeat .cron-time { color: var(--yellow); }
-  .cron-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-  .cron-desc { font-size: 14px; color: var(--text2); line-height: 1.5; }
-  .cron-arrow { color: var(--text2); font-size: 14px; margin: 4px 0; }
-  .cron-output {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 13px;
-    color: var(--text);
-    font-weight: 600;
-    margin-top: 6px;
+  .card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+  .card-cron { background: var(--bg2); border: 1px solid var(--border); }
+  .card-cron::before { background: var(--green); }
+  .card-hb { background: var(--bg2); border: 1px solid var(--border); }
+  .card-hb::before { background: var(--yellow); }
+
+  .card-emoji { font-size: 24px; flex-shrink: 0; padding-top: 2px; }
+  .card-body { flex: 1; }
+  .card-time { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 2px; }
+  .time-green { color: var(--green); }
+  .time-blue { color: var(--blue); }
+  .time-yellow { color: var(--yellow); }
+  .card-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .card-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .card-output {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(0,0,0,0.3); border-radius: 5px;
+    padding: 3px 8px; font-size: 11px; font-weight: 600; margin-top: 6px;
   }
-  .status-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
+
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%;
     animation: blink 2s ease-in-out infinite;
   }
-  .daily .status-dot { background: var(--green); }
-  .weekly .status-dot { background: var(--blue); }
-  .heartbeat .status-dot { background: var(--yellow); }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+  .dot-green { background: var(--green); }
+  .dot-yellow { background: var(--yellow); }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* ─── BOTTOM ─── */
+  .bottom {
+    display: flex; gap: 32px; width: 100%; max-width: 1000px;
   }
-  .footer-banner {
-    margin-top: 24px;
-    background: linear-gradient(135deg, rgba(254,80,0,0.15), rgba(254,80,0,0.05));
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    padding: 16px 32px;
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--accent2);
-    text-align: center;
-    width: 100%;
-    max-width: 960px;
+  .bottom-card {
+    flex: 1; border-radius: 12px; padding: 14px 20px; text-align: center;
   }
+  .bottom-cron { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); }
+  .bottom-hb { background: rgba(234,179,8,0.06); border: 1px solid rgba(234,179,8,0.2); }
+  .bottom-text { font-size: 15px; font-weight: 700; }
+  .bottom-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
 </style>
 </head>
 <body>
-  <h2>⏰ Crons & Rotinas Automáticas</h2>
-  <p class="tagline">O agente trabalha enquanto você dorme</p>
 
-  <div class="grid">
-    <div class="cron-card daily">
-      <div class="cron-icon">📊</div>
-      <div class="cron-info">
-        <div class="cron-time"><span class="status-dot"></span> Daily — 08:00</div>
-        <div class="cron-name">Relatório de Vendas</div>
-        <div class="cron-desc">Analisa dados do dia anterior, calcula ROAS, CPL e CPA. Destaca top criativos e alertas.</div>
-        <div class="cron-output">📱 Telegram → Grupo Tráfego</div>
+  <div>
+    <h1>Crons vs Heartbeats</h1>
+    <p class="subtitle">Dois mecanismos, dois propósitos — juntos, o sistema nunca para</p>
+  </div>
+
+  <div class="vs">
+    <!-- CRON COLUMN -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-icon">⏰</div>
+        <div>
+          <div class="col-label label-green">Cron</div>
+          <div class="col-title">Executa tarefas</div>
+        </div>
+      </div>
+      <div class="col-desc">Agenda uma skill pra rodar em horário fixo. O agente executa e entrega o resultado no canal certo.</div>
+
+      <div class="card card-cron">
+        <div class="card-emoji">📊</div>
+        <div class="card-body">
+          <div class="card-time time-green"><span class="dot dot-green"></span> Todo dia — 08:00</div>
+          <div class="card-name">Relatório de Vendas</div>
+          <div class="card-desc">Roda a skill de vendas, gera dashboard e envia pro time.</div>
+          <div class="card-output">📱 Telegram → Grupo Vendas</div>
+        </div>
+      </div>
+
+      <div class="card card-cron">
+        <div class="card-emoji">🎯</div>
+        <div class="card-body">
+          <div class="card-time time-green"><span class="dot dot-green"></span> Todo dia — 10:00</div>
+          <div class="card-name">Leads Esfriando</div>
+          <div class="card-desc">Verifica leads sem follow-up há +7 dias e alerta o vendedor.</div>
+          <div class="card-output">📢 Notifica vendedor responsável</div>
+        </div>
+      </div>
+
+      <div class="card card-cron">
+        <div class="card-emoji">📋</div>
+        <div class="card-body">
+          <div class="card-time time-blue"><span class="dot dot-green"></span> Semanal — Seg 09:00</div>
+          <div class="card-name">Suporte vs Vendas</div>
+          <div class="card-desc">Cruza tickets com vendas e traz insights de impacto.</div>
+          <div class="card-output">📊 Report HTML + Telegram</div>
+        </div>
       </div>
     </div>
 
-    <div class="cron-card daily">
-      <div class="cron-icon">🎯</div>
-      <div class="cron-info">
-        <div class="cron-time"><span class="status-dot"></span> Daily — 10:00</div>
-        <div class="cron-name">Follow-up de Leads</div>
-        <div class="cron-desc">Verifica leads sem contato há +7 dias. Prioriza por valor e calor do lead.</div>
-        <div class="cron-output">📢 Notifica vendedor responsável</div>
-      </div>
-    </div>
+    <!-- DIVIDER -->
+    <div class="vs-divider">vs</div>
 
-    <div class="cron-card weekly">
-      <div class="cron-icon">🎨</div>
-      <div class="cron-info">
-        <div class="cron-time"><span class="status-dot"></span> Semanal — Seg 09:00</div>
-        <div class="cron-name">Pipeline de Criativos</div>
-        <div class="cron-desc">Analisa performance da semana e sugere novos ângulos e formatos de criativos.</div>
-        <div class="cron-output">💡 Sugestões para aprovação humana</div>
+    <!-- HEARTBEAT COLUMN -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-icon">💓</div>
+        <div>
+          <div class="col-label label-yellow">Heartbeat</div>
+          <div class="col-title">Monitora a saúde</div>
+        </div>
       </div>
-    </div>
+      <div class="col-desc">Roda em loop contínuo. Verifica se tudo está funcionando. Se algo falha, alerta imediatamente.</div>
 
-    <div class="cron-card heartbeat">
-      <div class="cron-icon">💓</div>
-      <div class="cron-info">
-        <div class="cron-time"><span class="status-dot"></span> A cada 6h</div>
-        <div class="cron-name">Heartbeat do Sistema</div>
-        <div class="cron-desc">Verifica saúde de integrações, APIs e processos críticos. Alerta em caso de falha.</div>
-        <div class="cron-output">✅ Status OK ou ⚠️ Alerta imediato</div>
+      <div class="card card-hb">
+        <div class="card-emoji">🔍</div>
+        <div class="card-body">
+          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> A cada 1h</div>
+          <div class="card-name">Crons rodaram?</div>
+          <div class="card-desc">Verifica se cada cron executou no horário. Se falhou 2x seguidas, alerta imediato.</div>
+          <div class="card-output">✅ OK silencioso ou ⚠️ Alerta</div>
+        </div>
+      </div>
+
+      <div class="card card-hb">
+        <div class="card-emoji">📌</div>
+        <div class="card-body">
+          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> A cada 1h</div>
+          <div class="card-name">Pendências travadas?</div>
+          <div class="card-desc">Se algo ficou parado +3 dias sem resposta, cobra o responsável.</div>
+          <div class="card-output">📱 Alerta na área responsável</div>
+        </div>
+      </div>
+
+      <div class="card card-hb">
+        <div class="card-emoji">🧠</div>
+        <div class="card-body">
+          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> A cada 1h</div>
+          <div class="card-name">Memória consolidada?</div>
+          <div class="card-desc">Se notas diárias passaram de 3 dias sem consolidar no Cérebro, consolida automaticamente.</div>
+          <div class="card-output">💾 Commit automático no repo</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="footer-banner">
-    🌙 Às 3h da manhã o sistema está trabalhando. Você está dormindo.
+  <div class="bottom">
+    <div class="bottom-card bottom-cron">
+      <div class="bottom-text" style="color:var(--green)">Cron = "Faz isso no horário X"</div>
+      <div class="bottom-sub">Execução programada de skills</div>
+    </div>
+    <div class="bottom-card bottom-hb">
+      <div class="bottom-text" style="color:var(--yellow)">Heartbeat = "Tá tudo bem?"</div>
+      <div class="bottom-sub">Monitoramento contínuo do sistema</div>
+    </div>
   </div>
+
 </body>
 </html>

@@ -514,17 +514,17 @@ Mesma lógica. Ferramenta diferente. Cérebro único. Mas agora com personalidad
 
 📤 **Mensagem:**
 
-**Crons — o sistema roda sem ninguém pedir**
+**Crons vs Heartbeats — o sistema nunca para**
 
-Cron é agendamento. O agente executa uma skill no horário que você definir.
+São dois mecanismos diferentes:
 
-Todo dia às 9h: relatório de vendas no Telegram.
-Toda segunda: relatório de leads.
-A cada 6h: agente verifica se tudo está rodando bem.
+**Cron** = "Faz isso no horário X". Agenda uma skill pra rodar em horário fixo — relatório de vendas todo dia às 8h, leads esfriando às 10h, suporte vs vendas toda segunda.
 
-Você dorme. O sistema trabalha.
+**Heartbeat** = "Tá tudo bem?". Roda em loop contínuo verificando se tudo está funcionando — crons rodaram? Pendências travadas? Memória consolidada? Se algo falhou, alerta imediato.
 
-📎 `slides/06-crons.html`
+Cron executa. Heartbeat monitora. Juntos, o sistema roda sozinho.
+
+📂 `slides/06-crons.html` *(abrir arquivo ao vivo)*
 
 ⏸ *Aguarda "próximo"*
 
