@@ -1,87 +1,73 @@
 ---
 name: leads-esfriando
 description: >
-  Analisa a planilha de leads e identifica quais estão esfriando — leads que
-  entraram há mais de 7 dias sem nenhum follow-up registrado. Use quando alguém
-  perguntar "quais leads estão esfriando?", "tem lead sem follow-up?",
-  "quem a gente tá deixando pra trás?" ou similar.
+  Analisa planilha de leads (CSV) e gera relatório visual em HTML mostrando leads sem follow-up
+  há mais de 7 dias. Classifica por urgência (crítico, alto, médio), calcula valor em risco,
+  e apresenta dashboard com KPIs, barra de distribuição e tabela detalhada.
+  Trigger phrases: "leads esfriando", "leads sem follow-up", "leads frios", "relatório de leads",
+  "quais leads estão parados", "leads sem contato".
+  NÃO use para: análise de clientes já fechados, relatórios financeiros, métricas de MRR.
 ---
 
-# Leads Esfriando
+# Leads Esfriando — Relatório Visual
 
-## O que faz
+Gera um relatório HTML visual identificando leads que estão sem follow-up há mais de 7 dias.
+Lê uma planilha CSV de leads, calcula os dias sem contato, classifica por urgência e gera
+um dashboard completo pronto para abrir no navegador.
 
-Lê a planilha de leads, cruza a data de entrada com a data do último follow-up e identifica leads que estão esfriando — ou seja, entraram há mais de 7 dias e não receberam nenhum contato ou o último contato foi há mais de 7 dias.
+## Workflow
 
----
+1. Localizar o arquivo de leads (CSV). SE não informado, procurar em `wizard-imersao/dados-demo/leads.csv`
+2. Ler o CSV e identificar as colunas: nome, email, produto_interesse, status_lead, ultimo_contato, valor_estimado, observacoes
+3. Calcular dias sem contato: data de hoje menos ultimo_contato
+4. Filtrar leads com dias sem contato maior que 7
+5. Excluir leads com status "fechado" (já convertidos)
+6. Classificar por urgência:
+   - Crítico: mais de 14 dias sem contato
+   - Alto: 10 a 13 dias sem contato
+   - Médio: 8 a 9 dias sem contato
+7. Ordenar por dias sem contato (maior primeiro)
+8. Calcular KPIs:
+   - Total de leads esfriando
+   - Valor total em risco (soma dos valor_estimado)
+   - Média de dias sem contato
+   - Quantidade de propostas sem retorno (status = proposta_enviada)
+9. Gerar HTML com:
+   - Header com título e data do relatório
+   - 4 cards de KPI (leads, valor em risco, média dias, propostas sem retorno)
+   - Barra de distribuição por urgência (proporção visual crítico/alto/médio)
+   - Tabela detalhada: urgência, dias, nome, email, produto, status, valor, último contato, observação
+   - Footer com fonte e critério
+10. Salvar o HTML na raiz do workspace
 
-## Input
+## Output Format
 
-- Arquivo CSV ou planilha de leads com as colunas:
-  - `nome` — nome do lead
-  - `email` — email do lead
-  - `data_entrada` — data em que o lead entrou (formato YYYY-MM-DD)
-  - `ultimo_followup` — data do último follow-up (formato YYYY-MM-DD ou vazio)
-  - `canal` — canal de origem (Meta Ads, YouTube, Indicação, etc.)
-  - `status` — status atual (novo, em_contato, qualificado, perdido, convertido)
+Arquivo HTML standalone com:
+- Design dark theme (#0A0E2A)
+- Font: Inter (Google Fonts)
+- KPIs em cards coloridos (vermelho, amarelo, azul, verde)
+- Barra de urgência horizontal proporcional
+- Tabela com badges de urgência coloridos
+- Responsivo, abre direto no browser
 
----
+## Edge Cases
 
-## Processo
+- SE a planilha não tiver coluna ultimo_contato: avisar o usuário e pedir para indicar qual coluna usar
+- SE a planilha estiver vazia ou sem leads esfriando: gerar HTML com mensagem "Nenhum lead esfriando — todos os leads estão com follow-up em dia"
+- SE a data estiver em formato diferente (DD/MM/YYYY vs YYYY-MM-DD): detectar automaticamente e converter
+- SE houver linhas com dados faltando: ignorar a linha e avisar no footer quantas foram ignoradas
+- SE o valor_estimado estiver vazio: usar R$ 0 e marcar como "valor não informado" na tabela
 
-1. **Ler o arquivo de leads** — usar `imersao/dados-demo/leads.csv` (demo) ou o arquivo configurado para produção
-2. **Filtrar leads ativos** — excluir leads com status `convertido` ou `perdido`
-3. **Calcular dias sem contato:**
-   - Se `ultimo_followup` está vazio → dias desde `data_entrada`
-   - Se `ultimo_followup` tem data → dias desde `ultimo_followup`
-4. **Identificar leads esfriando** — dias sem contato > 7
-5. **Ordenar por urgência** — quem está há mais tempo sem contato primeiro
-6. **Classificar por gravidade:**
-   - 🔴 **Crítico** — mais de 14 dias sem contato
-   - 🟡 **Atenção** — entre 8 e 14 dias sem contato
-7. **Gerar relatório** com lista priorizada e sugestão de ação
+## Examples
 
----
+### Exemplo 1 (happy path)
+Input: "Me mostra os leads que estão esfriando"
+Output: Relatório HTML com dashboard visual mostrando todos os leads sem follow-up há +7 dias, ordenados por urgência, com KPIs calculados e barra de distribuição.
 
-## Output esperado
+### Exemplo 2 (sem leads esfriando)
+Input: "Tem algum lead esfriando?"
+Output: Relatório HTML com mensagem positiva: "Nenhum lead esfriando. Todos os 32 leads estão com follow-up em dia."
 
-```
-🧊 LEADS ESFRIANDO
-Relatório gerado em: 25/03/2026
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Total de leads ativos: 42
-Leads esfriando: 8 (19%)
-
-🔴 CRÍTICOS (>14 dias sem contato)
-
-1. João Silva — joao@empresa.com
-   Entrada: 05/03 · Último contato: 08/03 (17 dias atrás)
-   Canal: Meta Ads · Status: em_contato
-   → Sugestão: contato urgente ou marcar como perdido
-
-2. Maria Santos — maria@corp.com
-   Entrada: 02/03 · Sem follow-up registrado (23 dias)
-   Canal: YouTube · Status: novo
-   → Sugestão: primeiro contato imediato
-
-🟡 ATENÇÃO (8-14 dias sem contato)
-
-3. Pedro Lima — pedro@startup.io
-   Entrada: 14/03 · Último contato: 15/03 (10 dias atrás)
-   Canal: Indicação · Status: qualificado
-   → Sugestão: reengajar com conteúdo relevante
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Resumo: 2 críticos, 1 atenção
-Ação recomendada: priorizar os 🔴 críticos hoje
-```
-
----
-
-## Notas
-
-- Leads com status `convertido` ou `perdido` são excluídos da análise
-- O threshold padrão é 7 dias, mas aceita parâmetro customizado
-- Se não houver coluna `ultimo_followup`, usa apenas `data_entrada`
-- Pode ser combinada com um cron para rodar toda segunda-feira automaticamente
+### Exemplo 3 (planilha customizada)
+Input: "Analisa o arquivo clientes-marco.csv e me mostra quem tá parado há mais de 10 dias"
+Output: Ajusta o critério de 7 para 10 dias. Gera o mesmo dashboard visual com o novo threshold.
