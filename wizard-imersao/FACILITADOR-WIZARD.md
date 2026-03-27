@@ -138,44 +138,15 @@ O problema não é a IA. É onde a memória fica.
 
 📤 **Mensagem:**
 
-**A arquitetura**
+**Multi-Agente — Estrutura de Permissões**
 
-GitHub no centro. Ferramentas ao redor — OpenClaw, Claude Code, Cursor, qualquer outra que surgir.
+Cada agente acessa apenas o contexto que precisa. Diretores têm permissão geral — leem e escrevem em qualquer área do Cérebro. Agentes especializados (vendas, marketing, suporte) acessam só a área deles + o contexto geral da empresa.
 
-Você conecta uma ferramenta nova → ela lê o mesmo Cérebro → começa a trabalhar como se já soubesse tudo da empresa.
+No centro: o Cérebro da empresa — um repositório GitHub. De um lado, os diretores e seus agentes com acesso total. Do outro, agentes especializados que servem os colaboradores de cada área.
 
 🎬 *Abrindo o repo ao vivo: `github.com/pixel-educacao/imersao-openclaw-negocios` → navega pelo `cerebro/` → abre `cerebro/agentes/COMO-CONECTAR.md`*
 
 📎 `slides/02-arquitetura.html`
-
-⏸ *Aguarda "próximo"*
-
----
-
-📤 **Mensagem:**
-
-**Como o agente se conecta ao Cérebro — o Symlink**
-
-Ok, o Cérebro é um repo GitHub. Mas como o agente lê esses arquivos no dia a dia?
-
-A resposta: **symlink**. É um atalho — igual atalho de desktop no Windows.
-
-Em vez de ter duas cópias do mesmo arquivo (uma no workspace do agente e outra no repo), o arquivo do workspace é só um ponteiro que diz "vá ler o arquivo que está lá no repo".
-
-**Sem symlink (cópia):**
-- Workspace: `SOUL.md` ← arquivo independente
-- Repo: `cerebro/agentes/marketing/SOUL.md` ← outro arquivo independente
-- Atualiza um, o outro fica desatualizado ❌
-
-**Com symlink:**
-- Workspace: `SOUL.md` → aponta pro `cerebro/agentes/marketing/SOUL.md`
-- É o mesmo arquivo. Atualizar um = atualizar o outro ✅
-
-Quando o agente lê o `SOUL.md`, ele tá lendo direto do cérebro no repo. Sem duplicação, sem risco de ficar fora de sync.
-
-E a cada alteração, o agente faz push pro repo — o cérebro no GitHub é sempre a versão mais atual.
-
-📎 `slides/02b-symlink.html`
 
 ⏸ *Aguarda "próximo"*
 
@@ -268,17 +239,41 @@ Input → processo → output. Igual uma função de código, mas em linguagem n
 
 📤 **Mensagem:**
 
-**Anatomia de uma skill**
+**Anatomia de uma skill — o espectro de complexidade**
 
-O único arquivo obrigatório é o `SKILL.md` — a receita. Mas quanto mais complexa a automação, mais estrutura você pode adicionar.
+Toda skill começa com um arquivo: o `SKILL.md`. A partir daí, você vai adicionando camadas conforme a automação cresce. São 4 níveis:
 
 📎 `slides/04b-skill-estrutura.html`
 
-No lado esquerdo: skill simples. Só o `SKILL.md` — a receita. Já funciona.
+**Nível 1 — Simples.** Só o `SKILL.md`. Dentro dele: o que faz, quando usar, passo a passo e output esperado. Já funciona. Exemplo: `relatorio-vendas/` — lê dados, gera texto, envia.
 
-No lado direito: skill avançada. Além do `SKILL.md`, tem `schema.json` pra definir input e output com tipos e validações, `examples/` com exemplos reais de uso pra o agente aprender o padrão, e `scripts/` com scripts de automação que o agente executa.
+**Nível 2 — Com exemplos.** Adiciona uma pasta `examples/` com amostras reais de como a skill deve executar. Calibra o tom e o nível de detalhe. Exemplo: `qualificacao-lead/`.
 
-Não precisa ter tudo desde o início. Começa com o `SKILL.md`. Conforme a skill fica mais complexa, você adiciona o resto.
+**Nível 3 — Com scripts.** Adiciona `scripts/` — automações que o agente executa: parsing, formatação, envio. Exemplo: `analise-concorrente/`.
+
+**Nível 4 — Completo.** Tudo junto. SKILL.md + examples + scripts com múltiplos arquivos. Exemplo: `controle-financeiro/` — lê PDF/CSV de qualquer banco, categoriza 47+ lançamentos com 3 scripts Python, salva no Cérebro.
+
+A regra: começa no Nível 1. Vai adicionando conforme a skill evolui — sem reescrever nada.
+
+⏸ *Aguarda "próximo"*
+
+---
+
+📤 **Mensagem:**
+
+**O problema: conhecimento que evapora**
+
+Toda empresa tem processos que vivem na cabeça de alguém. Um prompt que funcionou ontem — mas que ninguém salvou. Um relatório que só o fulano sabe montar. Uma resposta padrão que muda a cada vez que alguém manda.
+
+Prompt é temporário. Morre quando a sessão fecha. Skill é permanente — fica salva no Cérebro, qualquer agente acessa, roda quando quiser.
+
+📂 `slides/05-skill-vs-prompt.html` *(abrir arquivo ao vivo — slide conceito Prompt vs Skill)*
+
+⏸ *Aguarda "próximo"*
+
+---
+
+📤 **Mensagem:**
 
 🎬 Abrindo as duas ao vivo pra comparar:
 
@@ -302,7 +297,7 @@ Cada pasta de skills tem o seu. O agente lê esse arquivo primeiro e já sabe qu
 
 📎 `cerebro/empresa/skills/_index.md`
 
-Olha: as duas skills que acabamos de ver estão mapeadas aqui — `relatorio-rotinas` e `stack-ad-creator-pixel`. O agente bate o olho nesse arquivo e sabe exatamente o que tem disponível. Sem ele, fica perdido procurando pasta por pasta.
+Olha: 7 skills mapeadas — `relatorio-rotinas`, `stack-ad-creator-pixel`, `criar-skill`, `alerta-clientes-inativos` e mais. O agente bate o olho nesse arquivo e sabe exatamente o que tem disponível. Sem ele, fica perdido procurando pasta por pasta.
 
 ⏸ *Aguarda "próximo"*
 
@@ -375,7 +370,7 @@ Pausa de 10 minutos — voltamos às 10h40.
 
 📤 **Mensagem:**
 
-🎬 **Demo ao vivo — gerando um relatório**
+🎬 **Demo ao vivo — gerando um relatório e transformando em skill**
 
 Pedindo pro agente:
 
@@ -385,55 +380,19 @@ Pedindo pro agente:
 
 📂 relatório HTML gerado *(abrir arquivo ao vivo)*
 
-Após mostrar o relatório, o agente sugere ao Bruno:
+Após mostrar o relatório, o agente sugere:
 
 > E se a gente transformasse isso que acabamos de fazer em uma skill? Assim qualquer agente roda esse relatório quando quiser — sem precisar explicar de novo.
 
-⏸ *Aguarda Bruno pedir: "Transforma isso em skill" ou similar*
+Bruno pede: *"Transforma isso em skill"*
 
----
+*(agente lê o que acabou de fazer → gera SKILL.md + evals/evals.json → QA automático roda → salva no Cérebro)*
 
-📤 **Mensagem:**
-
-**O problema: conhecimento que evapora**
-
-Toda empresa tem processos que vivem na cabeça de alguém. Um prompt que funcionou ontem — mas que ninguém salvou. Um relatório que só o fulano sabe montar. Uma resposta padrão que muda a cada vez que alguém manda.
-
-Prompt é temporário. Morre quando a sessão fecha. Skill é permanente — fica salva no Cérebro, qualquer agente acessa, roda quando quiser.
-
-📂 `slides/05-skill-creator.html` *(abrir arquivo ao vivo — slide conceito Prompt vs Skill)*
-
-**Como o skill-creator funciona por dentro**
-
-O skill-creator é uma skill que cria outras skills. Ele tem 3 modos de detectar o que você quer — e escolhe sozinho qual usar.
-
-📂 `cerebro/empresa/skills/criar-skill/SKILL.md` *(abrir arquivo ao vivo — mostrar Detecção de Modo, QA automático, estrutura gerada)*
-
-⏸ *Aguarda "próximo"*
-
----
-
-📤 **Mensagem:**
-
-🎬 **Transformando em skill — Modo 1: Captura de sessão**
-
-*(agente lê o que acabou de fazer → gera SKILL.md + evals/evals.json → QA automático roda)*
-
-O agente capturou o processo inteiro e empacotou em receita reutilizável. A partir de agora, qualquer agente que acessar o Cérebro sabe gerar esse relatório.
+O agente capturou o processo inteiro e empacotou em receita reutilizável. Agora qualquer agente que acessar o Cérebro sabe gerar esse relatório.
 
 📂 `cerebro/areas/vendas/skills/leads-esfriando/SKILL.md` *(abrir arquivo gerado ao vivo)*
 
-Após mostrar a skill gerada, o agente sugere ao Bruno:
-
-> A skill tá criada e salva no Cérebro. Quer testar? Pede pra eu rodar ela agora.
-
-⏸ *Aguarda Bruno pedir: "Me mostra os leads esfriando" ou similar*
-
----
-
-📤 **Mensagem:**
-
-🎬 **Testando a skill — funciona sozinha?**
+Bruno testa: *"Me mostra os leads esfriando"*
 
 *(agente encontra a skill → executa → gera o mesmo relatório visual)*
 
@@ -441,15 +400,13 @@ Mesmo resultado. Sem precisar explicar nada de novo. A skill já sabe o que faze
 
 > Esse é o ciclo completo: você faz uma vez → vira skill → roda pra sempre.
 
-⏸ *Aguarda "próximo"*
+**Como o skill-creator funciona por dentro**
 
----
+O skill-creator é uma skill que cria outras skills. Ele detecta automaticamente o que você quer e monta a estrutura.
 
-📤 **Mensagem:**
+📂 `cerebro/empresa/skills/criar-skill/SKILL.md` *(abrir arquivo ao vivo — mostrar QA automático, estrutura gerada)*
 
-🎬 **Wizard visual — pra quem prefere interface guiada**
-
-Além do chat, tem o wizard visual. Interface com 4 etapas que monta a skill pra você — e uma biblioteca com 24 exemplos de skills prontas pra usar como base.
+Além do chat, tem o **wizard visual** — interface com 4 etapas que monta a skill pra você — e uma **biblioteca com 24 exemplos** de skills prontas pra usar como base.
 
 📂 `cerebro/empresa/skills/criar-skill/wizard.html` *(abrir wizard ao vivo)*
 📂 `cerebro/empresa/skills/criar-skill/examples.html` *(abrir biblioteca de exemplos)*
@@ -460,49 +417,31 @@ Além do chat, tem o wizard visual. Interface com 4 etapas que monta a skill pra
 
 📤 **Mensagem:**
 
-**Agente proativo — ele sugere skills sozinho**
-
-Não precisa ser sempre você pedindo. Vamos testar a proatividade agora com uma tarefa complexa.
-
-Bruno pede pro agente:
-
-*"Pega os nossos dados de tickets de suporte e compara com os dados de reembolso e vendas dos últimos 7 dias. Me traz insights sobre como nossos tickets de suporte podem estar afetando nossas vendas em um report HTML que vou querer ter acesso de tempos em tempos."*
-
-*(agente cruza tickets-suporte.csv + vendas.csv → gera relatório HTML com KPIs, distribuição por categoria, impacto por produto, timeline tickets vs vendas, e 5 insights acionáveis)*
-
-📂 relatório HTML gerado *(abrir arquivo ao vivo)*
-
-Ninguém pediu pra criar uma skill. Mas no final da análise, o agente sugere sozinho:
-
-> "Percebi que esse cruzamento de suporte com vendas é algo que você provavelmente vai querer rodar toda semana. Quer que eu transforme esse processo em uma skill?"
-
-É isso. O agente não só executa. Ele identifica padrões e propõe empacotar em skill automaticamente. Isso fica configurado nas instruções dele — no `SOUL.md`.
-
-📂 `cerebro/agentes/assistente/SOUL.md` *(abrir arquivo ao vivo — seção de proatividade)*
-
-⏸ *Aguarda "próximo"*
-
----
-
-📤 **Mensagem:**
-
-**Testando no Telegram — e por que lá?**
+**Agente proativo — testando no Telegram**
 
 Até agora, tudo que fizemos foi aqui no Cowork. O Cowork é ótimo pra construir, visualizar e testar. Mas o dia a dia da operação acontece no Telegram — é lá que a equipe tá, é lá que o agente precisa funcionar.
 
-E tem um detalhe técnico importante: o `SOUL.md` — aquela personalidade que a gente acabou de ver — funciona nativamente no OpenClaw. Quando você configura um agente no OpenClaw, ele carrega o `SOUL.md` automaticamente. O agente já acorda sabendo quem ele é, como fala, o que pode e o que não pode fazer. No Cowork, você precisaria instruir manualmente a cada sessão.
+E tem um detalhe técnico importante: o `SOUL.md` — aquela personalidade que a gente acabou de ver — funciona nativamente no OpenClaw. Quando você configura um agente no OpenClaw, ele carrega o `SOUL.md` automaticamente. O agente já acorda sabendo quem ele é, como fala, o que pode e o que não pode fazer.
 
 Por isso o fluxo é: **constrói no Cowork, opera no Telegram.**
 
-Vamos testar agora.
+Vamos testar a proatividade agora com uma tarefa complexa — direto no Telegram.
 
 🎬 *Abrindo o Telegram → chat com o OpenClaw → pedindo:*
 
 *"Pega os nossos dados de tickets de suporte e compara com os dados de reembolso e vendas dos últimos 7 dias. Me traz insights sobre como nossos tickets de suporte podem estar afetando nossas vendas em um report HTML que vou querer ter acesso de tempos em tempos."*
 
-*(agente no Telegram cruza os dados → gera relatório → sugere criar skill proativamente → salva no Cérebro → commit no GitHub)*
+*(agente no Telegram cruza os dados → gera relatório HTML → sugere criar skill proativamente → salva no Cérebro → commit no GitHub)*
 
-Mesma lógica. Ferramenta diferente. Cérebro único. Mas agora com personalidade ativa — o agente no Telegram já tá operando com o `SOUL.md` dele.
+Ninguém pediu pra criar uma skill. Mas no final da análise, o agente sugere sozinho:
+
+> "Percebi que esse cruzamento de suporte com vendas é algo que você provavelmente vai querer rodar toda semana. Quer que eu transforme esse processo em uma skill?"
+
+O agente não só executa. Ele identifica padrões e propõe empacotar em skill automaticamente. Isso fica configurado nas instruções dele — no `SOUL.md`.
+
+📂 `cerebro/agentes/assistente/SOUL.md` *(abrir arquivo ao vivo — seção de proatividade)*
+
+Mesma lógica do Cowork. Ferramenta diferente. Cérebro único. Mas agora com personalidade ativa — o agente no Telegram já tá operando com o `SOUL.md` dele.
 
 ⏸ *Aguarda "próximo"*
 
@@ -556,9 +495,9 @@ Assim como as skills têm um `_index.md`, as rotinas também. O agente precisa s
 
 📎 `cerebro/areas/vendas/rotinas/_index.md`
 
-Hoje só tem uma rotina mapeada: o relatório de vendas diário. Mas a gente acabou de criar uma skill de leads esfriando no bloco anterior. Faz sentido ela rodar sozinha todo dia?
+Olha: 3 rotinas mapeadas — `relatorio-vendas-diario`, `pipeline-forecast` e `leads-esfriando-diario`. Cada uma com frequência, horário e o que faz. Todas rodam de madrugada pra equipe chegar de manhã com tudo pronto.
 
-Faz. Vamos criar essa rotina agora — ao vivo, no Telegram.
+Mas dá pra ir além. Vamos criar uma rotina nova agora — ao vivo, no Telegram.
 
 ⏸ *Aguarda "próximo"*
 
@@ -594,7 +533,7 @@ Amanhã às 9h, sem ninguém pedir: relatório de vendas + alerta de leads esfri
 
 ---
 
-📤 **Mensagem:**
+📤 **Mensagem (bloco contínuo — sem pausas entre camadas):**
 
 **Segurança — o elefante na sala**
 
@@ -602,69 +541,17 @@ Vamos falar do que todo mundo pensa mas ninguém pergunta: "Esse agente tem aces
 
 Pergunta justa. Qualquer ferramenta que acessa informação do seu negócio precisa ter controle. Não é diferente de contratar um funcionário — você não dá acesso ao financeiro no primeiro dia.
 
-O OpenClaw resolve isso com **3 camadas de proteção**. Vou explicar cada uma.
+O OpenClaw resolve isso com **3 camadas de proteção**.
 
-📎 `slides/07-seguranca.html` *(abrir arquivo ao vivo)*
+**Camada 1 — Servidor: a fundação.** Tudo começa antes do agente existir. Seu servidor precisa estar blindado: acesso só por chave SSH, firewall liberando só o essencial, ban automático pra quem tenta invadir, gateway nunca exposto. É o básico — mas 90% das empresas não faz. Aqui você já bloqueia Prompt Injection e Privilege Abuse antes de chegar no agente.
 
-⏸ *Aguarda "próximo"*
+**Camada 2 — Agente: o comportamento.** Quem pode falar com o bot? Só IDs autorizados. Credenciais ficam no `.env` com permissão restrita, nunca no código. Skills são auditadas antes de instalar. Comandos permitidos são uma allowlist — o agente só roda o que você liberou. É como dar o crachá pro estagiário: ele entra no prédio, mas só nos andares que você definiu.
 
----
+**Camada 3 — Processo: a disciplina operacional.** As duas primeiras camadas definem quem entra e o que pode fazer. A terceira garante que ninguém relaxa. Dupla autorização antes de ir pra produção. Auditoria automática diária. Logs completos com timestamp. Rotação de tokens a cada 90 dias. E toda decisão crítica fica registrada no GitHub — memória permanente.
 
-📤 **Mensagem:**
+📎 `slides/07c-seguranca-camadas.html` *(abrir — os 15 controles detalhados com o que cada camada protege)*
 
-**Camada 1 — Onde seus dados ficam**
-
-Quando você usa o ChatGPT, seus dados vão pra cloud da OpenAI. Quando você usa o OpenClaw, seus dados ficam **com você**. No seu servidor, na sua máquina, no seu repositório privado do GitHub.
-
-O modelo de IA processa a informação pra gerar a resposta, mas não armazena ela. Seu Cérebro, suas skills, seus dados de clientes — tudo isso fica no seu controle.
-
-Na prática: seus concorrentes não conseguem acessar suas automações. Seu time de vendas não fica exposto. Seus dados de clientes não ficam numa cloud que você não controla.
-
-📎 `slides/07b-seguranca-controles.html` *(abrir arquivo ao vivo — os 15 controles nas 3 camadas, lado a lado)*
-
-⏸ *Aguarda "próximo"*
-
----
-
-📤 **Mensagem:**
-
-**Camada 2 — Quem acessa o quê**
-
-Imagina que você contratou 3 estagiários. Você daria acesso ao financeiro pros 3? Não. Um cuida de marketing, outro de suporte, outro de vendas. Cada um acessa só o que precisa.
-
-Com agentes é igual. No OpenClaw, cada agente tem **permissões definidas**:
-
-- O bot de suporte acessa tickets e FAQ — mas não vê dados de vendas.
-- O agente de marketing mexe em criativos e métricas de ads — mas não faz deploy de código.
-- O agente de vendas vê pipeline e leads — mas não acessa dados de RH.
-
-Você define isso em um arquivo simples. Se um agente tentar acessar algo que não é dele, ele é barrado. Sem exceção.
-
-📎 `slides/07c-seguranca-camadas.html` *(abrir arquivo ao vivo — cada camada com o que protege contra)*
-
-⏸ *Aguarda "próximo"*
-
----
-
-📤 **Mensagem:**
-
-**Camada 3 — Aprovação antes de agir**
-
-As duas primeiras camadas definem onde os dados ficam e quem acessa o quê. Mas e quando o agente precisa **fazer** algo que tem impacto? Deletar um arquivo. Enviar mensagem pra um cliente. Fazer push de código pro GitHub.
-
-Nesses casos, o agente **para e pede permissão**. Ele prepara tudo, mostra o que vai fazer, e espera você aprovar ou negar. Só executa quando você diz sim.
-
-🎬 *Testando no Telegram — pedindo pro agente via OpenClaw:*
-
-*"Deleta o arquivo teste.md"*
-
-*(agente: "Confirma que quer deletar teste.md? (sim/não)")*
-
-Pensa no estagiário: ele pode preparar o e-mail inteiro pro cliente, mas antes de apertar "enviar", ele mostra pra você. Mesmo lógica.
-
-O resultado: **IA poderosa com você no controle — não o contrário.** O agente trabalha de madrugada, gera relatório, analisa dados, prepara tudo. Mas qualquer ação que impacta o negócio, ele confirma com você antes.
-
-Isso é segurança na prática. O agente é poderoso — mas você está no controle.
+**IA poderosa com você no controle — não o contrário.** O agente trabalha de madrugada, gera relatório, analisa dados, prepara tudo. Mas qualquer ação que impacta o negócio, ele confirma com você antes.
 
 ---
 
@@ -1093,7 +980,7 @@ O mais importante é: começa alimentando, e aos poucos você vai analisando ár
 
 **Resumo: o que vocês viram nesses 2 dias**
 
-Agora vocês entendem como funciona o cérebro da empresa — um repositório que centraliza todo o contexto. Como a gente se conecta com isso via symlink. Como você cria processos, habilidades, automações. Como agenda crons pra rodar sozinho. Como separa agentes com escopo claro. Como monta um bot de suporte que aprende com a operação.
+Agora vocês entendem como funciona o cérebro da empresa — um repositório que centraliza todo o contexto. Como cada agente acessa só o que precisa. Como você cria processos, habilidades, automações. Como agenda crons pra rodar sozinho. Como separa agentes com escopo claro. Como monta um bot de suporte que aprende com a operação.
 
 Tudo isso funciona. Vocês viram ao vivo.
 
