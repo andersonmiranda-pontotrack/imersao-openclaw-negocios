@@ -1,22 +1,26 @@
 # Rotina: Heartbeat (Verificação Periódica)
 
 ## O que faz
-Verificação automática de saúde do sistema. Checa pendências, prazos, projetos parados, crons com erro e memória não consolidada.
+O heartbeat é o **loop de orquestração** que mantém o agente vivo e tomando decisões. Não é health check — é o que faz o agente ser autônomo, e não só reativo. A cada batida ele pensa, decide e age. Verificar saúde é só um dos checks.
 
 ## Frequência
 A cada 1h (configurado no OpenClaw: `heartbeat.every: "1h"`)
 
-## Checklist executado
+## O que acontece a cada batida
 
-1. **Pendências** — Se item em `empresa/gestao/pendencias.md` > 3 dias sem resposta → alertar Felipe
-2. **Prazos** — Se projeto com deadline em < 7 dias → alertar com plano de ação
-3. **Projetos parados** — Se projeto sem atualização > 7 dias → alertar
-4. **Crons com erro** — Se `consecutiveErrors >= 2` → alertar IMEDIATAMENTE
-5. **Memória** — Se notas diárias > 3 dias sem consolidar → consolidar no repo
+A cada ciclo o heartbeat **pensa e decide**:
 
-## Entrega
-- **Tudo OK:** silencioso (`HEARTBEAT_OK`)
-- **Algo precisa de atenção:** alerta no tópico da área correspondente
+1. **Checa novas mensagens/eventos** — Chegou input novo? Se sim, processa
+2. **Decide próximas ações** — Avalia estado atual e define o que fazer agora
+3. **Executa tarefas pendentes** — Roda o que ficou parado, retoma processos
+4. **Replaneja se necessário** — Contexto mudou? Adapta o plano
+5. **Tenta se recuperar de erros** — Se algo falhou, tenta resolver antes de alertar
+6. **Verifica saúde** — Crons rodaram? Pendências travadas? (é só 1 dos checks, não o propósito)
+
+## Ações possíveis
+- **Tudo OK:** continua o ciclo em silêncio — o agente segue vivo
+- **Nova decisão:** executa tarefa, dispara skill, replaneja ação
+- **Erro detectado:** tenta recuperar sozinho. Se não consegue → alerta o time
   - Pendência de vendas → 💰 Vendas (topic_id: 4)
   - Cron de marketing com erro → 📢 Marketing (topic_id: 3)
   - Problema de operações → ⚙️ Operações (topic_id: 6)

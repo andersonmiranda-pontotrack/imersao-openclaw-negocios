@@ -514,15 +514,17 @@ Mesma lógica. Ferramenta diferente. Cérebro único. Mas agora com personalidad
 
 📤 **Mensagem:**
 
-**Crons vs Heartbeats — o sistema nunca para**
+**Crons vs Heartbeats — agenda operacional vs cérebro estratégico**
 
-São dois mecanismos diferentes:
+Regra de ouro: **se tem horário → cron. Se depende de decisão → heartbeat.**
 
-**Cron** = "Faz isso no horário X". Agenda uma skill pra rodar em horário fixo — relatório de vendas todo dia às 8h, leads esfriando às 10h, suporte vs vendas toda segunda.
+**Cron** = execução baseada em tempo. Previsível, determinística. Você define o horário e a tarefa — o agente só roda. Exemplos: relatório de vendas todo dia às 8h, puxar dados de ads às 22h, enviar newsletter toda segunda.
 
-**Heartbeat** = "Tá tudo bem?". Roda em loop contínuo verificando se tudo está funcionando — crons rodaram? Pendências travadas? Memória consolidada? Se algo falhou, alerta imediato.
+**Heartbeat** = decisão baseada em estado. Inteligente, adaptativa. O agente avalia o contexto e **decide** o que fazer. Exemplos: quais leads priorizar, qual mensagem enviar, quando pausar uma campanha ruim.
 
-Cron executa. Heartbeat monitora. Juntos, o sistema roda sozinho.
+Na prática funciona assim: o **cron cria os eventos** (gera dados, puxa métricas, dispara rotinas). O **heartbeat decide o que fazer** com esses eventos (prioriza, escolhe, adapta, reage).
+
+Erro comum: colocar tudo no cron. Resultado: regras infinitas, sistema engessado, baixa performance. Separa: cron é a agenda operacional, heartbeat é o cérebro estratégico.
 
 📂 `slides/06-crons.html` *(abrir arquivo ao vivo)*
 
@@ -534,9 +536,11 @@ Cron executa. Heartbeat monitora. Juntos, o sistema roda sozinho.
 
 🎬 *Abrindo `cerebro/areas/vendas/rotinas/relatorio-vendas-diario.md` — horário, skill, canal, destinatário.*
 
-Olha a estrutura: qual skill rodar, quando, pra onde entregar. É um arquivo simples no Cérebro — o agente lê e sabe o que fazer.
+Isso é cron. Timing fixo, tarefa determinística. Todo dia às 8h roda a skill de vendas e entrega no Telegram. Não precisa pensar — só precisa rodar.
 
-*Abrindo `cerebro/areas/operacoes/rotinas/heartbeat.md` — esse agente monitora a si mesmo. A cada 1h verifica se todos os crons rodaram, se houve erro. Detectou problema → notifica no Telegram.*
+*Abrindo `cerebro/areas/operacoes/rotinas/heartbeat.md` — isso é heartbeat.*
+
+Repara a diferença: aqui não tem horário fixo. O agente avalia o estado e decide o que fazer. Chegou mensagem nova? Processa. Cron falhou? Reexecuta. Contexto mudou? Replaneja. O cron criou os dados — o heartbeat decide o que fazer com eles. Cron é a agenda operacional. Heartbeat é o cérebro estratégico.
 
 ⏸ *Aguarda "próximo"*
 
@@ -592,13 +596,15 @@ Amanhã às 9h, sem ninguém pedir: relatório de vendas + alerta de leads esfri
 
 📤 **Mensagem:**
 
-**Segurança em 3 camadas**
+**Segurança — o elefante na sala**
 
-- **Dados locais** — tudo na sua máquina ou no seu repo privado. O modelo processa, não armazena.
-- **Modo ask** — para qualquer ação irreversível, o agente pede permissão antes de executar.
-- **Controle granular** — cada agente acessa só o que você permitiu. Bot de suporte não vê financeiro.
+Vamos falar do que todo mundo pensa mas ninguém pergunta: "Esse agente tem acesso aos meus dados de vendas, meus clientes, meus tickets. E se ele fizer besteira? E se alguém acessar o que não devia?"
 
-📎 `slides/07-seguranca.html`
+Pergunta justa. Qualquer ferramenta que acessa informação do seu negócio precisa ter controle. Não é diferente de contratar um funcionário — você não dá acesso ao financeiro no primeiro dia.
+
+O OpenClaw resolve isso com **3 camadas de proteção**. Vou explicar cada uma.
+
+📎 `slides/07-seguranca.html` *(abrir arquivo ao vivo)*
 
 ⏸ *Aguarda "próximo"*
 
@@ -606,17 +612,59 @@ Amanhã às 9h, sem ninguém pedir: relatório de vendas + alerta de leads esfri
 
 📤 **Mensagem:**
 
+**Camada 1 — Onde seus dados ficam**
+
+Quando você usa o ChatGPT, seus dados vão pra cloud da OpenAI. Quando você usa o OpenClaw, seus dados ficam **com você**. No seu servidor, na sua máquina, no seu repositório privado do GitHub.
+
+O modelo de IA processa a informação pra gerar a resposta, mas não armazena ela. Seu Cérebro, suas skills, seus dados de clientes — tudo isso fica no seu controle.
+
+Na prática: seus concorrentes não conseguem acessar suas automações. Seu time de vendas não fica exposto. Seus dados de clientes não ficam numa cloud que você não controla.
+
+📎 `slides/07b-seguranca-controles.html` *(abrir arquivo ao vivo — os 15 controles nas 3 camadas, lado a lado)*
+
+⏸ *Aguarda "próximo"*
+
+---
+
+📤 **Mensagem:**
+
+**Camada 2 — Quem acessa o quê**
+
+Imagina que você contratou 3 estagiários. Você daria acesso ao financeiro pros 3? Não. Um cuida de marketing, outro de suporte, outro de vendas. Cada um acessa só o que precisa.
+
+Com agentes é igual. No OpenClaw, cada agente tem **permissões definidas**:
+
+- O bot de suporte acessa tickets e FAQ — mas não vê dados de vendas.
+- O agente de marketing mexe em criativos e métricas de ads — mas não faz deploy de código.
+- O agente de vendas vê pipeline e leads — mas não acessa dados de RH.
+
+Você define isso em um arquivo simples. Se um agente tentar acessar algo que não é dele, ele é barrado. Sem exceção.
+
+📎 `slides/07c-seguranca-camadas.html` *(abrir arquivo ao vivo — cada camada com o que protege contra)*
+
+⏸ *Aguarda "próximo"*
+
+---
+
+📤 **Mensagem:**
+
+**Camada 3 — Aprovação antes de agir**
+
+As duas primeiras camadas definem onde os dados ficam e quem acessa o quê. Mas e quando o agente precisa **fazer** algo que tem impacto? Deletar um arquivo. Enviar mensagem pra um cliente. Fazer push de código pro GitHub.
+
+Nesses casos, o agente **para e pede permissão**. Ele prepara tudo, mostra o que vai fazer, e espera você aprovar ou negar. Só executa quando você diz sim.
+
 🎬 *Testando no Telegram — pedindo pro agente via OpenClaw:*
 
 *"Deleta o arquivo teste.md"*
 
 *(agente: "Confirma que quer deletar teste.md? (sim/não)")*
 
-Ele não age sozinho em coisas que importam. Isso é o modo ask — funciona no OpenClaw nativamente.
+Pensa no estagiário: ele pode preparar o e-mail inteiro pro cliente, mas antes de apertar "enviar", ele mostra pra você. Mesmo lógica.
 
-🎬 *Ainda no Telegram — abrindo `cerebro/agentes/assistente/AGENTS.md` → seção "O Que Pode vs O Que Precisa Pedir".*
+O resultado: **IA poderosa com você no controle — não o contrário.** O agente trabalha de madrugada, gera relatório, analisa dados, prepara tudo. Mas qualquer ação que impacta o negócio, ele confirma com você antes.
 
-Esse agente pode ler tudo de `empresa/contexto/` e `areas/`. Mas não toca em `seguranca/` nem faz push pro GitHub sem aprovação. Tudo que sai da máquina, ele para e confirma.
+Isso é segurança na prática. O agente é poderoso — mas você está no controle.
 
 ---
 
@@ -633,8 +681,6 @@ Esse agente pode ler tudo de `empresa/contexto/` e `areas/`. Mas não toca em `s
 ✅ Skill-creator — qualquer tarefa vira skill em 30 segundos
 ✅ Crons — o sistema roda sem ninguém pedir
 ✅ Segurança em 3 camadas
-
-**Tarefa pro amanhã:** abra a planilha principal da empresa de vocês — vendas, leads ou métricas. Organizem os dados em colunas claras. Amanhã conectamos isso ao sistema.
 
 Nos vemos amanhã às 9h.
 

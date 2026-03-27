@@ -92,7 +92,7 @@
 
   <div>
     <h1>Crons vs Heartbeats</h1>
-    <p class="subtitle">Dois mecanismos, dois propósitos — juntos, o sistema nunca para</p>
+    <p class="subtitle">Se tem horário → cron. Se depende de decisão → heartbeat.</p>
   </div>
 
   <div class="vs">
@@ -102,10 +102,10 @@
         <div class="col-icon">⏰</div>
         <div>
           <div class="col-label label-green">Cron</div>
-          <div class="col-title">Executa tarefas</div>
+          <div class="col-title">Agenda operacional</div>
         </div>
       </div>
-      <div class="col-desc">Agenda uma skill pra rodar em horário fixo. O agente executa e entrega o resultado no canal certo.</div>
+      <div class="col-desc">Execução baseada em tempo. Previsível, determinística. <strong>Cria os eventos</strong> — gera dados, puxa métricas, dispara rotinas.</div>
 
       <div class="card card-cron">
         <div class="card-emoji">📊</div>
@@ -147,38 +147,38 @@
         <div class="col-icon">💓</div>
         <div>
           <div class="col-label label-yellow">Heartbeat</div>
-          <div class="col-title">Monitora a saúde</div>
+          <div class="col-title">Cérebro estratégico</div>
         </div>
       </div>
-      <div class="col-desc">Roda em loop contínuo. Verifica se tudo está funcionando. Se algo falha, alerta imediatamente.</div>
+      <div class="col-desc">Decisão baseada em estado. Inteligente, adaptativa. <strong>Decide o que fazer</strong> com os eventos — prioriza, escolhe, adapta, reage.</div>
 
       <div class="card card-hb">
-        <div class="card-emoji">🔍</div>
+        <div class="card-emoji">🎯</div>
         <div class="card-body">
-          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> A cada 1h</div>
-          <div class="card-name">Crons rodaram?</div>
-          <div class="card-desc">Verifica se cada cron executou no horário. Se falhou 2x seguidas, alerta imediato.</div>
-          <div class="card-output">✅ OK silencioso ou ⚠️ Alerta</div>
+          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> Baseado em estado</div>
+          <div class="card-name">Quais leads priorizar?</div>
+          <div class="card-desc">Avalia contexto de cada lead e decide quem abordar primeiro, com qual mensagem.</div>
+          <div class="card-output">🧠 Decisão inteligente</div>
+        </div>
+      </div>
+
+      <div class="card card-hb">
+        <div class="card-emoji">⚡</div>
+        <div class="card-body">
+          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> Baseado em estado</div>
+          <div class="card-name">Pausar campanha ruim?</div>
+          <div class="card-desc">Detecta performance caindo e decide: ajustar, pausar ou escalar pro time.</div>
+          <div class="card-output">🔄 Reação adaptativa</div>
         </div>
       </div>
 
       <div class="card card-hb">
         <div class="card-emoji">📌</div>
         <div class="card-body">
-          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> A cada 1h</div>
-          <div class="card-name">Pendências travadas?</div>
-          <div class="card-desc">Se algo ficou parado +3 dias sem resposta, cobra o responsável.</div>
-          <div class="card-output">📱 Alerta na área responsável</div>
-        </div>
-      </div>
-
-      <div class="card card-hb">
-        <div class="card-emoji">🧠</div>
-        <div class="card-body">
-          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> A cada 1h</div>
-          <div class="card-name">Memória consolidada?</div>
-          <div class="card-desc">Se notas diárias passaram de 3 dias sem consolidar no Cérebro, consolida automaticamente.</div>
-          <div class="card-output">💾 Commit automático no repo</div>
+          <div class="card-time time-yellow"><span class="dot dot-yellow"></span> Baseado em estado</div>
+          <div class="card-name">Cron falhou — e agora?</div>
+          <div class="card-desc">Relatório não gerou? Decide: reexecutar, alertar o time, ou adaptar o plano.</div>
+          <div class="card-output">🩺 Recuperação autônoma</div>
         </div>
       </div>
     </div>
@@ -186,12 +186,12 @@
 
   <div class="bottom">
     <div class="bottom-card bottom-cron">
-      <div class="bottom-text" style="color:var(--green)">Cron = "Faz isso no horário X"</div>
-      <div class="bottom-sub">Execução programada de skills</div>
+      <div class="bottom-text" style="color:var(--green)">Cron cria os eventos</div>
+      <div class="bottom-sub">Agenda operacional — execução baseada em tempo</div>
     </div>
     <div class="bottom-card bottom-hb">
-      <div class="bottom-text" style="color:var(--yellow)">Heartbeat = "Tá tudo bem?"</div>
-      <div class="bottom-sub">Monitoramento contínuo do sistema</div>
+      <div class="bottom-text" style="color:var(--yellow)">Heartbeat decide o que fazer</div>
+      <div class="bottom-sub">Cérebro estratégico — decisão baseada em estado</div>
     </div>
   </div>
 

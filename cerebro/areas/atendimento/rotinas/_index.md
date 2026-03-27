@@ -1,6 +1,8 @@
-# Rotinas — Atendimento
+# Rotinas — Atendimento / CS
 
 | Rotina | Frequência | O que faz |
 |--------|-----------|-----------|
-| `consolidar-faq` | Diário 18h | Pega dúvidas respondidas e consolida no FAQ permanente do bot |
+| `health-score-clientes` | Seg-Sex 3h (entrega 8h) | Calcula health score por cliente, identifica risco de churn, alerta CSM |
+| `nps-feedbacks-noturno` | Seg-Sex 4h (entrega 8:30) | Consolida NPS e feedbacks do dia, categoriza sentimento, identifica padrões |
 | `checagem-tickets-diaria` | Diário 9h | Verifica tickets abertos e alerta sobre pendências |
+| `consolidar-faq` | Diário 18h | Pega dúvidas respondidas e consolida no FAQ permanente do bot |
