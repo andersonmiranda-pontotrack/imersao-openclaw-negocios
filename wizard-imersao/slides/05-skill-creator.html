@@ -3,154 +3,292 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skill Creator em Ação</title>
+<title>Skill Creator — Crie Suas Próprias Skills</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
   :root {
     --bg: #0A0E2A; --bg2: #111630; --bg3: #181e3a;
     --border: #2a3260; --accent: #FE5000; --accent2: #ff7a35;
     --green: #22c55e; --blue: #60a5fa; --yellow: #eab308;
+    --purple: #a78bfa; --teal: #14b8a6; --red: #ef4444;
     --text: #e2e8f0; --text2: #94a3b8;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 100%; height: 100%; background: var(--bg); font-family: 'Inter', system-ui, sans-serif; color: var(--text); overflow: hidden; }
-  body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 28px 24px; }
-    margin-bottom: 16px;
-    animation: glow 2s ease-in-out infinite;
+  body { display: flex; flex-direction: column; align-items: center; padding: 22px 28px 18px; }
+
+  /* ─── HEADER ─── */
+  .header { text-align: center; margin-bottom: 16px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(254,80,0,0.12); border: 1px solid rgba(254,80,0,0.35);
+    border-radius: 999px; padding: 4px 14px;
+    font-size: 11px; font-weight: 700; color: var(--accent2);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px;
   }
-  @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(254,80,0,0.4); }
-    50% { box-shadow: 0 0 40px rgba(254,80,0,0.8); }
+  h1 {
+    font-size: clamp(24px, 2.8vw, 36px); font-weight: 900;
+    background: linear-gradient(135deg, #fff 30%, var(--accent2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1.15; margin-bottom: 4px;
   }
-  h2 { font-size: clamp(22px, 2.5vw, 34px); font-weight: 800; text-align: center; margin-bottom: 6px; }
-  .tagline { color: var(--accent2); font-size: 18px; font-weight: 600; text-align: center; margin-bottom: 28px; }
-  .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 1050px; }
+  .subtitle { color: var(--text2); font-size: 14px; font-weight: 500; }
+
+  /* ─── KPIs ─── */
+  .kpis { display: flex; gap: 12px; margin-bottom: 16px; }
+  .kpi {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 10px 22px; text-align: center; flex: 1;
+  }
+  .kpi-val { font-size: 22px; font-weight: 800; color: var(--accent2); line-height: 1.2; }
+  .kpi-lbl { font-size: 11px; color: var(--text2); font-weight: 500; margin-top: 2px; }
+
+  /* ─── MAIN GRID ─── */
+  .main { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; max-width: 1100px; flex: 1; min-height: 0; }
+
+  /* ─── LEFT: CONCEITO + COMPARAÇÃO ─── */
+  .left { display: flex; flex-direction: column; gap: 12px; }
+
+  .concept-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .concept-card {
+    border-radius: 14px; padding: 14px 16px;
+    position: relative; overflow: hidden;
+  }
+  .concept-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .card-bad { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); }
+  .card-bad::before { background: var(--red); }
+  .card-good { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); }
+  .card-good::before { background: var(--green); }
+  .card-tag {
+    display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px;
+  }
+  .tag-red { background: rgba(239,68,68,0.15); color: var(--red); }
+  .tag-green { background: rgba(34,197,94,0.15); color: var(--green); }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .card-list { list-style: none; font-size: 12px; color: var(--text2); line-height: 1.7; }
+  .card-list li { display: flex; align-items: center; gap: 6px; }
+  .card-list li .x { color: var(--red); font-weight: 700; font-size: 11px; }
+  .card-list li .v { color: var(--green); font-weight: 700; font-size: 11px; }
+
+  /* ─── PATHS ─── */
+  .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; }
+  .path-card {
+    border-radius: 14px; padding: 14px 16px;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .path-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .path-a { background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.25); }
+  .path-a::before { background: linear-gradient(90deg, #7c3aed, var(--purple)); }
+  .path-b { background: rgba(234,179,8,0.06); border: 1px solid rgba(234,179,8,0.25); }
+  .path-b::before { background: linear-gradient(90deg, var(--yellow), var(--accent2)); }
+  .path-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .path-label-a { color: var(--purple); }
+  .path-label-b { color: var(--yellow); }
+  .path-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .path-desc { font-size: 11px; color: var(--text2); line-height: 1.55; margin-bottom: 8px; }
+  .path-example {
+    background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px; padding: 8px 10px; font-size: 11px; color: var(--text2);
+    line-height: 1.5; font-style: italic; margin-top: auto;
+  }
+  .path-example strong { color: var(--text); font-style: normal; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ─── RIGHT: DEMO CHAT + RESULTADO ─── */
+  .right { display: flex; flex-direction: column; gap: 12px; }
+
   .chat-panel {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;
   }
-  .chat-label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text2); margin-bottom: 4px; }
-  .msg {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
+  .chat-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text2); }
+  .msg { display: flex; gap: 8px; align-items: flex-start; }
   .msg.user { flex-direction: row-reverse; }
   .avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
+    width: 28px; height: 28px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
+    font-size: 14px; flex-shrink: 0;
   }
   .avatar.user-av { background: var(--blue); }
   .avatar.agent-av { background: var(--accent); }
-  .bubble {
-    max-width: 85%;
-    padding: 12px 16px;
-    border-radius: 12px;
-    font-size: 14px;
-    line-height: 1.5;
+  .bubble { max-width: 88%; padding: 8px 12px; border-radius: 10px; font-size: 12px; line-height: 1.5; }
+  .msg.user .bubble { background: rgba(96,165,250,0.12); border: 1px solid rgba(96,165,250,0.25); border-radius: 10px 10px 2px 10px; }
+  .msg.agent .bubble { background: rgba(254,80,0,0.08); border: 1px solid rgba(254,80,0,0.25); border-radius: 10px 10px 10px 2px; }
+
+  /* ─── PIPELINE RESULT ─── */
+  .pipeline {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px 16px; flex: 1; display: flex; flex-direction: column; gap: 6px;
   }
-  .msg.user .bubble { background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3); color: var(--text); border-radius: 12px 12px 2px 12px; }
-  .msg.agent .bubble { background: rgba(254,80,0,0.1); border: 1px solid rgba(254,80,0,0.3); color: var(--text); border-radius: 12px 12px 12px 2px; }
-  .typing { color: var(--text2); font-style: italic; }
-  .skill-panel {
-    background: var(--bg3);
-    border: 1px solid var(--green);
-    border-radius: 16px;
-    padding: 20px;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    line-height: 1.7;
+  .pipe-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+  .pipe-step {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 10px; border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+    font-size: 12px;
   }
-  .skill-label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 12px; font-family: 'Inter', sans-serif; }
-  .skill-filename { color: var(--yellow); font-size: 14px; font-weight: 700; margin-bottom: 8px; }
-  .sk-h1 { color: var(--accent2); font-weight: 700; }
-  .sk-h2 { color: var(--blue); font-weight: 700; }
-  .sk-text { color: var(--text2); }
-  .sk-bold { color: var(--text); font-weight: 600; }
-  .bottom-strip {
-    margin-top: 20px;
-    background: rgba(254,80,0,0.08);
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--accent2);
-    width: 100%;
-    max-width: 1050px;
+  .pipe-icon {
+    width: 26px; height: 26px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
   }
-  .arrow-big { font-size: 24px; color: var(--text2); }
+  .pipe-1 { background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.3); }
+  .pipe-2 { background: rgba(234,179,8,0.15); border: 1px solid rgba(234,179,8,0.3); }
+  .pipe-3 { background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3); }
+  .pipe-4 { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); }
+  .pipe-5 { background: rgba(20,184,166,0.15); border: 1px solid rgba(20,184,166,0.3); }
+  .pipe-text { color: var(--text2); }
+  .pipe-text strong { color: var(--text); font-weight: 600; }
+  .pipe-arrow { color: var(--border); font-size: 10px; margin-left: auto; }
+
+  /* ─── BOTTOM ─── */
+  .bottom {
+    margin-top: 14px; width: 100%; max-width: 1100px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: rgba(254,80,0,0.06); border: 1px solid rgba(254,80,0,0.2);
+    border-radius: 10px; padding: 10px 20px;
+  }
+  .bottom-icon { font-size: 20px; }
+  .bottom-text { font-size: 14px; font-weight: 700; color: var(--accent2); }
+  .bottom-sub { font-size: 12px; color: var(--text2); margin-left: 4px; }
 </style>
 </head>
 <body>
 
-  <h2>Skill Creator em Ação</h2>
-  <p class="tagline">Linguagem natural → Skill funcional em 30 segundos</p>
+  <div class="header">
+    <div class="badge">Bloco 4 — Skill Creator</div>
+    <h1>Crie suas próprias skills</h1>
+    <p class="subtitle">Linguagem natural → skill funcional → rodando automaticamente</p>
+  </div>
 
-  <div class="layout">
-    <div class="chat-panel">
-      <div class="chat-label">💬 Conversa com o agente</div>
-      <div class="msg user">
-        <div class="avatar user-av">👤</div>
-        <div class="bubble">Crie uma skill que analise minha planilha de leads e me diga quais estão esfriando</div>
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-val">5 min</div><div class="kpi-lbl">pra criar uma skill</div></div>
+    <div class="kpi"><div class="kpi-val">QA</div><div class="kpi-lbl">automático antes de salvar</div></div>
+    <div class="kpi"><div class="kpi-val">3 modos</div><div class="kpi-lbl">de criação disponíveis</div></div>
+  </div>
+
+  <div class="main">
+    <!-- LEFT COLUMN -->
+    <div class="left">
+      <!-- Skill vs Prompt -->
+      <div class="concept-row">
+        <div class="concept-card card-bad">
+          <div class="card-tag tag-red">Prompt</div>
+          <div class="card-title">Temporário</div>
+          <ul class="card-list">
+            <li><span class="x">✗</span> Explica tudo de novo toda vez</li>
+            <li><span class="x">✗</span> Morre quando fecha a sessão</li>
+            <li><span class="x">✗</span> Depende da sua memória</li>
+            <li><span class="x">✗</span> Impossível delegar</li>
+          </ul>
+        </div>
+        <div class="concept-card card-good">
+          <div class="card-tag tag-green">Skill</div>
+          <div class="card-title">Permanente</div>
+          <ul class="card-list">
+            <li><span class="v">✓</span> Conhecimento preservado</li>
+            <li><span class="v">✓</span> Salva no Cérebro (Git)</li>
+            <li><span class="v">✓</span> Roda quando quiser / agendar</li>
+            <li><span class="v">✓</span> Qualquer agente pode usar</li>
+          </ul>
+        </div>
       </div>
-      <div class="msg agent">
-        <div class="avatar agent-av">🤖</div>
-        <div class="bubble typing">Entendido. Criando skill de análise de leads frios...<br><br>📁 Salvando em <strong>areas/vendas/skills/</strong><br>✅ SKILL.md gerado com sucesso!</div>
-      </div>
-      <div class="msg user">
-        <div class="avatar user-av">👤</div>
-        <div class="bubble">Quero que ela rode todo dia às 9h e me avise no Telegram</div>
-      </div>
-      <div class="msg agent">
-        <div class="avatar agent-av">🤖</div>
-        <div class="bubble">✅ Cron configurado: <strong>daily às 09:00</strong><br>📱 Notificação via Telegram ativada<br>🎯 Leads sem contato há +7 dias = "esfriando"</div>
+
+      <!-- Dois caminhos -->
+      <div class="paths">
+        <div class="path-card path-a">
+          <div class="path-label path-label-a">Caminho A</div>
+          <div class="path-title">"Já faço isso, quero preservar"</div>
+          <div class="path-desc">Você já tem um processo manual que funciona. O Skill Creator transforma em receita reutilizável.</div>
+          <div class="path-example">
+            <strong>Exemplo</strong><br>
+            "Todo mês eu analiso a planilha de vendas e monto um relatório com faturamento, ticket médio e meta..."
+          </div>
+        </div>
+        <div class="path-card path-b">
+          <div class="path-label path-label-b">Caminho B</div>
+          <div class="path-title">"Tenho uma ideia, quero criar"</div>
+          <div class="path-desc">Você descreve o que precisa e o agente faz as perguntas certas até montar a skill completa.</div>
+          <div class="path-example">
+            <strong>Exemplo</strong><br>
+            "Quero algo que analise meus leads e me avise no Telegram quando algum estiver esfriando..."
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="skill-panel">
-      <div class="skill-label">📄 SKILL.md gerado automaticamente</div>
-      <div class="skill-filename"># skill: analise-leads-frios</div>
-      <br>
-      <span class="sk-h2">## Objetivo</span><br>
-      <span class="sk-text">Analisar planilha de leads e identificar<br>quais estão sem contato há +7 dias.</span><br>
-      <br>
-      <span class="sk-h2">## Input</span><br>
-      <span class="sk-text">- <span class="sk-bold">leads.csv</span> ou Google Sheets<br>- Coluna: último_contato, status, nome</span><br>
-      <br>
-      <span class="sk-h2">## Processo</span><br>
-      <span class="sk-text">1. Ler dados da planilha<br>
-      2. Calcular dias desde último contato<br>
-      3. Filtrar: último_contato &gt; 7 dias<br>
-      4. Ordenar por prioridade (valor do lead)<br>
-      5. Gerar lista de ação</span><br>
-      <br>
-      <span class="sk-h2">## Output</span><br>
-      <span class="sk-text">📱 Mensagem Telegram com:<br>
-      - Lista de leads esfriando<br>
-      - Último contato de cada um<br>
-      - Sugestão de abordagem</span>
+    <!-- RIGHT COLUMN -->
+    <div class="right">
+      <!-- Chat demo -->
+      <div class="chat-panel">
+        <div class="chat-label">Demo — criando uma skill ao vivo</div>
+        <div class="msg user">
+          <div class="avatar user-av">👤</div>
+          <div class="bubble">Crie uma skill que analise minha planilha de leads e me diga quais estão esfriando</div>
+        </div>
+        <div class="msg agent">
+          <div class="avatar agent-av">🤖</div>
+          <div class="bubble">Entendido! Antes de criar, me confirma:<br>
+          <strong>1.</strong> Qual o critério de "esfriando"? (ex: 7 dias sem contato)<br>
+          <strong>2.</strong> Quer receber o alerta onde? (Telegram, email...)<br>
+          <strong>3.</strong> Com que frequência? (diária, semanal...)</div>
+        </div>
+        <div class="msg user">
+          <div class="avatar user-av">👤</div>
+          <div class="bubble">Leads sem contato há 7+ dias, me avisa todo dia às 9h no Telegram</div>
+        </div>
+        <div class="msg agent">
+          <div class="avatar agent-av">🤖</div>
+          <div class="bubble">✅ <strong>SKILL.md</strong> criado em <strong>areas/vendas/skills/</strong><br>
+          ✅ Cron configurado: diário às 09:00<br>
+          ✅ Notificação Telegram ativada</div>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <div class="pipeline">
+        <div class="pipe-label">O que acontece por trás</div>
+        <div class="pipe-step">
+          <div class="pipe-icon pipe-1">🎯</div>
+          <div class="pipe-text"><strong>Coleta</strong> — entende o que você precisa</div>
+          <div class="pipe-arrow">→</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-icon pipe-2">📝</div>
+          <div class="pipe-text"><strong>Gera SKILL.md</strong> — escreve a receita completa</div>
+          <div class="pipe-arrow">→</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-icon pipe-3">🔍</div>
+          <div class="pipe-text"><strong>QA automático</strong> — valida antes de salvar</div>
+          <div class="pipe-arrow">→</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-icon pipe-4">💾</div>
+          <div class="pipe-text"><strong>Salva no Cérebro</strong> — commit no repositório</div>
+          <div class="pipe-arrow">→</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-icon pipe-5">⚡</div>
+          <div class="pipe-text"><strong>Pronta pra usar</strong> — qualquer agente acessa</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="bottom-strip">
-    <span>✍️ Você descreveu em linguagem natural</span>
-    <span class="arrow-big">→</span>
-    <span>🤖 O agente criou a receita completa</span>
-    <span class="arrow-big">→</span>
-    <span>⚡ Rodando automaticamente todo dia</span>
+  <div class="bottom">
+    <span class="bottom-icon">💡</span>
+    <span class="bottom-text">O conhecimento sai da sua cabeça e vira receita reutilizável.</span>
+    <span class="bottom-sub">— Nunca mais explique o mesmo processo duas vezes.</span>
   </div>
+
 </body>
 </html>
