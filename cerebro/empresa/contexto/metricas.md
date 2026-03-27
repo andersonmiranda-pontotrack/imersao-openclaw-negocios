@@ -21,11 +21,9 @@
 
 | Produto | Vendas/mês | Receita/mês | % do total |
 |---------|-----------|-------------|-----------|
-| OpenClaw Pro | 98 | R$ 29.106 | 43% |
-| Pixel IA | 142 assinantes | R$ 27.874 | 41% |
-| Minicurso OpenClaw | 187 | R$ 18.139 | — |
-| Imersão (eventual) | — | — | — |
-| Mentoria em Grupo | 21 | R$ 20.937 | — |
+| TechFlow Pro | 142 assinantes | R$ 42.174 | 62% |
+| TechFlow Enterprise | 12 assinantes | R$ 17.964 | 26% |
+| TechFlow Starter | 85 | R$ 8.245 | 12% |
 
 ---
 
@@ -58,8 +56,8 @@
 
 | Métrica | Valor |
 |---------|-------|
-| Usuários ativos (OpenClaw Pro) | 612 |
-| Taxa de ativação (instala e cria 1 agente) | 64% |
+| Usuários ativos (TechFlow Pro) | 612 |
+| Taxa de ativação (cria 1º workflow) | 64% |
 | Retenção D30 | 71% |
 | Sessões médias por usuário/semana | 4,2 |
 
@@ -71,7 +69,7 @@
 |------|-------|------|
 | MRR | R$ 68.400 | R$ 90.000 |
 | Usuários Pro ativos | 612 | 900 |
-| Assinantes Pixel IA | 142 | 250 |
+| Clientes Enterprise | 12 | 25 |
 | ROAS Meta Ads | 2,1x | 2,5x |
 | NPS | 78 | 82 |
 

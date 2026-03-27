@@ -24,16 +24,16 @@ R: Em média 30 minutos do zero ao primeiro agente respondendo. Se seguir o tuto
 ## 💳 PLANOS E PAGAMENTO
 
 **P: Quais são os planos disponíveis?**
-R: Temos três opções: **Minicurso** (R$97 — curso de instalação e configuração), **OpenClaw Pro** (R$297 — plataforma completa + comunidade + suporte), **Pixel IA** (R$197/mês — mentorias semanais + formações + comunidade). Veja detalhes em openclaw.ai/planos.
+R: Temos três opções: **TechFlow Starter** (R$97 — curso gravado de 4h, do zero à primeira automação), **TechFlow Pro** (R$297/mês — plataforma SaaS completa + suporte), **TechFlow Enterprise** (R$1.497/mês — tudo do Pro + onboarding dedicado + SLA). Veja detalhes em techflow.ai/planos.
 
 **P: Tem garantia?**
-R: Sim. 7 dias de garantia incondicional em todos os produtos. Se não gostar por qualquer motivo, devolvemos 100% do valor. Basta enviar email para financeiro@openclaw.ai.
+R: Sim. 7 dias de garantia incondicional em todos os produtos. Se não gostar por qualquer motivo, devolvemos 100% do valor. Basta enviar email para financeiro@techflow.ai.
 
 **P: Posso parcelar?**
 R: Sim. Aceitamos parcelamento em até 12x no cartão de crédito. No PIX tem 10% de desconto. O link de pagamento já mostra as opções.
 
-**P: Preciso pagar todo mês para continuar usando o OpenClaw Pro?**
-R: O OpenClaw Pro é uma compra única (R$297). Você acessa a plataforma e as atualizações sem mensalidade. O Pixel IA sim é assinatura mensal.
+**P: Qual a diferença entre o Pro e o Enterprise?**
+R: O Pro dá acesso à plataforma completa com suporte via chat. O Enterprise inclui tudo do Pro + onboarding personalizado, gerente de sucesso dedicado, SLA de 4h e integrações customizadas com ERPs e CRMs.
 
 ---
 
@@ -77,11 +77,8 @@ R: O Cérebro é um repositório GitHub — o backup é automático a cada `git 
 **P: Como acesso a comunidade?**
 R: A comunidade está no Telegram. Após a compra, você recebe o link de acesso por email. Grupo principal + canais por área (marketing, produto, atendimento, etc.).
 
-**P: Com que frequência têm as mentorias em grupo?**
-R: No Pixel IA, as mentorias em grupo acontecem toda semana, às quartas 20h BRT. As gravações ficam disponíveis para quem não puder ao vivo.
-
 **P: Posso pedir suporte para configurar meu Cérebro?**
-R: Sim. No OpenClaw Pro tem suporte via Telegram em horário comercial. No Pixel IA tem suporte prioritário + as mentorias semanais para tirar dúvidas de implementação.
+R: Sim. No TechFlow Pro tem suporte via chat em horário comercial. No TechFlow Enterprise tem suporte prioritário com SLA de 4h + gerente de sucesso dedicado.
 
 ---
 

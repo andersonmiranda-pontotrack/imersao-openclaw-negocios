@@ -18,30 +18,29 @@ A **OpenClaw** é uma EdTech brasileira especializada em **agentes de IA para ne
 
 | Produto | Preço | Formato | Status |
 |---------|-------|---------|--------|
-| Minicurso OpenClaw | R$ 97 | Curso online gravado (4h) | Ativo |
-| OpenClaw Pro | R$ 297 | Plataforma + comunidade + suporte | Ativo |
-| Imersão OpenClaw nos Negócios | R$ 397 | Workshop 2 dias ao vivo | Eventual |
-| Pixel IA | R$ 197/mês | Assinatura — mentorias + formações + comunidade | Ativo |
-| Mentoria em Grupo | R$ 997 | 4 sessões mensais em grupo | Ativo |
+| TechFlow Starter | R$ 97 | Curso online gravado (4h) | Ativo |
+| TechFlow Pro | R$ 297/mês | Plataforma SaaS + suporte | Ativo |
+| TechFlow Enterprise | R$ 1.497/mês | Plataforma + onboarding dedicado + SLA | Ativo |
 
 ### Detalhes dos Produtos
 
-**Minicurso OpenClaw**
-- 8 aulas gravadas — instalação, configuração e primeiros agentes
-- Plataforma: Kiwify
-- Público: empreendedores sem background técnico
-- Diferencial: do zero ao primeiro agente funcionando em 1 tarde
+**TechFlow Starter**
+- 8 aulas gravadas — do zero à primeira automação
+- Plataforma: Hotmart
+- Público: PMEs que querem começar com automação
+- Diferencial: implementa o primeiro fluxo em 1 tarde
 
-**OpenClaw Pro**
-- Acesso à plataforma OpenClaw + comunidade exclusiva
-- Suporte via Telegram
+**TechFlow Pro**
+- Plataforma completa de automação com IA
+- Suporte via chat
 - ~800 usuários ativos
-- Inclui: skill-creator, crons, multi-agente, integrações
+- Inclui: workflows ilimitados, integrações, relatórios automáticos
 
-**Pixel IA**
-- Assinatura mensal: R$ 197/mês
-- Inclui: mentorias semanais em grupo, acesso às formações, comunidade, newsletter semanal
-- Foco: manter o empresário atualizado em IA e suportado na implementação
+**TechFlow Enterprise**
+- Tudo do Pro + onboarding personalizado
+- Gerente de sucesso dedicado
+- SLA de 4h para suporte crítico
+- Integrações customizadas com ERPs e CRMs
 
 ---
 
@@ -66,7 +65,7 @@ A **OpenClaw** é uma EdTech brasileira especializada em **agentes de IA para ne
 1. **Meta Ads** — principal canal pago (Instagram + Facebook)
 2. **YouTube** — conteúdo orgânico, autoridade e nutrição
 3. **Instagram Orgânico** — engajamento e comunidade
-4. **Indicação** — usuários OpenClaw Pro indicando outros
+4. **Indicação** — usuários TechFlow Pro indicando outros
 5. **Parceiros** — integradores e consultores de IA
 
 ---
