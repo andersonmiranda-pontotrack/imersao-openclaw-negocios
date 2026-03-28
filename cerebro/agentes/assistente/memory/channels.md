@@ -8,6 +8,18 @@
 | 📢 Marketing | 8 | Marketing — campanhas, tráfego, redes sociais | Assistente de Marketing |
 | ⚙️ Operações | 29 | Operações — processos, ferramentas, automações | Assistente Operacional |
 
+## 🚨 Agentes ativos neste grupo
+
+**Apenas o Assistente Operacional** está configurado neste grupo do Telegram.
+
+| Agente | Neste grupo? | Como acessar |
+|--------|-------------|--------------|
+| Assistente Operacional | ✅ Sim | Mensagem direta no grupo |
+| Agente de Marketing | ❌ Não | Abrir conversa direta com o agente de marketing |
+| Bot de Suporte | ❌ Não | Canal próprio |
+
+**Regra:** Para perguntas de criativo, estratégia de conteúdo, campanhas, análise de anúncios ou qualquer decisão de marketing — o Assistente deve orientar o usuário a falar diretamente com o **Agente de Marketing** no canal dele, e nunca tentar fazer relay silencioso ou invocar o agente aqui.
+
 ## Como usar
 
 - **Alertas e reports** vão pro tópico da área correspondente
