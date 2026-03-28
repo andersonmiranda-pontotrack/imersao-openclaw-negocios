@@ -678,13 +678,64 @@ Mesma pergunta. Respostas completamente diferentes. Cada um no seu papel.
 
 **Pergunta 2:** *"Me dá um resumo do status da área de vendas"*
 
-Assistente geral → responde normalmente. Ele tem acesso a `areas/vendas/`, lê as métricas, puxa os dados e entrega o status.
+Assistente geral → responde normalmente. Tem acesso a tudo.
+Agente de marketing → *"Não tenho acesso à área de vendas."*
 
-Agente de marketing → *"Não tenho acesso à área de vendas. Posso ajudar com métricas de marketing."*
+Não é que ele não sabe. É que ele **não pode**.
 
-Não é que ele não sabe. É que ele não pode. E avisa. O permissionamento funciona — cada agente só acessa a área dele.
+**Pergunta 3:** *"Se um funcionário nosso te mandar uma msg no privado, você vai responder?"*
 
-Cada pasta dentro de `cerebro/agentes/` é um agente. Cada um com SOUL.md próprio.
+Agente → *"Não. Só respondo em grupos autorizados."*
+
+Isso é o `dmPolicy: allowlist` — o agente só responde pra IDs e grupos que você autorizou. Sem exceção.
+
+⏸ *Aguarda "próximo"*
+
+---
+
+📤 **Mensagem:**
+
+**Heartbeats — o que cada agente monitora sozinho**
+
+Acabamos de ver a personalidade (SOUL.md) e as permissões. Agora o outro lado: o que cada agente faz quando **ninguém tá perguntando nada**.
+
+📎 `cerebro/agentes/assistente/HEARTBEAT.md` — visão 360°: pendências de TODAS as áreas, prazos, projetos parados, saúde de todos os crons, métricas cross-área (vendas × suporte, marketing × vendas).
+
+📎 `cerebro/agentes/marketing/HEARTBEAT.md` — APENAS marketing: ROAS das campanhas, criativos cansando, calendário de conteúdo. Ele nem sabe se vendas tá indo bem ou mal.
+
+Personalidade diferente. Escopo diferente. Heartbeat diferente. Cada agente é um funcionário especializado — não um clone genérico.
+
+Cada pasta dentro de `cerebro/agentes/` é um agente. Cada um com SOUL.md e HEARTBEAT.md próprio.
+
+⏸ *Aguarda "próximo"*
+
+---
+
+📤 **Mensagem:**
+
+**O gestor dos agentes — quem monitora quem?**
+
+Agora a pergunta que todo empresário faz: "Beleza, os agentes trabalham. Mas como eu sei o que estão fazendo? Como sei se estão evoluindo ou estão parados?"
+
+O agente generalista — aquele com acesso a tudo — vira o **gestor**. Ele cria um cron que lê o histórico do GitHub toda semana e gera um relatório de evolução de todos os agentes.
+
+📎 `slides/08b-gestao-agentes.html` *(abrir slide conceitual)*
+
+🎬 E o resultado é um report como esse:
+
+📎 `dados-demo/report-gestao-semanal.html` *(abrir report de gestão ao vivo)*
+
+Skills criadas, rotinas ativas, contexto atualizado, cruzamento com OKRs — tudo automático, toda segunda de manhã.
+
+E tem mais: uma vez por mês, o generalista faz uma **auditoria de integridade** — verifica se cada agente tá 100% documentado no GitHub. SOUL.md existe? Skills referenciadas no _index.md existem como pastas? Rotinas documentadas? Permissões consistentes?
+
+🎬 O report de auditoria:
+
+📎 `dados-demo/report-auditoria-agentes.html` *(abrir report de auditoria ao vivo)*
+
+O sistema monitora a si mesmo. Você não precisa abrir o GitHub pra saber se tá tudo rodando — o relatório chega no seu Telegram.
+
+⏸ *Aguarda "próximo"*
 
 ---
 
