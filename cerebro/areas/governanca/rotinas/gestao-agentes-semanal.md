@@ -42,7 +42,7 @@ DEEP DIVE
 ```json
 Nome: gestao-agentes-semanal
 Schedule: 0 7 * * 1
-Prompt: Gere o relatório semanal de evolução dos agentes usando a skill relatorio-evolucao-agentes. Analise os commits dos últimos 7 dias, calcule performance, ROI e cruze com OKRs. Entregue no tópico #gestao.
+Prompt: Gere o relatório semanal de evolução dos agentes usando a skill relatorio-evolucao-agentes. Analise os commits dos últimos 7 dias, calcule performance e ROI. Entregue no tópico #gestao.
 Tópico: #gestao
 ```
 

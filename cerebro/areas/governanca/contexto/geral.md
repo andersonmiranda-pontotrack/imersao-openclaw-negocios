@@ -21,7 +21,6 @@ Garantir que todos os agentes IA operem com integridade, performance e alinhamen
 | Documentação completa (SOUL + HEARTBEAT + AGENTS) | 100% | 100% |
 | Skills órfãs (sem referência no _index) | 0 | 1 |
 | Rotinas com .md correspondente | 100% | 100% |
-| ROI semanal dos agentes | ≥ 500% | 847% |
 
 ---
 

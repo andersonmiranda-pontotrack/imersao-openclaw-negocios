@@ -105,18 +105,10 @@
   .roi-label { font-size:11px; color:var(--text2); margin-top:4px; line-height:1.4; }
   .roi-detail { font-size:10px; color:var(--text3); margin-top:6px; }
 
-  /* OKR */
-  .okr-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  .okr-item { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px; }
-  .okr-obj { font-size:12px; font-weight:700; margin-bottom:8px; line-height:1.4; }
-  .okr-bar-bg { width:100%; height:10px; background:rgba(255,255,255,0.06); border-radius:5px; overflow:hidden; }
-  .okr-bar { height:100%; border-radius:5px; transition:width 0.5s; }
   .bar-green { background:var(--green); }
   .bar-yellow { background:var(--yellow); }
   .bar-red { background:var(--red); }
   .bar-blue { background:var(--blue); }
-  .okr-meta { display:flex; justify-content:space-between; font-size:10px; color:var(--text2); margin-top:4px; }
-  .okr-agent { display:inline-block; background:var(--bg3); padding:2px 6px; border-radius:4px; font-size:9px; font-weight:700; margin-top:4px; }
 
   /* ADOPTION */
   .adoption-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
@@ -213,15 +205,7 @@
           <div class="m-card"><div class="m-val c-teal">0</div><div class="m-label">Retrabalho</div><div class="m-change c-green">zero</div></div>
         </div>
 
-        <div class="task-title">Distribuição de tarefas</div>
-        <div class="task-bar-row"><div class="task-bar-label">Relatórios</div><div class="task-bar-bg"><div class="task-bar tb-green" style="width:42%"></div></div><div class="task-bar-count">37</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Análises</div><div class="task-bar-bg"><div class="task-bar tb-blue" style="width:22%"></div></div><div class="task-bar-count">20</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Alertas</div><div class="task-bar-bg"><div class="task-bar tb-yellow" style="width:15%"></div></div><div class="task-bar-count">13</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Skills criadas</div><div class="task-bar-bg"><div class="task-bar tb-purple" style="width:3%"></div></div><div class="task-bar-count">3</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Contexto atualizado</div><div class="task-bar-bg"><div class="task-bar tb-teal" style="width:11%"></div></div><div class="task-bar-count">10</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Outros</div><div class="task-bar-bg"><div class="task-bar tb-accent" style="width:7%"></div></div><div class="task-bar-count">6</div></div>
-
-        <div class="task-title" style="margin-top:10px">Proatividade</div>
+        <div class="task-title">Proatividade</div>
         <div class="proactivity">
           <div class="proact-item"><div class="proact-val c-green">7</div><div class="proact-label">Sugestões feitas</div></div>
           <div class="proact-item"><div class="proact-val c-blue">5</div><div class="proact-label">Aceitas pela equipe</div></div>
@@ -251,15 +235,7 @@
           <div class="m-card"><div class="m-val c-red">2</div><div class="m-label">Retrabalho</div><div class="m-change c-red">↑ 1</div></div>
         </div>
 
-        <div class="task-title">Distribuição de tarefas</div>
-        <div class="task-bar-row"><div class="task-bar-label">Reports de ads</div><div class="task-bar-bg"><div class="task-bar tb-blue" style="width:38%"></div></div><div class="task-bar-count">22</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Análise de ângulos</div><div class="task-bar-bg"><div class="task-bar tb-purple" style="width:17%"></div></div><div class="task-bar-count">10</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Criativos gerados</div><div class="task-bar-bg"><div class="task-bar tb-accent" style="width:12%"></div></div><div class="task-bar-count">7</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Alertas ROAS</div><div class="task-bar-bg"><div class="task-bar tb-yellow" style="width:7%"></div></div><div class="task-bar-count">4</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Calendário</div><div class="task-bar-bg"><div class="task-bar tb-teal" style="width:14%"></div></div><div class="task-bar-count">8</div></div>
-        <div class="task-bar-row"><div class="task-bar-label">Contexto atualizado</div><div class="task-bar-bg"><div class="task-bar tb-green" style="width:12%"></div></div><div class="task-bar-count">7</div></div>
-
-        <div class="task-title" style="margin-top:10px">Proatividade</div>
+        <div class="task-title">Proatividade</div>
         <div class="proactivity">
           <div class="proact-item"><div class="proact-val c-blue">3</div><div class="proact-label">Sugestões feitas</div></div>
           <div class="proact-item"><div class="proact-val c-blue">2</div><div class="proact-label">Aceitas pela equipe</div></div>
@@ -354,36 +330,6 @@
     </div>
   </div>
 
-  <!-- OKR -->
-  <div class="section">
-    <div class="section-title">🎯 Cruzamento com OKRs Q1/2026</div>
-    <div class="okr-grid">
-      <div class="okr-item">
-        <div class="okr-obj">Reduzir tempo de resposta ao cliente para &lt;2h</div>
-        <div class="okr-bar-bg"><div class="okr-bar bar-green" style="width:78%"></div></div>
-        <div class="okr-meta"><span>78% completo</span><span>Meta: 100% até 31/03</span></div>
-        <div class="okr-agent">🤖 Operações · cron alerta-clientes-inativos</div>
-      </div>
-      <div class="okr-item">
-        <div class="okr-obj">ROAS médio acima de 3.0 em Meta Ads</div>
-        <div class="okr-bar-bg"><div class="okr-bar bar-yellow" style="width:62%"></div></div>
-        <div class="okr-meta"><span>ROAS atual: 2.4</span><span>Meta: 3.0</span></div>
-        <div class="okr-agent">🎯 Marketing · heartbeat monitorando</div>
-      </div>
-      <div class="okr-item">
-        <div class="okr-obj">Automatizar 80% dos relatórios operacionais</div>
-        <div class="okr-bar-bg"><div class="okr-bar bar-green" style="width:88%"></div></div>
-        <div class="okr-meta"><span>88% · 7 de 8 automatizados</span><span>Meta: 31/03</span></div>
-        <div class="okr-agent">🤖 Operações · 3 skills + 4 crons</div>
-      </div>
-      <div class="okr-item">
-        <div class="okr-obj">Produzir 20 criativos novos/mês</div>
-        <div class="okr-bar-bg"><div class="okr-bar bar-red" style="width:35%"></div></div>
-        <div class="okr-meta"><span>7 de 20 (35%)</span><span>8 dias restantes</span></div>
-        <div class="okr-agent">🎯 Marketing · skill stack-ad-creator-pixel</div>
-      </div>
-    </div>
-  </div>
 
   <!-- ADOPTION -->
   <div class="section">
@@ -415,9 +361,9 @@
       <div class="risk high">
         <div class="risk-icon">🔴</div>
         <div class="risk-content">
-          <div class="risk-title">OKR de criativos em risco — 35% com 8 dias restantes</div>
-          <div class="risk-desc">Marketing precisa produzir 13 criativos em 8 dias para bater a meta. Ritmo atual: 1.75/semana. Necessário: 11.4/semana.</div>
-          <div class="risk-action">→ Ação sugerida: rodar stack-ad-creator-pixel em lote (5 criativos por sessão) + alocar 2h/dia da Camila pra validação</div>
+          <div class="risk-title">Campanha "Retargeting Q1" com ROAS 0.8 há 3 dias</div>
+          <div class="risk-desc">O agente de marketing alertou 3 vezes sobre a performance abaixo do piso (ROAS < 1.0). Gasto acumulado no período: R$ 1.2k sem retorno positivo.</div>
+          <div class="risk-action">→ Ação sugerida: pausar campanha imediatamente, realocar budget para campanha "Lookalike v3" que está com ROAS 3.8</div>
         </div>
       </div>
       <div class="risk medium">

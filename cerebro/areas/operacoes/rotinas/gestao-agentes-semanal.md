@@ -15,8 +15,7 @@ O agente generalista lê o histórico de commits do GitHub da última semana e g
    - Contexto atualizado (arquivos novos/editados)
    - Decisões registradas
    - Alertas disparados pelo heartbeat
-4. Ler `cerebro/empresa/gestao/okrs.md` e cruzar evolução com metas
-5. Gerar relatório HTML com:
+4. Gerar relatório HTML com:
    - Score por agente (A+ a D)
    - Métricas: skills, crons, commits, uptime
    - Atividade detalhada da semana

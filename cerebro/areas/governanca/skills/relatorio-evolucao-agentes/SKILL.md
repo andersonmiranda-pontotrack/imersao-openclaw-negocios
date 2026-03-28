@@ -7,7 +7,6 @@ Analisa o histórico de commits do GitHub da última semana e gera um relatório
 
 ## Input
 - Histórico de commits: `git log --since="7 days ago" --all --oneline --stat`
-- OKRs da empresa: `cerebro/empresa/gestao/okrs.md`
 - Lista de agentes ativos: `cerebro/agentes/` (cada subpasta = 1 agente)
 - Skills de cada agente: `cerebro/areas/{area}/skills/_index.md`
 - Rotinas de cada agente: `cerebro/areas/{area}/rotinas/_index.md`
@@ -59,26 +58,21 @@ Para cada agente ativo, gerar:
 - Gerar tabela semana-a-semana: tasks, accuracy, commits, ROI
 - Indicar tendência com setas (↑ ↓ →)
 
-### 7. Cruzamento com OKRs
-- Ler `cerebro/empresa/gestao/okrs.md`
-- Para cada OKR, calcular % de progresso baseado nas entregas dos agentes
-- Gerar barra de progresso visual
-
-### 8. Adoção do Time
+### 7. Adoção do Time
 - Contar interações por membro do time (quem mais usa os agentes)
 - Identificar horários de pico de uso
 - Mapear por área: marketing, vendas, suporte, operações
 
-### 9. Riscos e Alertas
+### 8. Riscos e Alertas
 - Listar problemas identificados durante a semana
 - Classificar por severidade: 🔴 Alto, 🟡 Médio, 🟢 Baixo
 - Para cada risco, incluir ação sugerida
 
-### 10. Insights e Recomendações
+### 9. Insights e Recomendações
 - Gerar 3-5 insights baseados nos dados da semana
 - Cada insight com: observação + recomendação + impacto esperado
 
-### 11. Geração do HTML
+### 10. Geração do HTML
 - Usar template visual com tema escuro (padrão TechFlow)
 - Cores: `--bg: #0A0E2A`, `--accent: #FE5000`, `--green: #22c55e`, `--blue: #60a5fa`
 - Font: Inter (Google Fonts)
@@ -95,11 +89,10 @@ Relatório HTML com as seguintes seções:
 3. Deep Dive por Agente — card expandido com métricas, distribuição, proatividade, log
 4. ROI — horas economizadas, economia R$, ROI %
 5. Tendência 4 Semanas — tabela comparativa
-6. OKRs — barras de progresso
-7. Adoção — quem usa mais, horários pico
-8. Riscos — cards com severidade e ação sugerida
-9. Insights — observações e recomendações
-10. Footer — próximo relatório, quem gerou
+6. Adoção — quem usa mais, horários pico
+7. Riscos — cards com severidade e ação sugerida
+8. Insights — observações e recomendações
+9. Footer — próximo relatório, quem gerou
 ```
 
 ---
@@ -110,7 +103,6 @@ Relatório HTML com as seguintes seções:
 - Backup: salvar em `cerebro/empresa/gestao/reports/gestao-semanal-YYYY-MM-DD.html`
 
 ## Referências
-- OKRs: `cerebro/empresa/gestao/okrs.md`
 - Agentes: `cerebro/agentes/`
 - Áreas: `cerebro/areas/`
 - Reports anteriores: `cerebro/empresa/gestao/reports/`
