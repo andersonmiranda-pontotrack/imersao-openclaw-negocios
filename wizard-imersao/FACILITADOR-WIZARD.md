@@ -803,9 +803,11 @@ Olha o que vocês já dominam: 4 estágios de evolução, SOUL.md, AGENTS.md, HE
 
 **Como organizar os agentes no seu negócio**
 
+Isso vale pra qualquer plataforma: Telegram com tópicos, Slack com canais, Microsoft Teams, WhatsApp com grupos. A estrutura do Cérebro é a mesma — o que muda é o canal de entrega.
+
 Duas formas de começar:
 
-- **Tópicos (1 agente, contexto separado)** — um grupo Telegram com tópicos por área. Um agente único que separa o contexto entre os tópicos. Mais simples de começar.
+- **Tópicos/canais (1 agente, contexto separado)** — um grupo com tópicos por área. Um agente único que separa o contexto entre os tópicos. Mais simples de começar. No Telegram são tópicos, no Slack são canais. Funciona igual.
 - **Grupos separados (1 agente por grupo)** — um grupo por área, cada um com seu agente dedicado. Isolamento total.
 
 Dá pra começar com tópicos — funciona. Mas à medida que a empresa escala, você perde três coisas:
@@ -824,15 +826,19 @@ A evolução natural: começa com tópicos, migra pra grupos quando escalar.
 
 📤 **Mensagem:**
 
-🎬 *No Telegram — abrindo os AGENTS.md ao vivo:*
+**E a equipe? Como sabe o que o agente faz?**
 
-📎 `cerebro/agentes/marketing/AGENTS.md` → scope com paths permitidos. Só `areas/marketing/`.
+Esse é o ponto que quase todo mundo esquece. Você monta o sistema, coloca o agente no grupo, e ninguém sabe o que ele faz. Mandam mensagem errada, não usam as skills, e depois falam "o agente não serve pra nada".
 
-Vocês acabaram de ver: quando perguntamos sobre vendas pro agente de marketing, ele não respondeu. Aqui tá o motivo — ele literalmente só tem acesso a `areas/marketing/`. Não é filtro de conversa. É permissão real de leitura.
+A solução não é criar um manual. É ensinar o próprio agente a se apresentar. Uma regra no SOUL.md:
 
-📎 `cerebro/seguranca/permissoes.md` — tabela completa: agente × recurso × nível de acesso.
+*"Quando alguém perguntar o que você faz ou mandar a primeira mensagem → leia seu skills/_index.md e rotinas/_index.md e apresente um resumo das suas capacidades."*
 
-Cada agente tem seu escopo definido. Isso é segurança estrutural — não depende do agente "se comportar bem". Ele simplesmente não consegue ler o que não tá no escopo dele.
+O agente vira o próprio canal de treinamento. Criou skill nova? O _index.md atualiza, o agente já sabe explicar. Sem manual separado, sem documento que fica desatualizado.
+
+A equipe pergunta "o que você faz?" — e ele responde com a lista real, atualizada, do que sabe fazer.
+
+⏸ *Aguarda "próximo"*
 
 ---
 
@@ -1119,6 +1125,7 @@ Em uma semana de trabalho, você consegue montar esse sistema inteiro. Os passos
 4. **Criar as primeiras skills** — começa pelas mais simples, valida, e vai evoluindo
 5. **Agendar crons** — o que deve rodar sozinho, roda sozinho
 6. **Criar agentes especializados** — quando fizer sentido, separa workspaces com escopo claro
+7. **Onboarding do time** — não adianta montar o sistema perfeito se ninguém sabe usar. Configura o agente pra se apresentar (regra no SOUL.md que lê o _index.md das skills), coloca no grupo, e deixa o próprio agente ensinar o time a usá-lo
 
 A maior dificuldade? **Alimentar o contexto.** Mas você não precisa digitar tudo na mão.
 
