@@ -279,9 +279,9 @@ Prompt é temporário. Morre quando a sessão fecha. Skill é permanente — fic
 
 🎬 Abrindo as duas ao vivo pra comparar:
 
-📎 `cerebro/areas/vendas/skills/relatorio-vendas/SKILL.md` — skill simples, só a receita, já funciona.
+📎 [Abrir relatorio-vendas/SKILL.md](cerebro/areas/vendas/skills/relatorio-vendas/SKILL.md) — skill simples, só a receita, já funciona.
 
-📎 `cerebro/empresa/skills/stack-ad-creator-pixel/SKILL.md` — skill avançada, com script Python que gera banners de Meta Ads automaticamente via Playwright.
+📎 [Abrir stack-ad-creator-pixel/SKILL.md](cerebro/empresa/skills/stack-ad-creator-pixel/SKILL.md) — skill avançada, com script Python que gera banners de Meta Ads automaticamente via Playwright.
 
 ⏸ *Aguarda "próximo"*
 
@@ -297,7 +297,7 @@ Cada pasta de skills tem o seu. O agente lê esse arquivo primeiro e já sabe qu
 
 🎬 Abrindo ao vivo:
 
-📎 `cerebro/empresa/skills/_index.md`
+📎 [Abrir _index.md de skills da empresa](cerebro/empresa/skills/_index.md)
 
 Olha: 7 skills mapeadas — `relatorio-rotinas`, `stack-ad-creator-pixel`, `criar-skill`, `alerta-clientes-inativos` e mais. O agente bate o olho nesse arquivo e sabe exatamente o que tem disponível. Sem ele, fica perdido procurando pasta por pasta.
 
@@ -392,7 +392,7 @@ Bruno pede: *"Transforma isso em skill"*
 
 O agente capturou o processo inteiro e empacotou em receita reutilizável. Agora qualquer agente que acessar o Cérebro sabe gerar esse relatório.
 
-📂 `cerebro/areas/vendas/skills/leads-esfriando/SKILL.md` *(abrir arquivo gerado ao vivo)*
+📂 [Abrir leads-esfriando/SKILL.md](cerebro/areas/vendas/skills/leads-esfriando/SKILL.md) *(abrir arquivo gerado ao vivo)*
 
 Bruno testa: *"Me mostra os leads esfriando"*
 
@@ -406,12 +406,12 @@ Mesmo resultado. Sem precisar explicar nada de novo. A skill já sabe o que faze
 
 O skill-creator é uma skill que cria outras skills. Ele detecta automaticamente o que você quer e monta a estrutura.
 
-📂 `cerebro/empresa/skills/criar-skill/SKILL.md` *(abrir arquivo ao vivo — mostrar QA automático, estrutura gerada)*
+📂 [Abrir criar-skill/SKILL.md](cerebro/empresa/skills/criar-skill/SKILL.md) *(abrir arquivo ao vivo — mostrar QA automático, estrutura gerada)*
 
 Além do chat, tem o **wizard visual** — interface com 4 etapas que monta a skill pra você — e uma **biblioteca com 24 exemplos** de skills prontas pra usar como base.
 
-📂 `cerebro/empresa/skills/criar-skill/wizard.html` *(abrir wizard ao vivo)*
-📂 `cerebro/empresa/skills/criar-skill/examples.html` *(abrir biblioteca de exemplos)*
+📂 [Abrir wizard visual](cerebro/empresa/skills/criar-skill/wizard.html) *(abrir wizard ao vivo)*
+📂 [Abrir biblioteca de exemplos](cerebro/empresa/skills/criar-skill/examples.html) *(abrir biblioteca de exemplos)*
 
 ⏸ *Aguarda "próximo"*
 
@@ -565,11 +565,50 @@ O OpenClaw resolve isso com **3 camadas de proteção**.
 
 **Dia 1 — o que construímos**
 
-✅ Cérebro compartilhado — o contexto é seu, não da ferramenta
-✅ Skills — automações em linguagem natural, rodam sozinhas
-✅ Skill-creator — qualquer tarefa vira skill em 30 segundos
-✅ Crons — o sistema roda sem ninguém pedir
-✅ Segurança em 3 camadas
+**Recap completo — todos os slides do dia:**
+
+🔹 **Abertura**
+📎 [00 — Abertura](slides/00-abertura.html)
+
+🔹 **O Problema e a Arquitetura**
+📎 [01 — O problema com IA no negócio](slides/01-problema.html)
+📎 [02 — Arquitetura multi-agente](slides/02-arquitetura.html)
+
+🔹 **O Cérebro**
+📎 [03 — Estrutura do Cérebro](slides/03-cerebro-estrutura.html)
+
+🔹 **Skills**
+📎 [04 — Anatomia de uma skill](slides/04-skill-anatomia.html)
+📎 [04b — Espectro de complexidade](slides/04b-skill-estrutura.html)
+📎 [05 — Prompt vs Skill](slides/05-skill-vs-prompt.html)
+
+🔹 **Crons e Heartbeats**
+📎 [06 — Crons vs Heartbeats](slides/06-crons.html)
+
+🔹 **Segurança**
+📎 [07c — Segurança em 3 camadas](slides/07c-seguranca-camadas.html)
+
+---
+
+**Preview do Dia 2 — amanhã às 9h**
+
+- **Multi-agente** — como sair de 1 agente generalista pra um sistema com agentes especializados, cada um com personalidade e escopo próprio (SOUL.md, AGENTS.md)
+- **Permissionamento** — como cada agente acessa só a área dele, com controle real de leitura por pasta. Vamos testar ao vivo: mesma pergunta, dois agentes, respostas diferentes
+- **Marketing de performance** — o ciclo completo automatizado: relatório de Meta Ads → análise de ângulos → geração de criativos. 3 skills + 3 crons = ciclo no automático
+- **Bot de suporte que aprende sozinho** — o caso real do @OpenClawzinho. Como montar um bot que consulta base de conhecimento, escala o que não sabe, e aprende com cada resposta. Em 90 dias: 95% das perguntas respondidas sem intervenção
+- **Como começar na sua empresa** — roadmap prático de 30 dias pra montar esse sistema do zero no seu negócio
+
+---
+
+**O que importa de verdade — a hierarquia do sistema:**
+
+**1. Cérebro da empresa** — tudo começa aqui. Um repositório GitHub que centraliza todo o contexto. Sem ele, cada ferramenta é uma ilha. Com ele, qualquer agente, qualquer ferramenta, acessa o mesmo conhecimento. Braços mudam. Cérebro fica.
+
+**2. Contexto — empresa, áreas e sub-áreas** — o Cérebro só é útil se estiver alimentado. Missão, produto, equipe, métricas, decisões, lições. Cada área com a mesma estrutura: contexto, skills, rotinas, projetos. Quanto mais contexto, melhor o agente trabalha. Essa é a parte mais importante — e a mais demorada.
+
+**3. Skills** — o conhecimento que não evapora. Cada processo que hoje vive na cabeça de alguém vira uma receita permanente. Começa simples (só o SKILL.md), evolui conforme precisa. O agente executa sempre — sem re-explicar nada.
+
+**4. Crons e Heartbeats** — o sistema que roda sozinho. Cron é a agenda operacional: horário fixo, tarefa determinística. Heartbeat é o cérebro estratégico: avalia o estado e decide. Juntos, fazem o sistema trabalhar enquanto vocês dormem.
 
 Nos vemos amanhã às 9h.
 
