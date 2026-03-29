@@ -628,16 +628,28 @@ Nos vemos amanhã às 9h.
 
 **Dia 2 — o salto: de 1 agente para um sistema**
 
-Ontem:
-- Criamos o Cérebro — o repo que centraliza tudo
-- Criamos skills — o agente executa com uma frase
-- Configuramos crons — o sistema trabalha enquanto você dorme
+Bom dia de novo! Ontem foi denso — e hoje vai ser ainda mais prático. Antes de avançar, um recap visual de tudo que vamos cobrir nos dois dias:
 
-Hoje:
-- Multi-agente — cada um no seu papel
-- Marketing de performance — ciclo completo automatizado
-- Bot de suporte — aprende sozinho com a operação
-- Como começar na sua empresa
+📎 `slides/00-abertura.html` *(mesmo slide de abertura do Dia 1 — agenda completa dos 2 dias)*
+
+**Dia 1 — Fundação do Sistema** (o que vocês já dominam)
+- Abertura & apresentação — 15min
+- O problema e a arquitetura — 20min
+- O Cérebro — estrutura e organização — 30min
+- Skills — automações em linguagem natural — 40min
+- Skill-creator — o agente cria skills — 25min
+- Crons — o sistema roda sozinho — 20min
+- Segurança em 3 camadas — 20min
+
+**Dia 2 — Sistema Completo** (o que vem agora)
+- Abertura & recap do dia 1 — 15min
+- Multi-agente — cada um no seu papel — 30min
+- Permissionamento por área — 20min
+- Marketing de performance automatizado — 35min
+- Bot de suporte que aprende sozinho — 30min
+- Plano 30 dias — como começar — 20min
+
+Ontem vocês construíram a fundação: Cérebro, Skills, Crons, Segurança. Hoje o salto: de 1 agente pra um **sistema** — com agentes especializados, marketing no automático e um bot que aprende sozinho.
 
 ---
 
@@ -647,23 +659,43 @@ Hoje:
 
 📤 **Mensagem:**
 
-📎 `slides/checkpoint-01.html` *(checkpoint de progresso)*
-
-Antes de mergulhar no próximo tema, olha onde a gente tá. Do lado esquerdo: o progresso do dia. Do lado direito: tudo que vocês já aprenderam até aqui — Cérebro, Skills, Crons. Agora vamos pro próximo nível.
-
----
-
-📤 **Mensagem:**
-
 **De 1 agente para um sistema — a evolução**
 
 A maioria começa com 1 agente pessoal no privado. Depois expande pra equipe. Depois segmenta por áreas. Cada estágio resolve um problema.
 
-Um aluno nosso, o Walter da Triângulo Laser — indústria de corte a laser com ~40 funcionários no interior de MG — montou em 14 dias um agente com 30+ endpoints cobrindo produção, financeiro, comercial, estoque e RH. Tudo conectado ao ERP próprio deles. Isso é o estágio 2. Funciona muito bem. Mas conforme escala, o próximo passo natural é especializar.
-
 📎 `slides/07d-evolucao-agentes.html`
 
-E o estágio 4 — o suprassumo — é cada área com seu próprio agente especializado. Um agente master no topo coordena, audita e gera relatórios de evolução. Todos lendo do mesmo Cérebro.
+**Estágio 1 — Agente pessoal.** Você no privado com o agente. Resolve suas coisas, aprende o modelo, valida que funciona.
+
+**Estágio 2 — Agente da empresa.** Um agente compartilhado, conectado ao ERP, ferramentas, dados. Toda a equipe usa. O contexto é da empresa, não de uma pessoa.
+
+**Estágio 3 — Agente por área com tópicos.** Um agente, mas separando contexto por tópicos/canais. Marketing num tópico, vendas em outro. Funciona, mas o agente é generalista.
+
+**Estágio 4 — Multi-agente especializado.** Cada área com seu próprio agente. Personalidade dedicada, escopo dedicado, permissões dedicadas. Um agente master coordena.
+
+**Case real — Estágio 2 na prática**
+
+Pra vocês verem que isso não é teoria. O Walter, da Triângulo Laser — indústria de corte a laser e dobra de chapas, ~40 funcionários no interior de MG. ERP próprio em Laravel, o que eliminou a principal barreira: acesso direto aos dados e capacidade de criar endpoints sob demanda.
+
+Tudo construído em **14 dias**. De zero para 30+ endpoints em produção, 8 automações com timer, OCR integrado via GPU local, e monitoramento ativo de produção, financeiro, comercial, estoque e RH.
+
+O agente roda 24/7 conectado direto ao ERP. Não é chatbot — é um operador que monitora, alerta e executa:
+
+- **Produção** — monitora filas de corte e dobra em tempo real. Ocupação passa de 80%? Alerta automático pro grupo de gestão organizar hora extra.
+- **Comercial** — acompanha taxa de conversão, cobra justificativa de orçamentos perdidos, identifica clientes inativos de ticket alto.
+- **Financeiro** — gera PDFs de resumo sob demanda, cruza NF-e do DistDF-e pra mapear compras via Mercado Livre, monitora inadimplência.
+- **RH** — processa atestados médicos via OCR (Docling em GPU local), cruza CID com dados cadastrados, identifica inconsistências — declarações abonadas indevidamente, duplicatas, padrões de afastamento.
+- **Estoque** — classifica itens por cobertura em dias, alerta sobre rupturas previstas, cruza com pedidos de compra em trânsito.
+
+**Git como disciplina:** o agente nunca faz push direto em main — cria branch, commita, o dono decide o merge. Tudo rastreável, reversível e auditável.
+
+**A diferença de ter ERP próprio:** sexta à noite o dono pede um endpoint novo. Sábado de manhã está em produção, documentado e o agente já usando. Sem ticket de consultoria, sem esperar release de fornecedor.
+
+**Exemplo real:** numa sessão, criaram endpoints de RH, rodaram OCR em 228 atestados via GPU local em 6 minutos, e identificaram falhas no processo de abono que existiam há meses sem ninguém perceber.
+
+O agente não substituiu ninguém. Ele tornou visível o que antes ninguém via a tempo de agir — e fez isso em 14 dias.
+
+Isso é o estágio 2. Funciona muito bem. Mas conforme escala, o próximo passo natural é especializar — e é aí que entra o multi-agente.
 
 📎 `slides/08-multi-agente.html`
 
@@ -724,6 +756,8 @@ O Agente de Marketing? Só `empresa/` (contexto geral) e `areas/marketing/`. O r
 📎 `cerebro/agentes/marketing/AGENTS.md` — escopo restrito: só empresa/ + marketing/.
 
 É o AGENTS.md que define essa fronteira. Personalidade no SOUL.md, permissão no AGENTS.md. Dois arquivos, dois papéis completamente diferentes.
+
+**Dica importante:** tratem os agentes como funcionários. Recomendamos que cada agente tenha um **e-mail próprio** — assim você delimita acessos reais: Google Drive, planilhas, APIs, ferramentas SaaS. Cada agente acessa só o que precisa, com credenciais rastreáveis. Mesmo princípio de onboarding de funcionário: crachá, acesso, escopo definido.
 
 ⏸ *Aguarda "próximo"*
 
@@ -850,7 +884,7 @@ O agente vira o próprio canal de treinamento. Criou skill nova? O _index.md atu
 
 📎 `slides/checkpoint-03.html` *(checkpoint de progresso)*
 
-Multi-agente dominado. Organização definida. Agora vamos ver o que um agente especializado faz de verdade — mergulho no marketing de performance.
+Multi-agente dominado. Organização definida. Agora vem a parte prática: vamos fazer **deep dive em 2 áreas** — Marketing de Performance e Bot de Suporte. Vocês vão ver como um agente especializado opera de verdade no dia a dia, com dados reais e demos ao vivo. Primeiro: marketing.
 
 ---
 
@@ -858,9 +892,17 @@ Multi-agente dominado. Organização definida. Agora vamos ver o que um agente e
 
 **Marketing de performance — a evolução real**
 
-Antes a gente vivia no Ads Manager. Abria o painel todo dia de manhã, exportava dados pra planilha, cruzava no Reportei pra fazer report bonito. Funcionava? Funcionava. Mas era manual, demorado, e quando o time não olhava por 2 dias, ninguém sabia o que tava acontecendo.
+Antes a gente vivia no Ads Manager.
 
-O que vou mostrar agora é como isso evoluiu ao longo de meses com o agente. Não foi de uma vez — foram 6 níveis de maturidade. Cada um construiu em cima do anterior.
+Abria o painel todo dia de manhã, exportava dados pra planilha, cruzava no Reportei pra fazer report bonito.
+
+Funcionava? Funcionava.
+
+Mas era manual, demorado, e quando o time não olhava por 2 dias, ninguém sabia o que tava acontecendo.
+
+O que vou mostrar agora é como isso evoluiu ao longo de meses com o agente.
+
+Não foi de uma vez — foram **6 níveis de maturidade**. Cada um construiu em cima do anterior.
 
 📎 `slides/10-marketing-evolucao.html`
 
