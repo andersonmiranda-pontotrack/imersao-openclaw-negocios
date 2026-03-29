@@ -1,1 +1,0 @@
-cerebro/agentes/marketing/SOUL.md

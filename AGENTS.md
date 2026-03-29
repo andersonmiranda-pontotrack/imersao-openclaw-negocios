@@ -1,1 +1,0 @@
-cerebro/agentes/marketing/AGENTS.md
