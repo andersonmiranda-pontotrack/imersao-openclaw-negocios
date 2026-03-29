@@ -830,13 +830,13 @@ A evolução natural: começa com tópicos, migra pra grupos quando escalar.
 
 Esse é o ponto que quase todo mundo esquece. Você monta o sistema, coloca o agente no grupo, e ninguém sabe o que ele faz. Mandam mensagem errada, não usam as skills, e depois falam "o agente não serve pra nada".
 
-A solução não é criar um manual. É ensinar o próprio agente a se apresentar. Uma regra no SOUL.md:
+A solução não é criar um manual. É ensinar o próprio agente a se apresentar. Olha como fica no SOUL.md:
 
-*"Quando alguém perguntar o que você faz ou mandar a primeira mensagem → leia seu skills/_index.md e rotinas/_index.md e apresente um resumo das suas capacidades."*
+📎 `cerebro/agentes/assistente/SOUL.md` *(rolar até a seção "Onboarding do time")*
+
+Uma seção simples: quando alguém perguntar "o que você faz?" → lê o _index.md das skills e rotinas e apresenta. Quem sou, o que faço sob demanda, o que rodo no automático, como me acionar.
 
 O agente vira o próprio canal de treinamento. Criou skill nova? O _index.md atualiza, o agente já sabe explicar. Sem manual separado, sem documento que fica desatualizado.
-
-A equipe pergunta "o que você faz?" — e ele responde com a lista real, atualizada, do que sabe fazer.
 
 ⏸ *Aguarda "próximo"*
 
