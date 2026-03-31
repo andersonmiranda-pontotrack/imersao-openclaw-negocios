@@ -23,13 +23,13 @@ Você vai guiar o usuário por 5 fases para transformar este repositório — qu
 
 ## O que vamos criar
 
-Neste setup, você vai configurar o **Assistente de Diretoria** — o agente principal da empresa. Ele tem acesso a tudo no cérebro, conhece a operação inteira e pode ser acionado por qualquer pessoa do time.
+Neste setup, você vai montar o **cérebro da empresa** — contexto, métricas, equipe, áreas, skills e rotinas. Tudo versionado no GitHub, acessível por qualquer agente do time.
 
-> **Por que "de diretoria"?** Ele age como um braço direito operacional com permissão total — lê e escreve em qualquer área, conhece métricas, equipe, decisões e executa skills em qualquer parte da empresa.
+O agente que vai operar esse cérebro, por enquanto, é o **Assistente de Diretoria**: permissão total, acesso a tudo, o braço direito operacional da empresa.
 
-Um detalhe importante: você provavelmente vai querer um **agente pessoal** também — com sua personalidade, suas preferências, sua memória particular. Esse agente pessoal **não vai para o GitHub.** Ele fica na sua configuração local, privado. O que vamos documentar e versionar aqui é o Assistente de Diretoria, que pertence à empresa.
+> Você provavelmente vai querer um **agente pessoal** também — com sua personalidade, suas preferências, sua memória particular. Esse agente **não vai para o GitHub.** Ele fica na sua configuração local, privado. Isso fica para outro momento.
 
-O agente pessoal a gente configura em outro momento. Vamos focar no que vai resolver a operação primeiro.
+Por ora: cérebro da empresa no ar, Assistente de Diretoria operando.
 
 ---
 
