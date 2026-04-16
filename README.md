@@ -76,3 +76,4 @@ Comando para o facilitador usar:
 ---
 
 *Imersão OpenClaw nos Negócios · Pixel Educação · 2026*
+"# OpenClaw_Estrutura" 
